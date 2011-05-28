@@ -1,0 +1,45 @@
+---
+detect_relations: true
+options:
+  collate: utf8_general_ci
+  charset: utf8
+  type: InnoDB
+
+pEngine_Model_Category:
+  actAs: [NestedSet]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    lft:
+      type: integer(4)
+      notnull: true
+    rgt:
+      type: integer(4)
+      notnull: true
+    level:
+      type: integer(4)
+      notnull: true
+    name:
+      type: string(64)
+      notnull: true
+    title:
+      type: string(64)
+      notnull: true
+    description:
+      type: text
+    uri:
+      type: text
+    target:
+      type: boolean
+    order:
+      type: integer(4)
+    publish:
+      type: boolean
+      notnull: true
+      default: 1
+  options:
+    charset: utf8
+    collate: utf8_general_ci

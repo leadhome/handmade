@@ -1,0 +1,36 @@
+---
+detect_relations: true
+options:
+  collate: utf8_general_ci
+  charset: utf8
+  type: InnoDB
+
+Category_Model_Category:
+  actAs: [NestedSet]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    lft:
+      type: integer(4)
+    rgt:
+      type: integer(4)
+    level:
+      type: integer(4)
+    name:
+      type: string(255)
+    title:
+      type: string(255)
+    description:
+      type: text
+    icon:
+      type: string(255)
+    count:
+      type: integer(11)
+      notnull: true
+      default: 0
+  options:
+    charset: utf8
+    collate: utf8_general_ci

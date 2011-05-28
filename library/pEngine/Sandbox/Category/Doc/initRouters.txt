@@ -1,0 +1,42 @@
+	/**
+	* in Bootstrap.php
+	*/
+	protected function _initRoutes()
+	{
+		$this->bootstrap('Frontcontroller');
+		$fc = $this->getResource('Frontcontroller');
+		$router = $fc->getRouter();
+
+		$rows = Doctrine_Query::create()
+			->from('Router_Model_Route r')
+			->leftJoin('r.Req req')
+			->useResultCache(true)
+			->setResultCacheLifeSpan(60*60*12)
+			->execute();
+
+		foreach($rows as $row){
+			$router_name = $row->module . $row->controller . $row->action;
+
+			$params = array();
+			foreach ($row->Req as $p){
+				$params[$p->name] = $p->value;
+			}
+
+			ksort($params);
+			foreach($params as $key => $value){
+				$router_name .= $key;
+			}
+
+			$route = new Zend_Controller_Router_Route($row->url,
+					array(
+						'module' => $row->module,
+						'controller' => $row->controller,
+						'action' => $row->action
+						), $params
+					);
+
+			$router->addRoute($router_name, $route);
+		}
+
+		return $router;
+	}

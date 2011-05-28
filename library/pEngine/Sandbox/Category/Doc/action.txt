@@ -1,0 +1,65 @@
+    public function addAction()
+    {
+        $form = new Admin_Form_AddCategory();
+
+		if($this->getRequest()->isPost()){
+			$formdata = $this->getRequest()->getParams();
+			if($form->isValid($formdata)){
+				$parent = Doctrine_Core::getTable('Spravka_Model_Category')->find($formdata['category']);
+				$spravka = Spravka_Model_CategoryTable::getInstance();
+				$spravka->addCategory($parent->id, $formdata);
+				$this->view->message = 'Category added.';
+				$form = new Admin_Form_AddCategory();
+			}
+		}
+		$this->view->form = $form;
+    }
+
+    public function editAction()
+    {
+        $category_id = $this->getRequest()->getParam('category_id');
+		$category = Spravka_Model_CategoryTable::getInstance();
+		$attr = $category->getAttr($category_id);
+		$form = new Admin_Form_EditCategory($attr);
+
+		if($this->getRequest()->isPost()){
+			$formdata = $this->getRequest()->getParams();
+			$category->editCategory($category_id, $formdata);
+			$this->view->message = 'Category updated.';
+		}else{
+			$this->view->form = $form;
+		}
+		$category_id = $this->getRequest()->getParam('category_id');
+		$category = Spravka_Model_CategoryTable::getInstance();
+		$attr = $category->getAttr($category_id);
+		$form = new Admin_Form_EditCategory($attr);
+		$this->view->form = $form;
+    }
+
+    public function moveAction()
+    {
+        $form = new Admin_Form_MoveCategory();
+		$this->view->form = $form;
+
+		if($this->getRequest()->isPost()){
+			$formdata = $this->getRequest()->getParams();
+			$category = Spravka_Model_CategoryTable::getInstance();
+			$category->moveCategory($formdata['from_category'], $formdata['to_category']);
+			$this->view->message = 'Category moved.';
+		}else{
+			$this->view->form = $form;
+		}
+    }
+
+    public function manageAction()
+    {
+		if($this->getRequest()->isPost()){
+			$formdata = $this->getRequest()->getParams();
+			$category = Spravka_Model_CategoryTable::getInstance();
+			$category->deleteCategory($formdata['categories']);
+			$this->view->message = 'Selected categories removing.';
+		}else{
+			$form = new Admin_Form_ManageCategory();
+			$this->view->form = $form;
+		}
+    }

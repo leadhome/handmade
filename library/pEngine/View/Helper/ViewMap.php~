@@ -1,0 +1,200 @@
+<?php
+
+class pEngine_View_Helper_ViewMap extends Zend_View_Helper_Abstract
+{
+    /*
+     * $mainInfo = array('advTitle', 'address', 'price', 'latitude', 'longitude')
+     * @param array $mainInfo
+     *
+     * пока не реализовано:
+     * $point = array(array( 'latitude', 'longitude', 'title', 'comment'))
+     * @param array(array) $points
+     *
+     * @param int $height
+     */
+
+    public function viewMap($mainInfo, $height = 400, $points = array())
+    {
+    	if (!floatval($mainInfo['latitude']))
+    	{
+    		return false;
+    	}
+    	if (!floatval($mainInfo['longitude']))
+    	{
+    		return false;
+    	}
+
+    	if (!isset($mainInfo['advTitle']))
+    	{
+    		$mainInfo['advTitle'] = "не указан";
+    	}
+        if (!isset($mainInfo['address']))
+    	{
+    		$mainInfo['address'] = "не указана";
+    	}
+        if (!isset($mainInfo['price']))
+    	{
+    		$mainInfo['price'] = "не указан";
+    	}
+
+        if (count($points) == 0)
+        {
+            $points = array();
+        }
+
+        $templateBalloon = "'<div><div>$[advTitle]</div><div>$[address]</div><div>стоимость $[price]</div></div>'";
+
+        $additionalTemplateBalloon = "'<div><div>$[title]</div><div>$[comment]</div></div>'";
+
+<<<<<<< HEAD:pEngine/View/Helper/ViewMap.php
+        $this->view->headScript()->appendFile('http://api-maps.yandex.ru/1.1/index.xml?key=ADpLGU0BAAAAFoP4OQIAp9O-bV1IhifWifI7Y-CSBnjjv38AAAAAAAAAAAC5g3dfvfhdPZ6JBw6fC-MrvLloaA==&modules=pmap', 'text/javascript');
+=======
+        $serverName = Zend_Controller_Front::getInstance()->getRequest()->getServer('SERVER_NAME');
+
+        $keys = array();
+        $keys['localhost']   = 'ADpLGU0BAAAAFoP4OQIAp9O-bV1IhifWifI7Y-CSBnjjv38AAAAAAAAAAAC5g3dfvfhdPZ6JBw6fC-MrvLloaA==';
+        $keys['bldom.com']   = 'ADpLGU0BAAAAFoP4OQIAp9O-bV1IhifWifI7Y-CSBnjjv38AAAAAAAAAAAC5g3dfvfhdPZ6JBw6fC-MrvLloaA==';
+        $keys['amurdom.com'] = 'AJQMWk0BAAAA8861fgIAmYxaZ4bt39KaMFAXpIyl0yaHK-sAAAAAAAAAAAD6qwMKuVrljEt-p8nyGsYp_7RLDQ==';
+        $this->view->headScript()->appendFile('http://api-maps.yandex.ru/1.1/index.xml?key=' . $keys[$serverName] . '&modules=pmap', 'text/javascript');
+
+>>>>>>> b5e635af8ddb6d194c87beb650505648b3520a65:pEngine/View/Helper/ViewMap.php
+        $this->view->headScript()->appendScript("
+            function createMap()
+            {
+                jQuery('#YMapsID').css( { height:'{$height}px' } );
+                return new YMaps.Map(YMaps.jQuery('#YMapsID')[0]);
+            }
+
+            height = {$height};
+
+            const zoom = 17;
+
+            latitude = {$mainInfo['latitude']};
+            longitude = {$mainInfo['longitude']};
+
+            advTitle = '{$mainInfo['advTitle']}';
+            address = '{$mainInfo['address']}';
+            price = '{$mainInfo['price']}';
+
+            placemark = '';
+
+            function setMapCenter(latitude, longitude, zoom)
+            {
+                map.setCenter(new YMaps.GeoPoint(latitude, longitude, false), zoom, YMaps.MapType.PMAP);
+            }
+
+
+            function addPlacemark(map, advTitle, address, price, latitude, longitude)
+            {
+
+                style = new YMaps.Style('default#houseIcon');
+                style.balloonContentStyle =
+                {
+                    template: new YMaps.Template({$templateBalloon})
+                }
+
+                placemark = new YMaps.Placemark(
+                    new YMaps.GeoPoint(latitude, longitude, false),
+                    {
+                         draggable: false,
+                         style: style
+                    }
+                );
+
+                placemark.advTitle = advTitle;
+                placemark.address = address;
+                placemark.price = price;
+
+                map.addOverlay(placemark);
+            }
+
+            function addAdditionalPlacemarks()
+            {
+                points = " . json_encode($points) . ";
+
+                var style;
+                // название дефалтного стиля для наследования
+                var placemarkStyle;
+                jQuery.each(
+                    points,
+                    function()
+                    {
+                        if (this.title == 'магазин')
+                        {
+                            placemarkStyle = 'default#bankIcon';
+                        }
+                        if (this.title == 'остановка')
+                        {
+                            placemarkStyle = 'default#busIcon';
+                        }
+
+                        style = new YMaps.Style(placemarkStyle);
+                        style.balloonContentStyle =
+                        {
+                            template: new YMaps.Template({$additionalTemplateBalloon})
+                        }
+
+                        var placemark = new YMaps.Placemark(
+                            new YMaps.GeoPoint(this.latitude, this.longitude, false),
+                            {
+                                 draggable: false,
+                                 style: style
+                            }
+                        );
+
+                        placemark.title = this.title;
+                        placemark.comment = this.comment;
+                        map.addOverlay(placemark);
+                    }
+                );
+            }
+
+
+            function getConfigurationToolBar()
+            {
+                var toolBar = new YMaps.ToolBar([
+                    new YMaps.ToolBar.MoveButton(),
+                    new YMaps.ToolBar.MagnifierButton(),
+                    new YMaps.ToolBar.RulerButton()
+                ]);
+
+                return toolBar;
+            }
+
+            function run(map)
+            {
+                var toolBar = getConfigurationToolBar(map);
+                map.addControl(new YMaps.TypeControl([YMaps.MapType.PMAP, YMaps.MapType.PHYBRID]));
+                map.addControl(toolBar);
+                map.addControl(new YMaps.Zoom());
+
+                setMapCenter(latitude, longitude, zoom);
+                addPlacemark(map, advTitle, address, price, latitude, longitude);
+                addAdditionalPlacemarks();
+            }
+        ");
+
+
+        $this->view->headScript()->appendScript("
+            jQuery(document).ready(
+                function()
+                {
+                    map = createMap();
+                    run(map);
+                }
+            );"
+        );
+
+        $html = "
+            <html>
+                <body>
+                    <div id='YMapsID'></div>
+                </body>
+            </html>
+        ";
+
+        return $html;
+
+    }
+
+}
