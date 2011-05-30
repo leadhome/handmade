@@ -1,0 +1,1118 @@
+---
+detect_relations: true
+options:
+  collate: latin1_swedish_ci
+  charset: latin1
+  type: InnoDB
+
+User_Model_Region:
+  tableName: User__Model__Regions
+  columns:
+    region_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(100)
+    country_id:
+      type: integer(4)
+  relations:
+    country:
+      class: User_Model_Country
+      local: country_id
+      foreign: country_id
+      foreignAlias: User__Model__Regions
+  indexes:
+    R_Country:
+      fields: [country_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_City:
+  tableName: User__Model__Cities
+  columns:
+    city_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(100)
+    region_id:
+      type: integer(4)
+  relations:
+    region:
+      class: User_Model_Region
+      local: region_id
+      foreign: region_id
+      foreignAlias: User__Model__Cities
+  indexes:
+    C_Region:
+      fields: [region_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Message:
+  tableName: User__Model__Messages
+  columns:
+    message_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    text:
+      type: clob(65535)
+    date:
+      type: timestamp
+    user_id:
+      type: integer(4)
+    whom_user_id:
+      type: integer(4)
+    status:
+      type: boolean
+    replied:
+      type: boolean
+    deleted:
+      type: boolean
+  relations:
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__Model__Messages
+    whomUser:
+      class: User_Model_User
+      local: whom_user_id
+      foreign: user_id
+      foreignAlias: User__Model__Messages
+  indexes:
+    M_User:
+      fields: [user_id]
+    M_Whom_User:
+      fields: [whom_user_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Comment:
+  tableName: User__Model__Comments
+  columns:
+    comment_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    text:
+      type: clob(65535)
+    date:
+      type: timestamp
+    product_id:
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    answer:
+      type: clob(65535)
+    emotion_id:
+      type: integer(4)
+    number_comment:
+      type: integer(4)
+  relations:
+    emotion:
+      class: User_Model_Emotion
+      local: emotion_id
+      foreign: emotion_id
+      foreignAlias: User__Model__Comments
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: User__Model__Comments
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__Model__Comments
+  indexes:
+    C_Emotion:
+      fields: [emotion_id]
+    C_Product:
+      fields: [product_id]
+    C_User:
+      fields: [user_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_User:
+  tableName: User__Model__Users
+  columns:
+    user_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    email:
+      type: string(100)
+    password:
+      type: string(255)
+    firstname:
+      type: string(100)
+    lastname:
+      type: string(100)
+    midname:
+      type: string(100)
+    group_id:
+      type: integer(4)
+    tarif_id:
+      type: integer(4)
+    city_id:
+      type: integer(4)
+    date_expire:
+      type: timestamp
+    rating:
+      type: float
+    summ:
+      type: float
+  relations:
+    group:
+      class: User_Model_Group
+      local: group_id
+      foreign: group_id
+      foreignAlias: User__Model__Users
+    tarif:
+      class: User_Model_Tarif
+      local: tarif_id
+      foreign: tarif_id
+      foreignAlias: User__Model__Users
+    city:
+      class: User_Model_City
+      local: city_id
+      foreign: city_id
+      foreignAlias: User__Model__Users
+  indexes:
+    U_Group:
+      fields: [group_id]
+    U_Tarif:
+      fields: [tarif_id]
+    U_City:
+      fields: [city_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_ShippAddress:
+  tableName: User__Model__ShippAddress
+  columns:
+    shippAddress_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+    firstname:
+      type: string(100)
+    lastname:
+      type: string(100)
+    midname:
+      type: string(100)
+    address:
+      type: string(255)
+    city_id:
+      type: integer(4)
+    region_id:
+      type: integer(4)
+    postal_code:
+      type: integer(4)
+    country_id:
+      type: integer(4)
+    phone:
+      type: string(30)
+  relations:
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__Model__ShippAddresses
+    city:
+      class: User_Model_City
+      local: city_id
+      foreign: city_id
+      foreignAlias: User__Model__ShippAddresses
+    region:
+      class: User_Model_Region
+      local: region_id
+      foreign: region_id
+      foreignAlias: User__Model__ShippAddresses
+    country:
+      class: User_Model_Country
+      local: country_id
+      foreign: country_id
+      foreignAlias: User__Model__ShippAddresses
+  indexes:
+    SA_User:
+      fields: [user_id]
+    SA_City:
+      fields: [city_id]
+    SA_Region:
+      fields: [region_id]
+    SA_Country:
+      fields: [country_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Shop:
+  tableName: User__Model__Shops
+  columns:
+    shop_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    domain:
+      type: string(45)
+    about:
+      type: clob(65535)
+    return:
+      type: clob(65535)
+  relations:
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__Model__Shops
+  indexes:
+    S_User:
+      fields: [user_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Delivery:
+  tableName: User__Model__Delivery
+  columns:
+    delivery_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+    description:
+      type: clob(65535)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_DeliveryShop:
+  tableName: User__Model__DeliveryShops
+  columns:
+    shopDelivery_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    shop_id:
+      type: integer(4)
+    delivery_id:
+      type: integer(4)
+    price_delivery:
+      type: integer(4)
+  relations:
+    shop:
+      class: User_Model_Shop
+      local: shop_id
+      foreign: shop_id
+      foreignAlias: User__Model__DeliveryShops
+    delivery:
+      class: User_Model_Delivery
+      local: delivery_id
+      foreign: delivery_id
+      foreignAlias: User__Model__DeliveryShops
+  indexes:
+    shopDelivery:
+      fields:
+        shop_id:
+          sorting: ASC
+        delivery_id:
+          sorting: ASC
+      type: unique
+    DS_Shop:
+      fields: [shop_id]
+    DS_Delivery:
+      fields: [delivery_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Payment:
+  tableName: User__Model__Payments
+  columns:
+    payment_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+    description:
+      type: clob(65535)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_PaymentsShop:
+  tableName: User__Model__PaymentsShops
+  columns:
+    paymentShop_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    shop_id:
+      type: integer(4)
+    payment_id:
+      type: integer(4)
+  relations:
+    shop:
+      class: User_Model_Shop
+      local: shop_id
+      foreign: shop_id
+      foreignAlias: User__Model__PaymentsShops
+    payment:
+      class: User_Model_Payment
+      local: payment_id
+      foreign: payment_id
+      foreignAlias: User__Model__PaymentsShops
+  indexes:
+    shopPayment:
+      fields:
+        shop_id:
+          sorting: ASC
+        payment_id:
+          sorting: ASC
+      type: unique
+    PS_Shop:
+      fields: [shop_id]
+    PS_Payment:
+      fields: [payment_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Product:
+  tableName: Product__Model__Products
+  columns:
+    product_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    category_id:
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    description:
+      type: clob(65535)
+    price:
+      type: integer(4)
+    availlable_id:
+      type: integer(4)
+    quantity:
+      type: integer(4)
+    published:
+      type: boolean
+    view:
+      type: integer(4)
+  relations:
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: Product__Model__Products
+    availlable:
+      class: Product_Model_Availlable
+      local: availlable_id
+      foreign: availlable_id
+      foreignAlias: Product__Model__Products
+    category:
+      class: Product_Model_Category
+      local: category_id
+      foreign: category_id
+      foreignAlias: Product__Model__Products
+  indexes:
+    P_User:
+      fields: [user_id]
+    P_Available:
+      fields: [availlable_id]
+    P_Category:
+      fields: [category_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Availlable:
+  tableName: Product__Model__Availlable
+  columns:
+    availlable_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(100)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_MaterialProduct:
+  tableName: Product__Model__MaterialProducts
+  columns:
+    materialProduct_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+    material_id:
+      type: integer(4)
+  relations:
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__MaterialProducts
+    material:
+      class: Product_Model_Material
+      local: material_id
+      foreign: material_id
+      foreignAlias: Product__Model__MaterialProducts
+  indexes:
+    MP_Product:
+      fields: [product_id]
+    MP_Material:
+      fields: [material_id]
+    productMaterial:
+      fields:
+        product_id:
+          sorting: ASC
+        material_id:
+          sorting: ASC
+      type: unique
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Material:
+  tableName: Product__Model__Materials
+  columns:
+    material_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(100)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Tag:
+  tableName: Product__Model__Tags
+  columns:
+    tag_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_TagProduct:
+  tableName: Product__Model__TagProducts
+  columns:
+    tagProduct_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+    tag_id:
+      type: integer(4)
+    user_id:
+      type: integer(4)
+  relations:
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__TagProducts
+    tag:
+      class: Product_Model_Tag
+      local: tag_id
+      foreign: tag_id
+      foreignAlias: Product__Model__TagProducts
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: Product__Model__TagProducts
+  indexes:
+    TP_Product:
+      fields: [product_id]
+    TP_Tag:
+      fields: [tag_id]
+    TP_User:
+      fields: [user_id]
+    TagProductUser:
+      fields:
+        product_id:
+          sorting: ASC
+        tag_id:
+          sorting: ASC
+        user_id:
+          sorting: ASC
+      type: unique
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Color:
+  tableName: Product__Model__Colors
+  columns:
+    color_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(45)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_ColorProduct:
+  tableName: Product__Model__ColorProducts
+  columns:
+    colorProduct_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+    color_id:
+      type: integer(4)
+  relations:
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__ColorProducts
+    color:
+      class: Product_Model_Color
+      local: color_id
+      foreign: color_id
+      foreignAlias: Product__Model__ColorProducts
+  indexes:
+    productColor:
+      fields:
+        product_id:
+          sorting: ASC
+        color_id:
+          sorting: ASC
+      type: unique
+    CP_Product:
+      fields: [product_id]
+    CP_Color:
+      fields: [color_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Size:
+  tableName: Product__Model__Size
+  columns:
+    size_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    category_id:
+      type: integer(4)
+    title:
+      type: string(45)
+  relations:
+    category:
+      class: Product_Model_Category
+      local: category_id
+      foreign: category_id
+      foreignAlias: Product__Model__Sizes
+  indexes:
+    S_Category:
+      fields: [category_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_SizeProduct:
+  tableName: Product__Model__SizeProducts
+  columns:
+    sizeProduct_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+    size_id:
+      type: integer(4)
+  relations:
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__SizeProducts
+    size:
+      class: Product_Model_Size
+      local: size_id
+      foreign: size_id
+      foreignAlias: Product__Model__SizeProducts
+  indexes:
+    SP_Product:
+      fields: [product_id]
+    SP_Size:
+      fields: [size_id]
+    productSize:
+      fields:
+        product_id:
+          sorting: ASC
+        size_id:
+          sorting: ASC
+      type: unique
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_FavoriteAuthor:
+  tableName: User__model__FavoriteAuthor
+  columns:
+    favoriteAuthor_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+    author_user_id:
+      type: integer(4)
+  relations:
+    authorUser:
+      class: User_Model_User
+      local: author_user_id
+      foreign: user_id
+      foreignAlias: User__model__FavoriteAuthors
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__model__FavoriteAuthors
+  indexes:
+    FA_Author_User:
+      fields: [author_user_id]
+    FA_User:
+      fields: [user_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_FavoriteProduct:
+  tableName: User__Model__FavoriteProducts
+  columns:
+    favoriteProduct_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+    user_id:
+      type: integer(4)
+  relations:
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: User__Model__FavoriteProducts
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__Model__FavoriteProducts
+  indexes:
+    productUser:
+      fields:
+        product_id:
+          sorting: ASC
+        user_id:
+          sorting: ASC
+      type: unique
+    FP_Product:
+      fields: [product_id]
+    FP_User:
+      fields: [user_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Tarif:
+  tableName: User__Model__Tarifs
+  columns:
+    tarif_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+    description:
+      type: string(45)
+    price:
+      type: integer(4)
+    product_limit:
+      type: integer(4)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Event:
+  tableName: Product__Model__Events
+  columns:
+    event_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+    date_start:
+      type: timestamp
+    date_end:
+      type: timestamp
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_EventProduct:
+  tableName: Product__Model__EventProducts
+  columns:
+    eventProduct_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+    event_id:
+      type: integer(4)
+  relations:
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__EventProducts
+    event:
+      class: Product_Model_Event
+      local: event_id
+      foreign: event_id
+      foreignAlias: Product__Model__EventProducts
+  indexes:
+    EP_Product:
+      fields: [product_id]
+    EP_Event:
+      fields: [event_id]
+    productEvent:
+      fields:
+        product_id:
+          sorting: ASC
+        event_id:
+          sorting: ASC
+      type: unique
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Banner_Model_Main:
+  tableName: Banner__Model__Main
+  columns:
+    main_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    text:
+      type: clob(65535)
+    template_id:
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    status_id:
+      type: integer(4)
+    product_id:
+      type: integer(4)
+    date_start:
+      type: timestamp
+    date_end:
+      type: timestamp
+    period:
+      type: integer(4)
+  relations:
+    template:
+      class: Banner_Model_Template
+      local: template_id
+      foreign: template_id
+      foreignAlias: Banner__Model__Mains
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: Banner__Model__Mains
+    statu:
+      class: Banner_Model_Statu
+      local: status_id
+      foreign: status_id
+      foreignAlias: Banner__Model__Mains
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: Banner__Model__Mains
+  indexes:
+    M_Template:
+      fields: [template_id]
+    M_User:
+      fields: [user_id]
+    M_Status:
+      fields: [status_id]
+    M_Product:
+      fields: [product_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Banner_Model_Statu:
+  tableName: Banner__Model__Status
+  columns:
+    status_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(45)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_EditorsChoice:
+  tableName: Product__Model__EditorsChoice
+  columns:
+    EditorsChoice_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    product_id:
+      type: integer(4)
+  relations:
+    product:
+      class: Product_Model_Product
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__EditorsChoices
+  indexes:
+    EC_Product:
+      fields: [product_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Emotion:
+  tableName: User__Model__Emotions
+  columns:
+    emotion_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(45)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Group:
+  tableName: User__Model__Groups
+  columns:
+    group_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Banner_Model_Template:
+  tableName: Banner__Model__Templates
+  columns:
+    template_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    template:
+      type: clob(65535)
+    description:
+      type: clob(65535)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Country:
+  tableName: User__Model__Countries
+  columns:
+    country_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+User_Model_Operation:
+  tableName: User__Model__Operations
+  columns:
+    operation_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+    pay_date_start:
+      type: timestamp
+    pay_date_end:
+      type: timestamp
+    SignatureValue:
+      type: string(255)
+    summ:
+      type: float
+    status:
+      type: integer(4)
+  relations:
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__Model__Operations
+  indexes:
+    O_user:
+      fields: [user_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Cart_Model_Cart:
+  tableName: Cart__Model__Carts
+  columns:
+    cart_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+      autoincrement: true
+    user_id:
+      type: integer(4)
+    session_data:
+      type: clob(65535)
+    shippAddress_id:
+      type: integer(4)
+    mails:
+      type: clob(65535)
+    status:
+      type: string(45)
+    whom_user_id:
+      type: integer(4)
+    date:
+      type: timestamp
+    payment_id:
+      type: integer(4)
+    delivery_id:
+      type: integer(4)
+    summ:
+      type: float
+    count:
+      type: integer(4)
+    additional:
+      type: clob(65535)
+    commet_user:
+      type: clob(65535)
+    commet_sell:
+      type: clob(65535)
+  relations:
+    user:
+      class: User_Model_User
+      local: user_id
+      foreign: user_id
+      foreignAlias: Cart__Model__Carts
+  indexes:
+    C_user:
+      fields: [user_id]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
+Product_Model_Category:
+  tableName: Product__Model__Categories
+  columns:
+    category_id:
+      type: integer(4)
+      primary: true
+      notnull: true
+    title:
+      type: string(255)
+    parent:
+      type: integer(4)
+  relations:
+    parent:
+      class: Product_Model_Category
+      local: parent
+      foreign: category_id
+      foreignAlias: Product__Model__Categories
+  indexes:
+    C_parent:
+      fields: [parent]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+
