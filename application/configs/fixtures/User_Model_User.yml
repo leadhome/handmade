@@ -1,0 +1,13 @@
+User_Model_User:
+  User_Model_User_1:
+    email: oneleadone@gmail.com
+    password: sd
+    firstname: Евгений
+    lastname: Клёпов
+    midname: Александрович
+    group: User_Model_Group_1
+    tarif: User_Model_Tarif_1
+    city: User_Model_City_1
+    date_expire: '2011-06-04 19:01:21'
+    rating: '0.00'
+    summ: '10000.00'

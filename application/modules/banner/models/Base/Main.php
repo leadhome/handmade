@@ -16,7 +16,7 @@
  * @property integer $period
  * @property Banner_Model_Template $template
  * @property User_Model_User $user
- * @property Banner_Model_Status $statu
+ * @property Banner_Model_Statu $statu
  * @property Product_Model_Product $product
  * 
  * @package    ##PACKAGE##
@@ -107,7 +107,7 @@ abstract class Banner_Model_Base_Main extends Doctrine_Record
              'local' => 'user_id',
              'foreign' => 'user_id'));
 
-        $this->hasOne('Banner_Model_Status as statu', array(
+        $this->hasOne('Banner_Model_Statu as statu', array(
              'local' => 'status_id',
              'foreign' => 'status_id'));
 

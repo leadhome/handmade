@@ -12,8 +12,10 @@ class Product_Model_EditorsChoiceTable extends Doctrine_Table
      *
      * @return object Product_Model_EditorsChoiceTable
      */
-    public static function getInstance()
-    {
+    public static function getInstance() {
         return Doctrine_Core::getTable('Product_Model_EditorsChoice');
     }
+	public function getProducts() {
+		
+	}
 }

@@ -7,11 +7,11 @@
  * 
  * @property integer $category_id
  * @property string $title
- * @property integer $parent
- * @property Product_Model_Category $parent
+ * @property integer $parent_id
+ * @property Product_Model_Category $parents
+ * @property Product_Model_Category $childrens
  * @property Doctrine_Collection $Product__Model__Products
  * @property Doctrine_Collection $Product__Model__Sizes
- * @property Doctrine_Collection $Product__Model__Categories
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -26,22 +26,23 @@ abstract class Product_Model_Base_Category extends Doctrine_Record
         $this->hasColumn('category_id', 'integer', 4, array(
              'type' => 'integer',
              'primary' => true,
+             'autoincrement' => true,
              'length' => '4',
              ));
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
              'length' => '255',
              ));
-        $this->hasColumn('parent', 'integer', 4, array(
+        $this->hasColumn('parent_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => '4',
              ));
 
 
-        $this->index('C_parent', array(
+        $this->index('C_Category', array(
              'fields' => 
              array(
-              0 => 'parent',
+              0 => 'parent_id',
              ),
              ));
         $this->option('collate', 'utf8_general_ci');
@@ -52,9 +53,13 @@ abstract class Product_Model_Base_Category extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Category as parent', array(
-             'local' => 'parent',
+        $this->hasOne('Product_Model_Category as parents', array(
+             'local' => 'parent_id',
              'foreign' => 'category_id'));
+
+        $this->hasOne('Product_Model_Category as childrens', array(
+             'local' => 'category_id',
+             'foreign' => 'parent_id'));
 
         $this->hasMany('Product_Model_Product as Product__Model__Products', array(
              'local' => 'category_id',
@@ -63,9 +68,5 @@ abstract class Product_Model_Base_Category extends Doctrine_Record
         $this->hasMany('Product_Model_Size as Product__Model__Sizes', array(
              'local' => 'category_id',
              'foreign' => 'category_id'));
-
-        $this->hasMany('Product_Model_Category as Product__Model__Categories', array(
-             'local' => 'category_id',
-             'foreign' => 'parent'));
     }
 }

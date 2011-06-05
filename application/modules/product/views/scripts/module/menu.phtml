@@ -1,0 +1,44 @@
+<?
+	$menu = $this->BuildMenu($this->categories);
+	echo '<div class="styledform">';
+		echo '<h3>Категории</h3>';
+		echo '<table cellspacing="0" cellpadding="4" class="wrapper">';
+			echo '<tr>';
+			$num = 4;
+			$last_id = end($menu);
+			$last_id = $last_id['category_id'];
+			foreach ($menu as $key=>$item) {
+				if($key!=0 && $key%$num==0) echo '</tr><tr>';
+				if($last_id==$item['category_id']) $colspan = $num-(($key+1)%$num);
+				else $colspan= '0';				
+				echo '<td class="'.((($key+1)%$num==0) ? 'lastItem' : '').'">';
+					echo '<a href="" title="'.$item['title'].'" style="float:left;">';
+						echo $item['title'];
+					echo '</a>';
+					if(count($item['childrens'])) {
+						echo '<span style="display:none;float:left;font-size:13px;">=></span>';
+						echo '<ul class="hideMenu">';
+						foreach($item['childrens'] as $value) {
+							echo '<li>';
+								echo '<a href="" title="'.$value['title'].'">';
+									echo $value['title'];
+								echo '</a>';
+							echo '</li>';
+						}		
+						if(count($item['childrens'])>1) {
+							echo '<li>';
+								echo '<a href="" style="float:right" title="Все">';
+									echo 'Все';
+								echo '</a>';
+							echo '</li>';
+						}
+						echo '</ul>';
+					}
+				echo '</td>';				
+				if($colspan!=0 && $colspan!=$num) {
+					echo str_repeat('<td>&nbsp;</td>',$colspan);
+				}
+			}
+			echo '</tr>';
+		echo '</table>';
+	echo '</div>';

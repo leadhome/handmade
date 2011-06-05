@@ -1,0 +1,6 @@
+User_Model_Tarif:
+  User_Model_Tarif_1:
+    title: Базовый
+    description: Базовый
+    price: '1000'
+    product_limit: '3'

@@ -1,0 +1,224 @@
+.styledform {
+	background: none repeat scroll 0 0 #F8FFF2;
+	border: 1px solid #CEDEC3;
+	padding: 10px;
+	width: 98%;
+}
+.styledselect {
+	font: 12px "Trebuchet MS";
+}
+.styledinput {
+	font: 12px "Trebuchet MS";
+}
+h3 {
+	margin: 0;
+    padding: 0;
+}
+h3 {
+	color: #135CAE;
+	font: normal 23px "Trebuchet MS";
+    margin-bottom: 5px;
+}
+.styledform .submit {
+	background: url("/components/com_support/images/billing_submitbg.gif") repeat-x scroll left top #FFFFFF;
+	border: 1px solid #C3CFBA;
+	color: #477323;
+	font: bold 12px "Trebuchet MS";
+	padding: 5px;
+}
+table.styled th {
+    background: none repeat scroll 0 0 #F1FAEA;
+    border-bottom: 2px solid #CEDEC3;
+    border-right: 1px solid #E9F0E5;
+    color: #4B8022;
+    font: bold 12px "Trebuchet MS";
+    padding: 8px 5px;
+    text-align: center;
+}
+table.styled th.empty {
+    background: none repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #E9F0E5;
+    border-right: medium none;
+}
+table.styled td {
+    border-bottom: 1px solid #E9F0E5;
+    border-right: 1px solid #E9F0E5;
+    color: #454545;
+    font: 12px "Trebuchet MS";
+    padding: 5px;
+}
+table.styled .odd td {
+    background: none repeat scroll 0 0 #F8F8F8;
+}
+table.styled .even td {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+table.styled .nobottom td {
+    background: none repeat scroll 0 0 #FFF6E8;
+    border-bottom: medium none;
+}
+table.styled .pane td {
+    background: none repeat scroll 0 0 #FAEBD4;
+    border-bottom: medium none;
+    padding: 5px;
+}
+table.styled .label {
+    color: #454545;
+    font: 11px "Trebuchet MS";
+	text-align:center;
+}
+table.styled td.sel {
+    color: #375E9A;
+    font-weight: bold;
+}
+.theme_title {
+	color: #4D8125;
+    font: 18px "Trebuchet MS";
+    margin: 15px 0 10px;
+}	
+.styledform {
+    background: none repeat scroll 0 0 #F8FFF2;
+    border: 1px solid #CEDEC3;
+    padding: 10px;
+    width: 98%;
+}
+.styledform .wrapper {
+    width: 100%;
+}
+.styledform table.wrapper td {
+    color: #7A7162;
+    font: 12px/1.4 "Trebuchet MS";
+}
+.styledform table.wrapper a{
+    color: #135CAE;
+    font: 12px/1.4 "Trebuchet MS";
+}
+.styledform .label {
+    color: #7A7162;
+    font: 12px "Trebuchet MS";
+    vertical-align: top;
+    width: 25%;
+}
+.styledform .data {
+    color: #7A7162;
+    font: 12px "Trebuchet MS";
+    vertical-align: top;
+    width: 48%;
+}
+.styledform .help {
+    width: 27%;
+}
+.styledform .help div {
+    border-left: 1px solid #CEDEC3;
+    color: #ACA290;
+    font: 11px "Trebuchet MS";
+    margin-left: 10px;
+    padding-left: 8px;
+}
+.styledform .error div {
+    background: url("/i/billing_formerrorarrow.gif") no-repeat scroll left 2px transparent;
+    color: #E49300;
+    font: 11px "Trebuchet MS";
+    left: -11px;
+    padding-left: 10px;
+    position: relative;
+}
+.styledform .orange {
+    color: #E49300;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+.styledinput {
+    font: 12px "Trebuchet MS";
+}
+.styledselect {
+    font: 12px "Trebuchet MS";
+}
+.styledtextarea {
+    font: 12px "Trebuchet MS";
+}
+.styledform .submit {
+    background: url("/i/billing_submitbg.gif") repeat-x scroll left top #FFFFFF;
+    border: 1px solid #C3CFBA;
+    color: #477323;
+    font: bold 12px "Trebuchet MS";
+    padding: 5px;
+}
+.styledbutton {
+    font: bold 11px "Trebuchet MS";
+    padding: 2px;
+}
+.styledfile {
+    font: 12px "Trebuchet MS";
+}
+.styledradio {
+    position: relative;
+    top: 2px;
+}
+.tickets {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CEDEC3;
+    margin: 10px 0;
+    padding: 1px;
+    width: 98%;
+}
+.tickets .wrapper {
+    width: 100%;
+}
+.tickets .wrapper th {
+    color: #919191;
+    font: 11px "Trebuchet MS";
+}
+.tickets .wrapper th.left {
+    text-align: left;
+}
+.tickets .wrapper th.right {
+    text-align: right;
+}
+.tickets .wrapper td {
+    color: #454545;
+    font: 12px/1.4 "Trebuchet MS";
+}
+.tickets .wrapper tbody.client td, .tickets .wrapper tbody.client th {
+    background: none repeat scroll 0 0 #F4F4F4;
+    padding: 14px;
+}
+.tickets .wrapper tbody.client th {
+    border-bottom: 1px solid #E3E3E3;
+}
+.tickets .wrapper tbody.client .contents {
+    border-bottom: 3px solid #E3E3E3;
+}
+.tickets .wrapper tbody.support td, .tickets .wrapper tbody.support th {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 14px;
+}
+.tickets .wrapper tbody.support th {
+    border-bottom: 1px solid #E3E3E3;
+}
+.tickets .wrapper tbody.support .contents {
+    border-bottom: 3px solid #E3E3E3;
+}
+.tickets .wrapper .attachments {
+    font: 11px "Trebuchet MS";
+    margin-top: 15px;
+}
+
+a.not_active {
+	color:grey !important;
+}
+.not_valid{
+	border:2px solid green !important;
+}
+.data label {
+	left:-3px;position:relative;top:-3px;
+}
+
+.shadowTable {height:100%; width:100%; position:absolute; top:0; left:0;}
+.shadowTable .shadowTd {background:url(/components/com_trade/images/blur_black.png) 0 0 repeat;}
+.infoBox {position:relative;margin:0 auto; background: none repeat scroll 0 0 #F8FFF2;border: 1px solid #CEDEC3;padding: 10px; font: 12px/1.4 "Trebuchet MS";}
+
+.preloader { background: url("/components/com_user/images/41.gif") no-repeat scroll center left transparent;height: 16px;}
+.preloader span {padding-left:20px;}
+.active_mess{font-weight:bold !important;}

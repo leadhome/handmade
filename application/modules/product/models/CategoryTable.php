@@ -12,8 +12,22 @@ class Product_Model_CategoryTable extends Doctrine_Table
      *
      * @return object Product_Model_CategoryTable
      */
-    public static function getInstance()
-    {
+    public static function getInstance() {
         return Doctrine_Core::getTable('Product_Model_Category');
     }
+	public function getCategories() {
+		return self::getInstance()->createQuery()->orderBy('parent_id ASC')->execute();
+	}
+	// public function getRecordCategory($id) {
+		// $query = Doctrine_Query::create()
+			// ->from('Product_Model_Category')
+			// ->where('category_id = ?',array($id))
+			// ->execute();
+		// return $query;
+		 // $category = self::getInstance();
+		// $formData = $category->createQuery("a")->leftJoin('a.C_Category')->where('a.category_id=?',$id)->fetchOne();
+		// return $formData;
+	// }
+	
+	 // $category->createQuery("a")->leftJoin('a.Magcat')->where('a.id=?',$id)->fetchOne();
 }

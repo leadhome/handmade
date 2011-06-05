@@ -1,0 +1,41 @@
+.menuBox {
+	height: 37px;
+    list-style: none outside none;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+.topMenuBox li {
+	float:left;
+	line-height: 37px;
+	padding: 0 15px;
+	position:relative;
+}
+.topMenuBox ul ul {
+	display:none; 
+	width:200px; 
+	border:1px solid #2473bb; 
+	border-top:0; 
+	list-style: none outside none;
+	height:auto; 
+	position:absolute; 
+	top:37px; 
+	left:0; 
+	background:#fff; 
+	padding:10px 0; 
+	z-index:5;
+}
+.hideMenu {
+	display:none; 
+	list-style: none outside none;
+	position:absolute; 
+	background:#fff; 
+	z-index:5;
+	border:1px solid #2473bb; 
+	padding:5px; 
+	margin:0px;
+	float:left;
+}
+.hideMenu a{
+	text-decoration:none;
+}

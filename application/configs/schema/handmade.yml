@@ -893,7 +893,7 @@ Banner_Model_Main:
       foreign: user_id
       foreignAlias: Banner__Model__Mains
     statu:
-      class: Banner_Model_Status
+      class: Banner_Model_Statu
       local: status_id
       foreign: status_id
       foreignAlias: Banner__Model__Mains
@@ -915,7 +915,7 @@ Banner_Model_Main:
     charset: utf8
     collate: utf8_general_ci
 
-Banner_Model_Status:
+Banner_Model_Statu:
   tableName: Banner__Model__Status
   columns:
     status_id:
@@ -1099,19 +1099,26 @@ Product_Model_Category:
       type: integer(4)
       primary: true
       notnull: true
+      autoincrement: true
     title:
       type: string(255)
-    parent:
+    parent_id:
       type: integer(4)
+      default: null
   relations:
-    parent:
+    parents:
       class: Product_Model_Category
-      local: parent
+      local: parent_id
       foreign: category_id
       foreignAlias: Product__Model__Categories
+    childrens:
+      class: Product_Model_Category
+      local: category_id
+      foreign: parent_id
+      foreignAlias: Product__Model__Categories
   indexes:
-    C_parent:
-      fields: [parent]
+    C_Category:
+      fields: [parent_id]
   options:
     charset: utf8
     collate: utf8_general_ci
