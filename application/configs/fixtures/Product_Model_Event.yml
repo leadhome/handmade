@@ -1,0 +1,21 @@
+Product_Model_Event:
+  Product_Model_Event_1:
+    title: 'Новый год'
+    date_start: 25-12
+    date_end: 01-01
+  Product_Model_Event_2:
+    title: '23 ферваля'
+    date_start: 20-02
+    date_end: 24-02
+  Product_Model_Event_3:
+    title: '8 марта'
+    date_start: 06-03
+    date_end: 09-03
+  Product_Model_Event_4:
+    title: '9 мая'
+    date_start: 06-05
+    date_end: 10-05
+  Product_Model_Event_5:
+    title: '1 сентября'
+    date_start: 26-08
+    date_end: 02-09

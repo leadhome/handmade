@@ -8,8 +8,8 @@
  * @property integer $favoriteAuthor_id
  * @property integer $user_id
  * @property integer $author_user_id
- * @property User_Model_User $authorUser
- * @property User_Model_User $user
+ * @property User_Model_User $AuthorUser
+ * @property User_Model_User $User
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -57,11 +57,11 @@ abstract class User_Model_Base_FavoriteAuthor extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_User as authorUser', array(
+        $this->hasOne('User_Model_User as AuthorUser', array(
              'local' => 'author_user_id',
              'foreign' => 'user_id'));
 
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
     }

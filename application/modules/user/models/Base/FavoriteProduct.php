@@ -8,8 +8,8 @@
  * @property integer $favoriteProduct_id
  * @property integer $product_id
  * @property integer $user_id
- * @property Product_Model_Product $product
- * @property User_Model_User $user
+ * @property Product_Model_Product $Product
+ * @property User_Model_User $User
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -71,11 +71,11 @@ abstract class User_Model_Base_FavoriteProduct extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Product as product', array(
+        $this->hasOne('Product_Model_Product as Product', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
 
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
     }

@@ -10,14 +10,17 @@
  * @property integer $user_id
  * @property string $title
  * @property clob $description
+ * @property string $production_time
+ * @property string $size
  * @property integer $price
+ * @property clob $photos
  * @property integer $availlable_id
  * @property integer $quantity
  * @property boolean $published
  * @property integer $view
- * @property User_Model_User $user
- * @property Product_Model_Availlable $availlable
- * @property Product_Model_Category $category
+ * @property User_Model_User $User
+ * @property Product_Model_Availlable $Availlable
+ * @property Product_Model_Category $Category
  * @property Doctrine_Collection $User__Model__Comments
  * @property Doctrine_Collection $Product__Model__MaterialProducts
  * @property Doctrine_Collection $Product__Model__TagProducts
@@ -60,9 +63,21 @@ abstract class Product_Model_Base_Product extends Doctrine_Record
              'type' => 'clob',
              'length' => '65535',
              ));
+        $this->hasColumn('production_time', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
+        $this->hasColumn('size', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
         $this->hasColumn('price', 'integer', 4, array(
              'type' => 'integer',
              'length' => '4',
+             ));
+        $this->hasColumn('photos', 'clob', 65535, array(
+             'type' => 'clob',
+             'length' => '65535',
              ));
         $this->hasColumn('availlable_id', 'integer', 4, array(
              'type' => 'integer',
@@ -107,15 +122,15 @@ abstract class Product_Model_Base_Product extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
 
-        $this->hasOne('Product_Model_Availlable as availlable', array(
+        $this->hasOne('Product_Model_Availlable as Availlable', array(
              'local' => 'availlable_id',
              'foreign' => 'availlable_id'));
 
-        $this->hasOne('Product_Model_Category as category', array(
+        $this->hasOne('Product_Model_Category as Category', array(
              'local' => 'category_id',
              'foreign' => 'category_id'));
 

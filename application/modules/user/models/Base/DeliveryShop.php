@@ -9,8 +9,8 @@
  * @property integer $shop_id
  * @property integer $delivery_id
  * @property integer $price_delivery
- * @property User_Model_Shop $shop
- * @property User_Model_Delivery $delivery
+ * @property User_Model_Shop $Shop
+ * @property User_Model_Delivery $Delivery
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -76,11 +76,11 @@ abstract class User_Model_Base_DeliveryShop extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_Shop as shop', array(
+        $this->hasOne('User_Model_Shop as Shop', array(
              'local' => 'shop_id',
              'foreign' => 'shop_id'));
 
-        $this->hasOne('User_Model_Delivery as delivery', array(
+        $this->hasOne('User_Model_Delivery as Delivery', array(
              'local' => 'delivery_id',
              'foreign' => 'delivery_id'));
     }

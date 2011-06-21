@@ -8,8 +8,8 @@
  * @property integer $category_id
  * @property string $title
  * @property integer $parent_id
- * @property Product_Model_Category $parents
- * @property Product_Model_Category $childrens
+ * @property Product_Model_Category $Parents
+ * @property Product_Model_Category $Childrens
  * @property Doctrine_Collection $Product__Model__Products
  * @property Doctrine_Collection $Product__Model__Sizes
  * 
@@ -53,11 +53,11 @@ abstract class Product_Model_Base_Category extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Category as parents', array(
+        $this->hasOne('Product_Model_Category as Parents', array(
              'local' => 'parent_id',
              'foreign' => 'category_id'));
 
-        $this->hasOne('Product_Model_Category as childrens', array(
+        $this->hasOne('Product_Model_Category as Childrens', array(
              'local' => 'category_id',
              'foreign' => 'parent_id'));
 

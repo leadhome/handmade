@@ -8,8 +8,8 @@
  * @property integer $materialProduct_id
  * @property integer $product_id
  * @property integer $material_id
- * @property Product_Model_Product $product
- * @property Product_Model_Material $material
+ * @property Product_Model_Product $Product
+ * @property Product_Model_Material $Material
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -71,11 +71,11 @@ abstract class Product_Model_Base_MaterialProduct extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Product as product', array(
+        $this->hasOne('Product_Model_Product as Product', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
 
-        $this->hasOne('Product_Model_Material as material', array(
+        $this->hasOne('Product_Model_Material as Material', array(
              'local' => 'material_id',
              'foreign' => 'material_id'));
     }

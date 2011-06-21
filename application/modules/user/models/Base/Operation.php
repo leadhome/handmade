@@ -12,7 +12,7 @@
  * @property string $SignatureValue
  * @property float $summ
  * @property integer $status
- * @property User_Model_User $user
+ * @property User_Model_User $User
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -67,7 +67,7 @@ abstract class User_Model_Base_Operation extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
     }

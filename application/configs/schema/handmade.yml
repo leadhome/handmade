@@ -1,8 +1,8 @@
 ---
 detect_relations: true
 options:
-  collate: latin1_swedish_ci
-  charset: latin1
+  collate: utf8_general_ci
+  charset: utf8
   type: InnoDB
 
 User_Model_Region:
@@ -18,7 +18,7 @@ User_Model_Region:
     country_id:
       type: integer(4)
   relations:
-    country:
+    Country:
       class: User_Model_Country
       local: country_id
       foreign: country_id
@@ -43,7 +43,7 @@ User_Model_City:
     region_id:
       type: integer(4)
   relations:
-    region:
+    Region:
       class: User_Model_Region
       local: region_id
       foreign: region_id
@@ -78,12 +78,12 @@ User_Model_Message:
     deleted:
       type: boolean
   relations:
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
       foreignAlias: User__Model__Messages
-    whomUser:
+    WhomUser:
       class: User_Model_User
       local: whom_user_id
       foreign: user_id
@@ -120,17 +120,17 @@ User_Model_Comment:
     number_comment:
       type: integer(4)
   relations:
-    emotion:
+    Emotion:
       class: User_Model_Emotion
       local: emotion_id
       foreign: emotion_id
       foreignAlias: User__Model__Comments
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
       foreignAlias: User__Model__Comments
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
@@ -164,6 +164,8 @@ User_Model_User:
       type: string(100)
     midname:
       type: string(100)
+    about:
+      type: clob(65535)
     group_id:
       type: integer(4)
     tarif_id:
@@ -177,17 +179,17 @@ User_Model_User:
     summ:
       type: float
   relations:
-    group:
+    Group:
       class: User_Model_Group
       local: group_id
       foreign: group_id
       foreignAlias: User__Model__Users
-    tarif:
+    Tarif:
       class: User_Model_Tarif
       local: tarif_id
       foreign: tarif_id
       foreignAlias: User__Model__Users
-    city:
+    City:
       class: User_Model_City
       local: city_id
       foreign: city_id
@@ -232,22 +234,22 @@ User_Model_ShippAddress:
     phone:
       type: string(30)
   relations:
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
       foreignAlias: User__Model__ShippAddresses
-    city:
+    City:
       class: User_Model_City
       local: city_id
       foreign: city_id
       foreignAlias: User__Model__ShippAddresses
-    region:
+    Region:
       class: User_Model_Region
       local: region_id
       foreign: region_id
       foreignAlias: User__Model__ShippAddresses
-    country:
+    Country:
       class: User_Model_Country
       local: country_id
       foreign: country_id
@@ -284,7 +286,7 @@ User_Model_Shop:
     return:
       type: clob(65535)
   relations:
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
@@ -327,12 +329,12 @@ User_Model_DeliveryShop:
     price_delivery:
       type: integer(4)
   relations:
-    shop:
+    Shop:
       class: User_Model_Shop
       local: shop_id
       foreign: shop_id
       foreignAlias: User__Model__DeliveryShops
-    delivery:
+    Delivery:
       class: User_Model_Delivery
       local: delivery_id
       foreign: delivery_id
@@ -382,12 +384,12 @@ User_Model_PaymentsShop:
     payment_id:
       type: integer(4)
   relations:
-    shop:
+    Shop:
       class: User_Model_Shop
       local: shop_id
       foreign: shop_id
       foreignAlias: User__Model__PaymentsShops
-    payment:
+    Payment:
       class: User_Model_Payment
       local: payment_id
       foreign: payment_id
@@ -424,8 +426,14 @@ Product_Model_Product:
       type: string(255)
     description:
       type: clob(65535)
+    production_time:
+      type: string(255)
+    size:
+      type: string(255)
     price:
       type: integer(4)
+    photos:
+      type: clob(65535)
     availlable_id:
       type: integer(4)
     quantity:
@@ -435,17 +443,17 @@ Product_Model_Product:
     view:
       type: integer(4)
   relations:
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
       foreignAlias: Product__Model__Products
-    availlable:
+    Availlable:
       class: Product_Model_Availlable
       local: availlable_id
       foreign: availlable_id
       foreignAlias: Product__Model__Products
-    category:
+    Category:
       class: Product_Model_Category
       local: category_id
       foreign: category_id
@@ -488,12 +496,12 @@ Product_Model_MaterialProduct:
     material_id:
       type: integer(4)
   relations:
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
       foreignAlias: Product__Model__MaterialProducts
-    material:
+    Material:
       class: Product_Model_Material
       local: material_id
       foreign: material_id
@@ -557,17 +565,17 @@ Product_Model_TagProduct:
     user_id:
       type: integer(4)
   relations:
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
       foreignAlias: Product__Model__TagProducts
-    tag:
+    Tag:
       class: Product_Model_Tag
       local: tag_id
       foreign: tag_id
       foreignAlias: Product__Model__TagProducts
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
@@ -619,12 +627,12 @@ Product_Model_ColorProduct:
     color_id:
       type: integer(4)
   relations:
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
       foreignAlias: Product__Model__ColorProducts
-    color:
+    Color:
       class: Product_Model_Color
       local: color_id
       foreign: color_id
@@ -658,7 +666,7 @@ Product_Model_Size:
     title:
       type: string(45)
   relations:
-    category:
+    Category:
       class: Product_Model_Category
       local: category_id
       foreign: category_id
@@ -683,12 +691,12 @@ Product_Model_SizeProduct:
     size_id:
       type: integer(4)
   relations:
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
       foreignAlias: Product__Model__SizeProducts
-    size:
+    Size:
       class: Product_Model_Size
       local: size_id
       foreign: size_id
@@ -722,12 +730,12 @@ User_Model_FavoriteAuthor:
     author_user_id:
       type: integer(4)
   relations:
-    authorUser:
+    AuthorUser:
       class: User_Model_User
       local: author_user_id
       foreign: user_id
       foreignAlias: User__model__FavoriteAuthors
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
@@ -754,12 +762,12 @@ User_Model_FavoriteProduct:
     user_id:
       type: integer(4)
   relations:
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
       foreignAlias: User__Model__FavoriteProducts
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
@@ -811,9 +819,9 @@ Product_Model_Event:
     title:
       type: string(255)
     date_start:
-      type: timestamp
+      type: string(6)
     date_end:
-      type: timestamp
+      type: string(6)
   options:
     charset: utf8
     collate: utf8_general_ci
@@ -831,12 +839,12 @@ Product_Model_EventProduct:
     event_id:
       type: integer(4)
   relations:
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
       foreignAlias: Product__Model__EventProducts
-    event:
+    Event:
       class: Product_Model_Event
       local: event_id
       foreign: event_id
@@ -882,22 +890,22 @@ Banner_Model_Main:
     period:
       type: integer(4)
   relations:
-    template:
+    Template:
       class: Banner_Model_Template
       local: template_id
       foreign: template_id
       foreignAlias: Banner__Model__Mains
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
       foreignAlias: Banner__Model__Mains
-    statu:
-      class: Banner_Model_Statu
+    Status:
+      class: Banner_Model_Status
       local: status_id
       foreign: status_id
       foreignAlias: Banner__Model__Mains
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
@@ -915,7 +923,7 @@ Banner_Model_Main:
     charset: utf8
     collate: utf8_general_ci
 
-Banner_Model_Statu:
+Banner_Model_Status:
   tableName: Banner__Model__Status
   columns:
     status_id:
@@ -940,7 +948,7 @@ Product_Model_EditorsChoice:
     product_id:
       type: integer(4)
   relations:
-    product:
+    Product:
       class: Product_Model_Product
       local: product_id
       foreign: product_id
@@ -1031,7 +1039,7 @@ User_Model_Operation:
     status:
       type: integer(4)
   relations:
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
@@ -1080,7 +1088,7 @@ Cart_Model_Cart:
     commet_sell:
       type: clob(65535)
   relations:
-    user:
+    User:
       class: User_Model_User
       local: user_id
       foreign: user_id
@@ -1106,12 +1114,12 @@ Product_Model_Category:
       type: integer(4)
       default: null
   relations:
-    parents:
+    Parents:
       class: Product_Model_Category
       local: parent_id
       foreign: category_id
       foreignAlias: Product__Model__Categories
-    childrens:
+    Childrens:
       class: Product_Model_Category
       local: category_id
       foreign: parent_id
@@ -1122,4 +1130,3 @@ Product_Model_Category:
   options:
     charset: utf8
     collate: utf8_general_ci
-

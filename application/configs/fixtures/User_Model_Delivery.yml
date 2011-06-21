@@ -1,0 +1,16 @@
+User_Model_Delivery:
+  User_Model_Delivery_1:
+    title: 'Личная встреча'
+    description: null
+  User_Model_Delivery_2:
+    title: 'Почта России'
+    description: null
+  User_Model_Delivery_3:
+    title: DHL
+    description: null
+  User_Model_Delivery_4:
+    title: 'EMS Express'
+    description: null
+  User_Model_Delivery_5:
+    title: СПСР
+    description: null

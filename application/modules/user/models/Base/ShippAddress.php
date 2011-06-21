@@ -16,10 +16,10 @@
  * @property integer $postal_code
  * @property integer $country_id
  * @property string $phone
- * @property User_Model_User $user
- * @property User_Model_City $city
- * @property User_Model_Region $region
- * @property User_Model_Country $country
+ * @property User_Model_User $User
+ * @property User_Model_City $City
+ * @property User_Model_Region $Region
+ * @property User_Model_Country $Country
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -111,19 +111,19 @@ abstract class User_Model_Base_ShippAddress extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
 
-        $this->hasOne('User_Model_City as city', array(
+        $this->hasOne('User_Model_City as City', array(
              'local' => 'city_id',
              'foreign' => 'city_id'));
 
-        $this->hasOne('User_Model_Region as region', array(
+        $this->hasOne('User_Model_Region as Region', array(
              'local' => 'region_id',
              'foreign' => 'region_id'));
 
-        $this->hasOne('User_Model_Country as country', array(
+        $this->hasOne('User_Model_Country as Country', array(
              'local' => 'country_id',
              'foreign' => 'country_id'));
     }

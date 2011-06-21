@@ -13,9 +13,9 @@
  * @property clob $answer
  * @property integer $emotion_id
  * @property integer $number_comment
- * @property User_Model_Emotion $emotion
- * @property Product_Model_Product $product
- * @property User_Model_User $user
+ * @property User_Model_Emotion $Emotion
+ * @property Product_Model_Product $Product
+ * @property User_Model_User $User
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -88,15 +88,15 @@ abstract class User_Model_Base_Comment extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_Emotion as emotion', array(
+        $this->hasOne('User_Model_Emotion as Emotion', array(
              'local' => 'emotion_id',
              'foreign' => 'emotion_id'));
 
-        $this->hasOne('Product_Model_Product as product', array(
+        $this->hasOne('Product_Model_Product as Product', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
 
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
     }

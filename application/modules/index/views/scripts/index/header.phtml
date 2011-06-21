@@ -1,0 +1,36 @@
+<table width="100%" border="0">	
+	<tr>
+		<td width="200px">
+			<a href="/">
+				<img src="/images/logo.jpg">
+			</a>
+		</td>
+		<td valign="top">
+			<?	if(!$this->user) { ?>
+					<div class="guestBox">Вы не авторизованы</div>
+			<?	} else { ?>
+					
+			<?	} ?>
+			<div class="locationUser linkUser">Ваш регион:&nbsp;<a href=""><?=$this->locationUser->city;?></a></div>
+			<div style="clear:both"></div>
+			<div class="searchBox">
+				<form action="" name="searchForm">
+					<input type="text" name="search" value="Введите текст для поиска"/>
+					<input type="submit" name="search_submit" value="Найти" class="searchButton"/>
+				</form>
+			</div>
+		</td>
+		<td valign="top" width="200px">
+			<div class="linkUser locationUser">
+			<?	if(!$this->user) { ?>
+					<a href="/user/index/login">Войти</a>
+					или
+					<a href="/user/index/registration">Зарегистрироваться</a>
+			<?	} else { ?>
+					Мой баланс: <?=number_format($this->user->summ, 2, '.', ' ');?>&nbsp;руб.
+					<a align="right" href="/user/index/logout">Выйти</a>
+			<?	} ?>
+			</div>
+		</td>
+	</tr>
+</table>

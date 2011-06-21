@@ -1,0 +1,10 @@
+<? $this->headScript()->appendFile('/js/validator.js');?>
+<div class="styledform" style="margin-top:20px">
+	<h3>Вход в личный кабинет</h3>
+	<?=$this->form;?>
+	<div class="linkUser">
+		<a href="/user/index/registration">Регистрация</a>
+		&nbsp;|&nbsp;
+		<a href="/user/index/remind">Востановить пароль</a>
+	</div>
+</div>

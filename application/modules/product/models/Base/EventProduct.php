@@ -8,8 +8,8 @@
  * @property integer $eventProduct_id
  * @property integer $product_id
  * @property integer $event_id
- * @property Product_Model_Product $product
- * @property Product_Model_Event $event
+ * @property Product_Model_Product $Product
+ * @property Product_Model_Event $Event
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -71,11 +71,11 @@ abstract class Product_Model_Base_EventProduct extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Product as product', array(
+        $this->hasOne('Product_Model_Product as Product', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
 
-        $this->hasOne('Product_Model_Event as event', array(
+        $this->hasOne('Product_Model_Event as Event', array(
              'local' => 'event_id',
              'foreign' => 'event_id'));
     }

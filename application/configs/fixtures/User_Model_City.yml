@@ -1,4 +1,3748 @@
 User_Model_City:
   User_Model_City_1:
+    title: Горно-Алтайск
+    Region: User_Model_Region_1
+  User_Model_City_2:
+    title: Назрань
+    Region: User_Model_Region_2
+  User_Model_City_3:
+    title: Малгобек
+    Region: User_Model_Region_2
+  User_Model_City_4:
+    title: Карабулак
+    Region: User_Model_Region_2
+  User_Model_City_5:
+    title: Нальчик
+    Region: User_Model_Region_3
+  User_Model_City_6:
+    title: Баксан
+    Region: User_Model_Region_3
+  User_Model_City_7:
+    title: Майский
+    Region: User_Model_Region_3
+  User_Model_City_8:
+    title: Прохладный
+    Region: User_Model_Region_3
+  User_Model_City_9:
+    title: Терек
+    Region: User_Model_Region_3
+  User_Model_City_10:
+    title: Нарткала
+    Region: User_Model_Region_3
+  User_Model_City_11:
+    title: Тырныауз
+    Region: User_Model_Region_3
+  User_Model_City_12:
+    title: Черкесск
+    Region: User_Model_Region_4
+  User_Model_City_13:
+    title: Карачаевск
+    Region: User_Model_Region_4
+  User_Model_City_14:
+    title: Теберда
+    Region: User_Model_Region_4
+  User_Model_City_15:
+    title: Усть-Джегута
+    Region: User_Model_Region_4
+  User_Model_City_16:
+    title: Петрозаводск
+    Region: User_Model_Region_5
+  User_Model_City_17:
+    title: Костомукша
+    Region: User_Model_Region_5
+  User_Model_City_18:
+    title: Сортавала
+    Region: User_Model_Region_5
+  User_Model_City_19:
+    title: Беломорск
+    Region: User_Model_Region_5
+  User_Model_City_20:
+    title: Кемь
+    Region: User_Model_Region_5
+  User_Model_City_21:
+    title: Кондопога
+    Region: User_Model_Region_5
+  User_Model_City_22:
+    title: Лахденпохья
+    Region: User_Model_Region_5
+  User_Model_City_23:
+    title: Медвежьегорск
+    Region: User_Model_Region_5
+  User_Model_City_24:
+    title: Олонец
+    Region: User_Model_Region_5
+  User_Model_City_25:
+    title: Питкяранта
+    Region: User_Model_Region_5
+  User_Model_City_26:
+    title: Пудож
+    Region: User_Model_Region_5
+  User_Model_City_27:
+    title: Сегежа
+    Region: User_Model_Region_5
+  User_Model_City_28:
+    title: Суоярви
+    Region: User_Model_Region_5
+  User_Model_City_29:
+    title: Сыктывкар
+    Region: User_Model_Region_6
+  User_Model_City_30:
+    title: Воркута
+    Region: User_Model_Region_6
+  User_Model_City_31:
+    title: Вуктыл
+    Region: User_Model_Region_6
+  User_Model_City_32:
+    title: Инта
+    Region: User_Model_Region_6
+  User_Model_City_33:
+    title: Емва
+    Region: User_Model_Region_6
+  User_Model_City_34:
+    title: Печора
+    Region: User_Model_Region_6
+  User_Model_City_35:
+    title: Сосногорск
+    Region: User_Model_Region_6
+  User_Model_City_36:
+    title: Усинск
+    Region: User_Model_Region_6
+  User_Model_City_37:
+    title: Микунь
+    Region: User_Model_Region_6
+  User_Model_City_38:
+    title: Ухта
+    Region: User_Model_Region_6
+  User_Model_City_39:
+    title: Йошкар-Ола
+    Region: User_Model_Region_7
+  User_Model_City_40:
+    title: Волжск
+    Region: User_Model_Region_7
+  User_Model_City_41:
+    title: Козьмодемьянск
+    Region: User_Model_Region_7
+  User_Model_City_42:
+    title: Звенигово
+    Region: User_Model_Region_7
+  User_Model_City_43:
+    title: Саранск
+    Region: User_Model_Region_8
+  User_Model_City_44:
+    title: Ардатов
+    Region: User_Model_Region_8
+  User_Model_City_45:
+    title: Инсар
+    Region: User_Model_Region_8
+  User_Model_City_46:
+    title: Ковылкино
+    Region: User_Model_Region_8
+  User_Model_City_47:
+    title: Краснослободск
+    Region: User_Model_Region_8
+  User_Model_City_48:
+    title: Рузаевка
+    Region: User_Model_Region_8
+  User_Model_City_49:
+    title: Темников
+    Region: User_Model_Region_8
+  User_Model_City_50:
+    title: Якутск
+    Region: User_Model_Region_9
+  User_Model_City_51:
+    title: Нерюнгри
+    Region: User_Model_Region_9
+  User_Model_City_52:
+    title: Алдан
+    Region: User_Model_Region_9
+  User_Model_City_53:
+    title: Томмот
+    Region: User_Model_Region_9
+  User_Model_City_54:
+    title: Верхоянск
+    Region: User_Model_Region_9
+  User_Model_City_55:
+    title: Вилюйск
+    Region: User_Model_Region_9
+  User_Model_City_56:
+    title: Ленск
+    Region: User_Model_Region_9
+  User_Model_City_57:
+    title: Мирный
+    Region: User_Model_Region_9
+  User_Model_City_58:
+    title: Удачный
+    Region: User_Model_Region_9
+  User_Model_City_59:
+    title: Нюрба
+    Region: User_Model_Region_9
+  User_Model_City_60:
+    title: Олекминск
+    Region: User_Model_Region_9
+  User_Model_City_61:
+    title: Среднеколымск
+    Region: User_Model_Region_9
+  User_Model_City_62:
+    title: Покровск
+    Region: User_Model_Region_9
+  User_Model_City_63:
+    title: Казань
+    Region: User_Model_Region_10
+  User_Model_City_64:
+    title: Агрыз
+    Region: User_Model_Region_10
+  User_Model_City_65:
+    title: Азнакаево
+    Region: User_Model_Region_10
+  User_Model_City_66:
+    title: Альметьевск
+    Region: User_Model_Region_10
+  User_Model_City_67:
+    title: Бавлы
+    Region: User_Model_Region_10
+  User_Model_City_68:
+    title: Бугульма
+    Region: User_Model_Region_10
+  User_Model_City_69:
+    title: Буинск
+    Region: User_Model_Region_10
+  User_Model_City_70:
+    title: Елабуга
+    Region: User_Model_Region_10
+  User_Model_City_71:
+    title: Заинск
+    Region: User_Model_Region_10
+  User_Model_City_72:
+    title: Зеленодольск
+    Region: User_Model_Region_10
+  User_Model_City_73:
+    title: Лениногорск
+    Region: User_Model_Region_10
+  User_Model_City_74:
+    title: Мамадыш
+    Region: User_Model_Region_10
+  User_Model_City_75:
+    title: Менделеевск
+    Region: User_Model_Region_10
+  User_Model_City_76:
+    title: Мензелинск
+    Region: User_Model_Region_10
+  User_Model_City_77:
+    title: Нижнекамск
+    Region: User_Model_Region_10
+  User_Model_City_78:
+    title: Нурлат
+    Region: User_Model_Region_10
+  User_Model_City_79:
+    title: Болгар
+    Region: User_Model_Region_10
+  User_Model_City_80:
+    title: Тетюши
+    Region: User_Model_Region_10
+  User_Model_City_81:
+    title: 'Набережные Челны'
+    Region: User_Model_Region_10
+  User_Model_City_82:
+    title: Чистополь
+    Region: User_Model_Region_10
+  User_Model_City_83:
+    title: Кызыл
+    Region: User_Model_Region_11
+  User_Model_City_84:
+    title: Ак-Довурак
+    Region: User_Model_Region_11
+  User_Model_City_85:
+    title: Чадан
+    Region: User_Model_Region_11
+  User_Model_City_86:
+    title: Туран
+    Region: User_Model_Region_11
+  User_Model_City_87:
+    title: Шагонар
+    Region: User_Model_Region_11
+  User_Model_City_88:
+    title: Ижевск
+    Region: User_Model_Region_12
+  User_Model_City_89:
+    title: Сарапул
+    Region: User_Model_Region_12
+  User_Model_City_90:
+    title: Воткинск
+    Region: User_Model_Region_12
+  User_Model_City_91:
+    title: Глазов
+    Region: User_Model_Region_12
+  User_Model_City_92:
+    title: Камбарка
+    Region: User_Model_Region_12
+  User_Model_City_93:
+    title: Можга
+    Region: User_Model_Region_12
+  User_Model_City_94:
+    title: Абакан
+    Region: User_Model_Region_13
+  User_Model_City_95:
+    title: Саяногорск
+    Region: User_Model_Region_13
+  User_Model_City_96:
+    title: Черногорск
+    Region: User_Model_Region_13
+  User_Model_City_97:
+    title: Абаза
+    Region: User_Model_Region_13
+  User_Model_City_98:
+    title: Сорск
+    Region: User_Model_Region_13
+  User_Model_City_99:
+    title: Чебоксары
+    Region: User_Model_Region_14
+  User_Model_City_100:
+    title: Алатырь
+    Region: User_Model_Region_14
+  User_Model_City_101:
+    title: Канаш
+    Region: User_Model_Region_14
+  User_Model_City_102:
+    title: Новочебоксарск
+    Region: User_Model_Region_14
+  User_Model_City_103:
+    title: Шумерля
+    Region: User_Model_Region_14
+  User_Model_City_104:
+    title: Козловка
+    Region: User_Model_Region_14
+  User_Model_City_105:
+    title: 'Мариинский Посад'
+    Region: User_Model_Region_14
+  User_Model_City_106:
+    title: Цивильск
+    Region: User_Model_Region_14
+  User_Model_City_107:
+    title: Ядрин
+    Region: User_Model_Region_14
+  User_Model_City_108:
+    title: Барнаул
+    Region: User_Model_Region_15
+  User_Model_City_109:
+    title: Алейск
+    Region: User_Model_Region_15
+  User_Model_City_110:
+    title: Белокуриха
+    Region: User_Model_Region_15
+  User_Model_City_111:
+    title: Бийск
+    Region: User_Model_Region_15
+  User_Model_City_112:
+    title: Камень-на-Оби
+    Region: User_Model_Region_15
+  User_Model_City_113:
+    title: Новоалтайск
+    Region: User_Model_Region_15
+  User_Model_City_114:
+    title: Рубцовск
+    Region: User_Model_Region_15
+  User_Model_City_115:
+    title: Славгород
+    Region: User_Model_Region_15
+  User_Model_City_116:
+    title: Заринск
+    Region: User_Model_Region_15
+  User_Model_City_117:
+    title: Яровое
+    Region: User_Model_Region_15
+  User_Model_City_118:
+    title: Змеиногорск
+    Region: User_Model_Region_15
+  User_Model_City_119:
+    title: Горняк
+    Region: User_Model_Region_15
+  User_Model_City_120:
+    title: Краснодар
+    Region: User_Model_Region_16
+  User_Model_City_121:
+    title: Армавир
+    Region: User_Model_Region_16
+  User_Model_City_122:
+    title: Геленджик
+    Region: User_Model_Region_16
+  User_Model_City_123:
+    title: 'Горячий Ключ'
+    Region: User_Model_Region_16
+  User_Model_City_124:
+    title: Кропоткин
+    Region: User_Model_Region_16
+  User_Model_City_125:
+    title: Новороссийск
+    Region: User_Model_Region_16
+  User_Model_City_126:
+    title: Сочи
+    Region: User_Model_Region_16
+  User_Model_City_127:
+    title: Абинск
+    Region: User_Model_Region_16
+  User_Model_City_128:
+    title: Анапа
+    Region: User_Model_Region_16
+  User_Model_City_129:
+    title: Апшеронск
+    Region: User_Model_Region_16
+  User_Model_City_130:
+    title: Хадыженск
+    Region: User_Model_Region_16
+  User_Model_City_131:
+    title: Белореченск
+    Region: User_Model_Region_16
+  User_Model_City_132:
+    title: Гулькевичи
+    Region: User_Model_Region_16
+  User_Model_City_133:
+    title: Ейск
+    Region: User_Model_Region_16
+  User_Model_City_134:
+    title: Кореновск
+    Region: User_Model_Region_16
+  User_Model_City_135:
+    title: Крымск
+    Region: User_Model_Region_16
+  User_Model_City_136:
+    title: Курганинск
+    Region: User_Model_Region_16
+  User_Model_City_137:
+    title: Новокубанск
+    Region: User_Model_Region_16
+  User_Model_City_138:
+    title: Приморско-Ахтарск
+    Region: User_Model_Region_16
+  User_Model_City_139:
+    title: Славянск-на-Кубани
+    Region: User_Model_Region_16
+  User_Model_City_140:
+    title: Темрюк
+    Region: User_Model_Region_16
+  User_Model_City_141:
+    title: Тимашевск
+    Region: User_Model_Region_16
+  User_Model_City_142:
+    title: Тихорецк
+    Region: User_Model_Region_16
+  User_Model_City_143:
+    title: Туапсе
+    Region: User_Model_Region_16
+  User_Model_City_144:
+    title: Усть-Лабинск
+    Region: User_Model_Region_16
+  User_Model_City_145:
+    title: Владивосток
+    Region: User_Model_Region_17
+  User_Model_City_146:
+    title: Арсеньев
+    Region: User_Model_Region_17
+  User_Model_City_147:
+    title: Артем
+    Region: User_Model_Region_17
+  User_Model_City_148:
+    title: Находка
+    Region: User_Model_Region_17
+  User_Model_City_149:
+    title: Партизанск
+    Region: User_Model_Region_17
+  User_Model_City_150:
+    title: Фокино
+    Region: User_Model_Region_17
+  User_Model_City_151:
+    title: 'Большой Камень'
+    Region: User_Model_Region_17
+  User_Model_City_152:
+    title: Дальнегорск
+    Region: User_Model_Region_17
+  User_Model_City_153:
+    title: Дальнереченск
+    Region: User_Model_Region_17
+  User_Model_City_154:
+    title: Спасск-Дальний
+    Region: User_Model_Region_17
+  User_Model_City_155:
+    title: Уссурийск
+    Region: User_Model_Region_17
+  User_Model_City_156:
+    title: Лесозаводск
+    Region: User_Model_Region_17
+  User_Model_City_157:
+    title: Ставрополь
+    Region: User_Model_Region_18
+  User_Model_City_158:
+    title: Ессентуки
+    Region: User_Model_Region_18
+  User_Model_City_159:
+    title: Железноводск
+    Region: User_Model_Region_18
+  User_Model_City_160:
+    title: Кисловодск
+    Region: User_Model_Region_18
+  User_Model_City_161:
+    title: Лермонтов
+    Region: User_Model_Region_18
+  User_Model_City_162:
+    title: Невинномысск
+    Region: User_Model_Region_18
+  User_Model_City_163:
+    title: Пятигорск
+    Region: User_Model_Region_18
+  User_Model_City_164:
+    title: Благодарный
+    Region: User_Model_Region_18
+  User_Model_City_165:
+    title: Буденновск
+    Region: User_Model_Region_18
+  User_Model_City_166:
+    title: Георгиевск
+    Region: User_Model_Region_18
+  User_Model_City_167:
+    title: Изобильный
+    Region: User_Model_Region_18
+  User_Model_City_168:
+    title: Ипатово
+    Region: User_Model_Region_18
+  User_Model_City_169:
+    title: Новопавловск
+    Region: User_Model_Region_18
+  User_Model_City_170:
+    title: 'Минеральные Воды'
+    Region: User_Model_Region_18
+  User_Model_City_171:
+    title: Нефтекумск
+    Region: User_Model_Region_18
+  User_Model_City_172:
+    title: Новоалександровск
+    Region: User_Model_Region_18
+  User_Model_City_173:
+    title: Светлоград
+    Region: User_Model_Region_18
+  User_Model_City_174:
+    title: Зеленокумск
+    Region: User_Model_Region_18
+  User_Model_City_175:
+    title: Михайловск
+    Region: User_Model_Region_18
+  User_Model_City_176:
+    title: Хабаровск
+    Region: User_Model_Region_19
+  User_Model_City_177:
+    title: Амурск
+    Region: User_Model_Region_19
+  User_Model_City_178:
+    title: Бикин
+    Region: User_Model_Region_19
+  User_Model_City_179:
+    title: Вяземский
+    Region: User_Model_Region_19
+  User_Model_City_180:
+    title: Комсомольск-на-Амуре
+    Region: User_Model_Region_19
+  User_Model_City_181:
+    title: Николаевск-на-Амуре
+    Region: User_Model_Region_19
+  User_Model_City_182:
+    title: 'Советская Гавань'
+    Region: User_Model_Region_19
+  User_Model_City_183:
+    title: Райчихинск
+    Region: User_Model_Region_20
+  User_Model_City_184:
     title: Благовещенск
-    region: User_Model_Region_1
+    Region: User_Model_Region_20
+  User_Model_City_185:
+    title: Белогорск
+    Region: User_Model_Region_20
+  User_Model_City_186:
+    title: Завитинск
+    Region: User_Model_Region_20
+  User_Model_City_187:
+    title: Зея
+    Region: User_Model_Region_20
+  User_Model_City_188:
+    title: Свободный
+    Region: User_Model_Region_20
+  User_Model_City_189:
+    title: Сковородино
+    Region: User_Model_Region_20
+  User_Model_City_190:
+    title: Тында
+    Region: User_Model_Region_20
+  User_Model_City_191:
+    title: Шимановск
+    Region: User_Model_Region_20
+  User_Model_City_192:
+    title: Мирный
+    Region: User_Model_Region_21
+  User_Model_City_193:
+    title: Новодвинск
+    Region: User_Model_Region_21
+  User_Model_City_194:
+    title: Северодвинск
+    Region: User_Model_Region_21
+  User_Model_City_195:
+    title: Коряжма
+    Region: User_Model_Region_21
+  User_Model_City_196:
+    title: Архангельск
+    Region: User_Model_Region_21
+  User_Model_City_197:
+    title: Вельск
+    Region: User_Model_Region_21
+  User_Model_City_198:
+    title: Каргополь
+    Region: User_Model_Region_21
+  User_Model_City_199:
+    title: Котлас
+    Region: User_Model_Region_21
+  User_Model_City_200:
+    title: Сольвычегодск
+    Region: User_Model_Region_21
+  User_Model_City_201:
+    title: Мезень
+    Region: User_Model_Region_21
+  User_Model_City_202:
+    title: Няндома
+    Region: User_Model_Region_21
+  User_Model_City_203:
+    title: Онега
+    Region: User_Model_Region_21
+  User_Model_City_204:
+    title: Шенкурск
+    Region: User_Model_Region_21
+  User_Model_City_205:
+    title: Астрахань
+    Region: User_Model_Region_22
+  User_Model_City_206:
+    title: Знаменск
+    Region: User_Model_Region_22
+  User_Model_City_207:
+    title: Ахтубинск
+    Region: User_Model_Region_22
+  User_Model_City_208:
+    title: Камызяк
+    Region: User_Model_Region_22
+  User_Model_City_209:
+    title: Нариманов
+    Region: User_Model_Region_22
+  User_Model_City_210:
+    title: Харабали
+    Region: User_Model_Region_22
+  User_Model_City_211:
+    title: Белгород
+    Region: User_Model_Region_23
+  User_Model_City_212:
+    title: Алексеевка
+    Region: User_Model_Region_23
+  User_Model_City_213:
+    title: Валуйки
+    Region: User_Model_Region_23
+  User_Model_City_214:
+    title: Грайворон
+    Region: User_Model_Region_23
+  User_Model_City_215:
+    title: Губкин
+    Region: User_Model_Region_23
+  User_Model_City_216:
+    title: Короча
+    Region: User_Model_Region_23
+  User_Model_City_217:
+    title: 'Новый Оскол'
+    Region: User_Model_Region_23
+  User_Model_City_218:
+    title: 'Старый Оскол'
+    Region: User_Model_Region_23
+  User_Model_City_219:
+    title: Шебекино
+    Region: User_Model_Region_23
+  User_Model_City_220:
+    title: Строитель
+    Region: User_Model_Region_23
+  User_Model_City_221:
+    title: Брянск
+    Region: User_Model_Region_24
+  User_Model_City_222:
+    title: Сельцо
+    Region: User_Model_Region_24
+  User_Model_City_223:
+    title: Клинцы
+    Region: User_Model_Region_24
+  User_Model_City_224:
+    title: Новозыбков
+    Region: User_Model_Region_24
+  User_Model_City_225:
+    title: Дятьково
+    Region: User_Model_Region_24
+  User_Model_City_226:
+    title: Фокино
+    Region: User_Model_Region_24
+  User_Model_City_227:
+    title: Жуковка
+    Region: User_Model_Region_24
+  User_Model_City_228:
+    title: Злынка
+    Region: User_Model_Region_24
+  User_Model_City_229:
+    title: Карачев
+    Region: User_Model_Region_24
+  User_Model_City_230:
+    title: Мглин
+    Region: User_Model_Region_24
+  User_Model_City_231:
+    title: Почеп
+    Region: User_Model_Region_24
+  User_Model_City_232:
+    title: Севск
+    Region: User_Model_Region_24
+  User_Model_City_233:
+    title: Стародуб
+    Region: User_Model_Region_24
+  User_Model_City_234:
+    title: Сураж
+    Region: User_Model_Region_24
+  User_Model_City_235:
+    title: Трубчевск
+    Region: User_Model_Region_24
+  User_Model_City_236:
+    title: Унеча
+    Region: User_Model_Region_24
+  User_Model_City_237:
+    title: Владимир
+    Region: User_Model_Region_25
+  User_Model_City_238:
+    title: Радужный
+    Region: User_Model_Region_25
+  User_Model_City_239:
+    title: Александров
+    Region: User_Model_Region_25
+  User_Model_City_240:
+    title: Карабаново
+    Region: User_Model_Region_25
+  User_Model_City_241:
+    title: Струнино
+    Region: User_Model_Region_25
+  User_Model_City_242:
+    title: Вязники
+    Region: User_Model_Region_25
+  User_Model_City_243:
+    title: Гороховец
+    Region: User_Model_Region_25
+  User_Model_City_244:
+    title: Гусь-Хрустальный
+    Region: User_Model_Region_25
+  User_Model_City_245:
+    title: Курлово
+    Region: User_Model_Region_25
+  User_Model_City_246:
+    title: Камешково
+    Region: User_Model_Region_25
+  User_Model_City_247:
+    title: Киржач
+    Region: User_Model_Region_25
+  User_Model_City_248:
+    title: Ковров
+    Region: User_Model_Region_25
+  User_Model_City_249:
+    title: Кольчугино
+    Region: User_Model_Region_25
+  User_Model_City_250:
+    title: Меленки
+    Region: User_Model_Region_25
+  User_Model_City_251:
+    title: Муром
+    Region: User_Model_Region_25
+  User_Model_City_252:
+    title: Петушки
+    Region: User_Model_Region_25
+  User_Model_City_253:
+    title: Костерево
+    Region: User_Model_Region_25
+  User_Model_City_254:
+    title: Покров
+    Region: User_Model_Region_25
+  User_Model_City_255:
+    title: Собинка
+    Region: User_Model_Region_25
+  User_Model_City_256:
+    title: Лакинск
+    Region: User_Model_Region_25
+  User_Model_City_257:
+    title: Судогда
+    Region: User_Model_Region_25
+  User_Model_City_258:
+    title: Суздаль
+    Region: User_Model_Region_25
+  User_Model_City_259:
+    title: Юрьев-Польский
+    Region: User_Model_Region_25
+  User_Model_City_260:
+    title: Волгоград
+    Region: User_Model_Region_26
+  User_Model_City_261:
+    title: Волжский
+    Region: User_Model_Region_26
+  User_Model_City_262:
+    title: Дубовка
+    Region: User_Model_Region_26
+  User_Model_City_263:
+    title: Жирновск
+    Region: User_Model_Region_26
+  User_Model_City_264:
+    title: Калач-на-Дону
+    Region: User_Model_Region_26
+  User_Model_City_265:
+    title: Камышин
+    Region: User_Model_Region_26
+  User_Model_City_266:
+    title: 'Петров Вал'
+    Region: User_Model_Region_26
+  User_Model_City_267:
+    title: Котельниково
+    Region: User_Model_Region_26
+  User_Model_City_268:
+    title: Котово
+    Region: User_Model_Region_26
+  User_Model_City_269:
+    title: Ленинск
+    Region: User_Model_Region_26
+  User_Model_City_270:
+    title: Михайловка
+    Region: User_Model_Region_26
+  User_Model_City_271:
+    title: Николаевск
+    Region: User_Model_Region_26
+  User_Model_City_272:
+    title: Новоаннинский
+    Region: User_Model_Region_26
+  User_Model_City_273:
+    title: Палласовка
+    Region: User_Model_Region_26
+  User_Model_City_274:
+    title: Серафимович
+    Region: User_Model_Region_26
+  User_Model_City_275:
+    title: Краснослободск
+    Region: User_Model_Region_26
+  User_Model_City_276:
+    title: Суровикино
+    Region: User_Model_Region_26
+  User_Model_City_277:
+    title: Урюпинск
+    Region: User_Model_Region_26
+  User_Model_City_278:
+    title: Фролово
+    Region: User_Model_Region_26
+  User_Model_City_279:
+    title: Вологда
+    Region: User_Model_Region_27
+  User_Model_City_280:
+    title: Череповец
+    Region: User_Model_Region_27
+  User_Model_City_281:
+    title: Бабаево
+    Region: User_Model_Region_27
+  User_Model_City_282:
+    title: Белозерск
+    Region: User_Model_Region_27
+  User_Model_City_283:
+    title: 'Великий Устюг'
+    Region: User_Model_Region_27
+  User_Model_City_284:
+    title: Вытегра
+    Region: User_Model_Region_27
+  User_Model_City_285:
+    title: Грязовец
+    Region: User_Model_Region_27
+  User_Model_City_286:
+    title: Кириллов
+    Region: User_Model_Region_27
+  User_Model_City_287:
+    title: Никольск
+    Region: User_Model_Region_27
+  User_Model_City_288:
+    title: Сокол
+    Region: User_Model_Region_27
+  User_Model_City_289:
+    title: Кадников
+    Region: User_Model_Region_27
+  User_Model_City_290:
+    title: Тотьма
+    Region: User_Model_Region_27
+  User_Model_City_291:
+    title: Устюжна
+    Region: User_Model_Region_27
+  User_Model_City_292:
+    title: Харовск
+    Region: User_Model_Region_27
+  User_Model_City_293:
+    title: Воронеж
+    Region: User_Model_Region_28
+  User_Model_City_294:
+    title: Лиски
+    Region: User_Model_Region_28
+  User_Model_City_295:
+    title: Нововоронеж
+    Region: User_Model_Region_28
+  User_Model_City_296:
+    title: Бобров
+    Region: User_Model_Region_28
+  User_Model_City_297:
+    title: Богучар
+    Region: User_Model_Region_28
+  User_Model_City_298:
+    title: Борисоглебск
+    Region: User_Model_Region_28
+  User_Model_City_299:
+    title: Бутурлиновка
+    Region: User_Model_Region_28
+  User_Model_City_300:
+    title: Калач
+    Region: User_Model_Region_28
+  User_Model_City_301:
+    title: Новохоперск
+    Region: User_Model_Region_28
+  User_Model_City_302:
+    title: Острогожск
+    Region: User_Model_Region_28
+  User_Model_City_303:
+    title: Павловск
+    Region: User_Model_Region_28
+  User_Model_City_304:
+    title: Поворино
+    Region: User_Model_Region_28
+  User_Model_City_305:
+    title: Россошь
+    Region: User_Model_Region_28
+  User_Model_City_306:
+    title: Семилуки
+    Region: User_Model_Region_28
+  User_Model_City_307:
+    title: Эртиль
+    Region: User_Model_Region_28
+  User_Model_City_308:
+    title: Иваново
+    Region: User_Model_Region_29
+  User_Model_City_309:
+    title: Кохма
+    Region: User_Model_Region_29
+  User_Model_City_310:
+    title: Вичуга
+    Region: User_Model_Region_29
+  User_Model_City_311:
+    title: 'Гаврилов Посад'
+    Region: User_Model_Region_29
+  User_Model_City_312:
+    title: Заволжск
+    Region: User_Model_Region_29
+  User_Model_City_313:
+    title: Кинешма
+    Region: User_Model_Region_29
+  User_Model_City_314:
+    title: Наволоки
+    Region: User_Model_Region_29
+  User_Model_City_315:
+    title: Комсомольск
+    Region: User_Model_Region_29
+  User_Model_City_316:
+    title: Приволжск
+    Region: User_Model_Region_29
+  User_Model_City_317:
+    title: Плес
+    Region: User_Model_Region_29
+  User_Model_City_318:
+    title: Пучеж
+    Region: User_Model_Region_29
+  User_Model_City_319:
+    title: Родники
+    Region: User_Model_Region_29
+  User_Model_City_320:
+    title: Тейково
+    Region: User_Model_Region_29
+  User_Model_City_321:
+    title: Фурманов
+    Region: User_Model_Region_29
+  User_Model_City_322:
+    title: Шуя
+    Region: User_Model_Region_29
+  User_Model_City_323:
+    title: Южа
+    Region: User_Model_Region_29
+  User_Model_City_324:
+    title: Юрьевец
+    Region: User_Model_Region_29
+  User_Model_City_325:
+    title: Саянск
+    Region: User_Model_Region_30
+  User_Model_City_326:
+    title: Иркутск
+    Region: User_Model_Region_30
+  User_Model_City_327:
+    title: Ангарск
+    Region: User_Model_Region_30
+  User_Model_City_328:
+    title: Бодайбо
+    Region: User_Model_Region_30
+  User_Model_City_329:
+    title: Братск
+    Region: User_Model_Region_30
+  User_Model_City_330:
+    title: Вихоревка
+    Region: User_Model_Region_30
+  User_Model_City_331:
+    title: Зима
+    Region: User_Model_Region_30
+  User_Model_City_332:
+    title: Киренск
+    Region: User_Model_Region_30
+  User_Model_City_333:
+    title: Железногорск-Илимский
+    Region: User_Model_Region_30
+  User_Model_City_334:
+    title: Нижнеудинск
+    Region: User_Model_Region_30
+  User_Model_City_335:
+    title: Алзамай
+    Region: User_Model_Region_30
+  User_Model_City_336:
+    title: Слюдянка
+    Region: User_Model_Region_30
+  User_Model_City_337:
+    title: Байкальск
+    Region: User_Model_Region_30
+  User_Model_City_338:
+    title: Тайшет
+    Region: User_Model_Region_30
+  User_Model_City_339:
+    title: Бирюсинск
+    Region: User_Model_Region_30
+  User_Model_City_340:
+    title: Тулун
+    Region: User_Model_Region_30
+  User_Model_City_341:
+    title: Усолье-Сибирское
+    Region: User_Model_Region_30
+  User_Model_City_342:
+    title: Усть-Илимск
+    Region: User_Model_Region_30
+  User_Model_City_343:
+    title: Усть-Кут
+    Region: User_Model_Region_30
+  User_Model_City_344:
+    title: Черемхово
+    Region: User_Model_Region_30
+  User_Model_City_345:
+    title: Свирск
+    Region: User_Model_Region_30
+  User_Model_City_346:
+    title: Шелехов
+    Region: User_Model_Region_30
+  User_Model_City_347:
+    title: Калининград
+    Region: User_Model_Region_31
+  User_Model_City_348:
+    title: Балтийск
+    Region: User_Model_Region_31
+  User_Model_City_349:
+    title: Пионерский
+    Region: User_Model_Region_31
+  User_Model_City_350:
+    title: Приморск
+    Region: User_Model_Region_31
+  User_Model_City_351:
+    title: Светлогорск
+    Region: User_Model_Region_31
+  User_Model_City_352:
+    title: Светлый
+    Region: User_Model_Region_31
+  User_Model_City_353:
+    title: Советск
+    Region: User_Model_Region_31
+  User_Model_City_354:
+    title: Багратионовск
+    Region: User_Model_Region_31
+  User_Model_City_355:
+    title: Ладушкин
+    Region: User_Model_Region_31
+  User_Model_City_356:
+    title: Мамоново
+    Region: User_Model_Region_31
+  User_Model_City_357:
+    title: Гвардейск
+    Region: User_Model_Region_31
+  User_Model_City_358:
+    title: Гурьевск
+    Region: User_Model_Region_31
+  User_Model_City_359:
+    title: Гусев
+    Region: User_Model_Region_31
+  User_Model_City_360:
+    title: Зеленоградск
+    Region: User_Model_Region_31
+  User_Model_City_361:
+    title: Краснознаменск
+    Region: User_Model_Region_31
+  User_Model_City_362:
+    title: Неман
+    Region: User_Model_Region_31
+  User_Model_City_363:
+    title: Нестеров
+    Region: User_Model_Region_31
+  User_Model_City_364:
+    title: Озерск
+    Region: User_Model_Region_31
+  User_Model_City_365:
+    title: Полесск
+    Region: User_Model_Region_31
+  User_Model_City_366:
+    title: Правдинск
+    Region: User_Model_Region_31
+  User_Model_City_367:
+    title: Славск
+    Region: User_Model_Region_31
+  User_Model_City_368:
+    title: Черняховск
+    Region: User_Model_Region_31
+  User_Model_City_369:
+    title: Калуга
+    Region: User_Model_Region_32
+  User_Model_City_370:
+    title: Обнинск
+    Region: User_Model_Region_32
+  User_Model_City_371:
+    title: Боровск
+    Region: User_Model_Region_32
+  User_Model_City_372:
+    title: Балабаново
+    Region: User_Model_Region_32
+  User_Model_City_373:
+    title: Спас-Деменск
+    Region: User_Model_Region_32
+  User_Model_City_374:
+    title: Кондрово
+    Region: User_Model_Region_32
+  User_Model_City_375:
+    title: Жиздра
+    Region: User_Model_Region_32
+  User_Model_City_376:
+    title: Жуков
+    Region: User_Model_Region_32
+  User_Model_City_377:
+    title: Белоусово
+    Region: User_Model_Region_32
+  User_Model_City_378:
+    title: Кременки
+    Region: User_Model_Region_32
+  User_Model_City_379:
+    title: Киров
+    Region: User_Model_Region_32
+  User_Model_City_380:
+    title: Козельск
+    Region: User_Model_Region_32
+  User_Model_City_381:
+    title: Сосенский
+    Region: User_Model_Region_32
+  User_Model_City_382:
+    title: Людиново
+    Region: User_Model_Region_32
+  User_Model_City_383:
+    title: Малоярославец
+    Region: User_Model_Region_32
+  User_Model_City_384:
+    title: Медынь
+    Region: User_Model_Region_32
+  User_Model_City_385:
+    title: Мещовск
+    Region: User_Model_Region_32
+  User_Model_City_386:
+    title: Мосальск
+    Region: User_Model_Region_32
+  User_Model_City_387:
+    title: Сухиничи
+    Region: User_Model_Region_32
+  User_Model_City_388:
+    title: Таруса
+    Region: User_Model_Region_32
+  User_Model_City_389:
+    title: Юхнов
+    Region: User_Model_Region_32
+  User_Model_City_390:
+    title: Петропавловск-Камчатский
+    Region: User_Model_Region_33
+  User_Model_City_391:
+    title: Вилючинск
+    Region: User_Model_Region_33
+  User_Model_City_392:
+    title: Елизово
+    Region: User_Model_Region_33
+  User_Model_City_393:
+    title: Анжеро-Судженск
+    Region: User_Model_Region_34
+  User_Model_City_394:
+    title: Березовский
+    Region: User_Model_Region_34
+  User_Model_City_395:
+    title: Калтан
+    Region: User_Model_Region_34
+  User_Model_City_396:
+    title: Киселевск
+    Region: User_Model_Region_34
+  User_Model_City_397:
+    title: Мыски
+    Region: User_Model_Region_34
+  User_Model_City_398:
+    title: Осинники
+    Region: User_Model_Region_34
+  User_Model_City_399:
+    title: Тайга
+    Region: User_Model_Region_34
+  User_Model_City_400:
+    title: Кемерово
+    Region: User_Model_Region_34
+  User_Model_City_401:
+    title: Белово
+    Region: User_Model_Region_34
+  User_Model_City_402:
+    title: Гурьевск
+    Region: User_Model_Region_34
+  User_Model_City_403:
+    title: Салаир
+    Region: User_Model_Region_34
+  User_Model_City_404:
+    title: Ленинск-Кузнецкий
+    Region: User_Model_Region_34
+  User_Model_City_405:
+    title: Полысаево
+    Region: User_Model_Region_34
+  User_Model_City_406:
+    title: Мариинск
+    Region: User_Model_Region_34
+  User_Model_City_407:
+    title: Междуреченск
+    Region: User_Model_Region_34
+  User_Model_City_408:
+    title: Новокузнецк
+    Region: User_Model_Region_34
+  User_Model_City_409:
+    title: Прокопьевск
+    Region: User_Model_Region_34
+  User_Model_City_410:
+    title: Таштагол
+    Region: User_Model_Region_34
+  User_Model_City_411:
+    title: Топки
+    Region: User_Model_Region_34
+  User_Model_City_412:
+    title: Юрга
+    Region: User_Model_Region_34
+  User_Model_City_413:
+    title: Киров
+    Region: User_Model_Region_35
+  User_Model_City_414:
+    title: 'Белая Холуница'
+    Region: User_Model_Region_35
+  User_Model_City_415:
+    title: Кирс
+    Region: User_Model_Region_35
+  User_Model_City_416:
+    title: 'Вятские Поляны'
+    Region: User_Model_Region_35
+  User_Model_City_417:
+    title: Сосновка
+    Region: User_Model_Region_35
+  User_Model_City_418:
+    title: Зуевка
+    Region: User_Model_Region_35
+  User_Model_City_419:
+    title: Кирово-Чепецк
+    Region: User_Model_Region_35
+  User_Model_City_420:
+    title: Котельнич
+    Region: User_Model_Region_35
+  User_Model_City_421:
+    title: Луза
+    Region: User_Model_Region_35
+  User_Model_City_422:
+    title: Малмыж
+    Region: User_Model_Region_35
+  User_Model_City_423:
+    title: Мураши
+    Region: User_Model_Region_35
+  User_Model_City_424:
+    title: Нолинск
+    Region: User_Model_Region_35
+  User_Model_City_425:
+    title: Омутнинск
+    Region: User_Model_Region_35
+  User_Model_City_426:
+    title: Орлов
+    Region: User_Model_Region_35
+  User_Model_City_427:
+    title: Слободской
+    Region: User_Model_Region_35
+  User_Model_City_428:
+    title: Советск
+    Region: User_Model_Region_35
+  User_Model_City_429:
+    title: Уржум
+    Region: User_Model_Region_35
+  User_Model_City_430:
+    title: Яранск
+    Region: User_Model_Region_35
+  User_Model_City_431:
+    title: Волгореченск
+    Region: User_Model_Region_36
+  User_Model_City_432:
+    title: Кострома
+    Region: User_Model_Region_36
+  User_Model_City_433:
+    title: Буй
+    Region: User_Model_Region_36
+  User_Model_City_434:
+    title: Галич
+    Region: User_Model_Region_36
+  User_Model_City_435:
+    title: Кологрив
+    Region: User_Model_Region_36
+  User_Model_City_436:
+    title: Макарьев
+    Region: User_Model_Region_36
+  User_Model_City_437:
+    title: Мантурово
+    Region: User_Model_Region_36
+  User_Model_City_438:
+    title: Нея
+    Region: User_Model_Region_36
+  User_Model_City_439:
+    title: Нерехта
+    Region: User_Model_Region_36
+  User_Model_City_440:
+    title: Солигалич
+    Region: User_Model_Region_36
+  User_Model_City_441:
+    title: Чухлома
+    Region: User_Model_Region_36
+  User_Model_City_442:
+    title: Шарья
+    Region: User_Model_Region_36
+  User_Model_City_443:
+    title: Курган
+    Region: User_Model_Region_37
+  User_Model_City_444:
+    title: Шадринск
+    Region: User_Model_Region_37
+  User_Model_City_445:
+    title: Далматово
+    Region: User_Model_Region_37
+  User_Model_City_446:
+    title: Катайск
+    Region: User_Model_Region_37
+  User_Model_City_447:
+    title: Куртамыш
+    Region: User_Model_Region_37
+  User_Model_City_448:
+    title: Макушино
+    Region: User_Model_Region_37
+  User_Model_City_449:
+    title: Петухово
+    Region: User_Model_Region_37
+  User_Model_City_450:
+    title: Шумиха
+    Region: User_Model_Region_37
+  User_Model_City_451:
+    title: Щучье
+    Region: User_Model_Region_37
+  User_Model_City_452:
+    title: Курск
+    Region: User_Model_Region_38
+  User_Model_City_453:
+    title: Дмитриев-Льговский
+    Region: User_Model_Region_38
+  User_Model_City_454:
+    title: Железногорск
+    Region: User_Model_Region_38
+  User_Model_City_455:
+    title: Курчатов
+    Region: User_Model_Region_38
+  User_Model_City_456:
+    title: Льгов
+    Region: User_Model_Region_38
+  User_Model_City_457:
+    title: Обоянь
+    Region: User_Model_Region_38
+  User_Model_City_458:
+    title: Рыльск
+    Region: User_Model_Region_38
+  User_Model_City_459:
+    title: Суджа
+    Region: User_Model_Region_38
+  User_Model_City_460:
+    title: Фатеж
+    Region: User_Model_Region_38
+  User_Model_City_461:
+    title: Щигры
+    Region: User_Model_Region_38
+  User_Model_City_462:
+    title: Ивангород
+    Region: User_Model_Region_39
+  User_Model_City_463:
+    title: Пикалево
+    Region: User_Model_Region_39
+  User_Model_City_464:
+    title: 'Сосновый Бор'
+    Region: User_Model_Region_39
+  User_Model_City_465:
+    title: Шлиссельбург
+    Region: User_Model_Region_39
+  User_Model_City_466:
+    title: Бокситогорск
+    Region: User_Model_Region_39
+  User_Model_City_467:
+    title: Волхов
+    Region: User_Model_Region_39
+  User_Model_City_468:
+    title: 'Новая Ладога'
+    Region: User_Model_Region_39
+  User_Model_City_469:
+    title: Сясьстрой
+    Region: User_Model_Region_39
+  User_Model_City_470:
+    title: Всеволожск
+    Region: User_Model_Region_39
+  User_Model_City_471:
+    title: Выборг
+    Region: User_Model_Region_39
+  User_Model_City_472:
+    title: Высоцк
+    Region: User_Model_Region_39
+  User_Model_City_473:
+    title: Каменногорск
+    Region: User_Model_Region_39
+  User_Model_City_474:
+    title: Приморск
+    Region: User_Model_Region_39
+  User_Model_City_475:
+    title: Светогорск
+    Region: User_Model_Region_39
+  User_Model_City_476:
+    title: Гатчина
+    Region: User_Model_Region_39
+  User_Model_City_477:
+    title: Коммунар
+    Region: User_Model_Region_39
+  User_Model_City_478:
+    title: Кингисепп
+    Region: User_Model_Region_39
+  User_Model_City_479:
+    title: Кириши
+    Region: User_Model_Region_39
+  User_Model_City_480:
+    title: Кировск
+    Region: User_Model_Region_39
+  User_Model_City_481:
+    title: Отрадное
+    Region: User_Model_Region_39
+  User_Model_City_482:
+    title: 'Лодейное Поле'
+    Region: User_Model_Region_39
+  User_Model_City_483:
+    title: Луга
+    Region: User_Model_Region_39
+  User_Model_City_484:
+    title: Подпорожье
+    Region: User_Model_Region_39
+  User_Model_City_485:
+    title: Приозерск
+    Region: User_Model_Region_39
+  User_Model_City_486:
+    title: Сланцы
+    Region: User_Model_Region_39
+  User_Model_City_487:
+    title: Тихвин
+    Region: User_Model_Region_39
+  User_Model_City_488:
+    title: Тосно
+    Region: User_Model_Region_39
+  User_Model_City_489:
+    title: Никольское
+    Region: User_Model_Region_39
+  User_Model_City_490:
+    title: Липецк
+    Region: User_Model_Region_40
+  User_Model_City_491:
+    title: Грязи
+    Region: User_Model_Region_40
+  User_Model_City_492:
+    title: Данков
+    Region: User_Model_Region_40
+  User_Model_City_493:
+    title: Елец
+    Region: User_Model_Region_40
+  User_Model_City_494:
+    title: Задонск
+    Region: User_Model_Region_40
+  User_Model_City_495:
+    title: Лебедянь
+    Region: User_Model_Region_40
+  User_Model_City_496:
+    title: Усмань
+    Region: User_Model_Region_40
+  User_Model_City_497:
+    title: Чаплыгин
+    Region: User_Model_Region_40
+  User_Model_City_498:
+    title: Магадан
+    Region: User_Model_Region_41
+  User_Model_City_499:
+    title: Сусуман
+    Region: User_Model_Region_41
+  User_Model_City_500:
+    title: Бронницы
+    Region: User_Model_Region_42
+  User_Model_City_501:
+    title: Дубна
+    Region: User_Model_Region_42
+  User_Model_City_502:
+    title: Железнодорожный
+    Region: User_Model_Region_42
+  User_Model_City_503:
+    title: Жуковский
+    Region: User_Model_Region_42
+  User_Model_City_504:
+    title: Звенигород
+    Region: User_Model_Region_42
+  User_Model_City_505:
+    title: Ивантеевка
+    Region: User_Model_Region_42
+  User_Model_City_506:
+    title: Климовск
+    Region: User_Model_Region_42
+  User_Model_City_507:
+    title: Королев
+    Region: User_Model_Region_42
+  User_Model_City_508:
+    title: Красноармейск
+    Region: User_Model_Region_42
+  User_Model_City_509:
+    title: Краснознаменск
+    Region: User_Model_Region_42
+  User_Model_City_510:
+    title: Лобня
+    Region: User_Model_Region_42
+  User_Model_City_511:
+    title: Лыткарино
+    Region: User_Model_Region_42
+  User_Model_City_512:
+    title: Протвино
+    Region: User_Model_Region_42
+  User_Model_City_513:
+    title: Пущино
+    Region: User_Model_Region_42
+  User_Model_City_514:
+    title: Реутов
+    Region: User_Model_Region_42
+  User_Model_City_515:
+    title: Рошаль
+    Region: User_Model_Region_42
+  User_Model_City_516:
+    title: Троицк
+    Region: User_Model_Region_42
+  User_Model_City_517:
+    title: Фрязино
+    Region: User_Model_Region_42
+  User_Model_City_518:
+    title: Щербинка
+    Region: User_Model_Region_42
+  User_Model_City_519:
+    title: Электросталь
+    Region: User_Model_Region_42
+  User_Model_City_520:
+    title: Юбилейный
+    Region: User_Model_Region_42
+  User_Model_City_521:
+    title: Дзержинский
+    Region: User_Model_Region_42
+  User_Model_City_522:
+    title: Балашиха
+    Region: User_Model_Region_42
+  User_Model_City_523:
+    title: Волоколамск
+    Region: User_Model_Region_42
+  User_Model_City_524:
+    title: Воскресенск
+    Region: User_Model_Region_42
+  User_Model_City_525:
+    title: Дмитров
+    Region: User_Model_Region_42
+  User_Model_City_526:
+    title: Яхрома
+    Region: User_Model_Region_42
+  User_Model_City_527:
+    title: Домодедово
+    Region: User_Model_Region_42
+  User_Model_City_528:
+    title: Егорьевск
+    Region: User_Model_Region_42
+  User_Model_City_529:
+    title: Зарайск
+    Region: User_Model_Region_42
+  User_Model_City_530:
+    title: Истра
+    Region: User_Model_Region_42
+  User_Model_City_531:
+    title: Дедовск
+    Region: User_Model_Region_42
+  User_Model_City_532:
+    title: Кашира
+    Region: User_Model_Region_42
+  User_Model_City_533:
+    title: Ожерелье
+    Region: User_Model_Region_42
+  User_Model_City_534:
+    title: Клин
+    Region: User_Model_Region_42
+  User_Model_City_535:
+    title: Высоковск
+    Region: User_Model_Region_42
+  User_Model_City_536:
+    title: Коломна
+    Region: User_Model_Region_42
+  User_Model_City_537:
+    title: Красногорск
+    Region: User_Model_Region_42
+  User_Model_City_538:
+    title: Видное
+    Region: User_Model_Region_42
+  User_Model_City_539:
+    title: Луховицы
+    Region: User_Model_Region_42
+  User_Model_City_540:
+    title: Люберцы
+    Region: User_Model_Region_42
+  User_Model_City_541:
+    title: Можайск
+    Region: User_Model_Region_42
+  User_Model_City_542:
+    title: Мытищи
+    Region: User_Model_Region_42
+  User_Model_City_543:
+    title: Долгопрудный
+    Region: User_Model_Region_42
+  User_Model_City_544:
+    title: Ногинск
+    Region: User_Model_Region_42
+  User_Model_City_545:
+    title: Электроугли
+    Region: User_Model_Region_42
+  User_Model_City_546:
+    title: Одинцово
+    Region: User_Model_Region_42
+  User_Model_City_547:
+    title: Озеры
+    Region: User_Model_Region_42
+  User_Model_City_548:
+    title: Орехово-Зуево
+    Region: User_Model_Region_42
+  User_Model_City_549:
+    title: Дрезна
+    Region: User_Model_Region_42
+  User_Model_City_550:
+    title: Куровское
+    Region: User_Model_Region_42
+  User_Model_City_551:
+    title: Ликино-Дулево
+    Region: User_Model_Region_42
+  User_Model_City_552:
+    title: 'Павловский Посад'
+    Region: User_Model_Region_42
+  User_Model_City_553:
+    title: Электрогорск
+    Region: User_Model_Region_42
+  User_Model_City_554:
+    title: Подольск
+    Region: User_Model_Region_42
+  User_Model_City_555:
+    title: Пушкино
+    Region: User_Model_Region_42
+  User_Model_City_556:
+    title: Раменское
+    Region: User_Model_Region_42
+  User_Model_City_557:
+    title: Руза
+    Region: User_Model_Region_42
+  User_Model_City_558:
+    title: 'Сергиев Посад'
+    Region: User_Model_Region_42
+  User_Model_City_559:
+    title: Краснозаводск
+    Region: User_Model_Region_42
+  User_Model_City_560:
+    title: Хотьково
+    Region: User_Model_Region_42
+  User_Model_City_561:
+    title: Серпухов
+    Region: User_Model_Region_42
+  User_Model_City_562:
+    title: Солнечногорск
+    Region: User_Model_Region_42
+  User_Model_City_563:
+    title: Талдом
+    Region: User_Model_Region_42
+  User_Model_City_564:
+    title: Химки
+    Region: User_Model_Region_42
+  User_Model_City_565:
+    title: Чехов
+    Region: User_Model_Region_42
+  User_Model_City_566:
+    title: Чехов-2
+    Region: User_Model_Region_42
+  User_Model_City_567:
+    title: Чехов-3
+    Region: User_Model_Region_42
+  User_Model_City_568:
+    title: Чехов-7
+    Region: User_Model_Region_42
+  User_Model_City_569:
+    title: Чехов-8
+    Region: User_Model_Region_42
+  User_Model_City_570:
+    title: Шатура
+    Region: User_Model_Region_42
+  User_Model_City_571:
+    title: Щелково
+    Region: User_Model_Region_42
+  User_Model_City_572:
+    title: Лосино-Петровский
+    Region: User_Model_Region_42
+  User_Model_City_573:
+    title: Мурманск
+    Region: User_Model_Region_43
+  User_Model_City_574:
+    title: Апатиты
+    Region: User_Model_Region_43
+  User_Model_City_575:
+    title: Заозерск
+    Region: User_Model_Region_43
+  User_Model_City_576:
+    title: Кандалакша
+    Region: User_Model_Region_43
+  User_Model_City_577:
+    title: Кировск
+    Region: User_Model_Region_43
+  User_Model_City_578:
+    title: Мончегорск
+    Region: User_Model_Region_43
+  User_Model_City_579:
+    title: Оленегорск
+    Region: User_Model_Region_43
+  User_Model_City_580:
+    title: Островной
+    Region: User_Model_Region_43
+  User_Model_City_581:
+    title: 'Полярные Зори'
+    Region: User_Model_Region_43
+  User_Model_City_582:
+    title: Полярный
+    Region: User_Model_Region_43
+  User_Model_City_583:
+    title: Североморск
+    Region: User_Model_Region_43
+  User_Model_City_584:
+    title: Гаджиево
+    Region: User_Model_Region_43
+  User_Model_City_585:
+    title: Снежногорск
+    Region: User_Model_Region_43
+  User_Model_City_586:
+    title: Ковдор
+    Region: User_Model_Region_43
+  User_Model_City_587:
+    title: Кола
+    Region: User_Model_Region_43
+  User_Model_City_588:
+    title: Заполярный
+    Region: User_Model_Region_43
+  User_Model_City_589:
+    title: 'Нижний Новгород'
+    Region: User_Model_Region_44
+  User_Model_City_590:
+    title: Дзержинск
+    Region: User_Model_Region_44
+  User_Model_City_591:
+    title: Саров
+    Region: User_Model_Region_44
+  User_Model_City_592:
+    title: Арзамас
+    Region: User_Model_Region_44
+  User_Model_City_593:
+    title: Балахна
+    Region: User_Model_Region_44
+  User_Model_City_594:
+    title: Богородск
+    Region: User_Model_Region_44
+  User_Model_City_595:
+    title: Бор
+    Region: User_Model_Region_44
+  User_Model_City_596:
+    title: Ветлуга
+    Region: User_Model_Region_44
+  User_Model_City_597:
+    title: Володарск
+    Region: User_Model_Region_44
+  User_Model_City_598:
+    title: Выкса
+    Region: User_Model_Region_44
+  User_Model_City_599:
+    title: Городец
+    Region: User_Model_Region_44
+  User_Model_City_600:
+    title: Заволжье
+    Region: User_Model_Region_44
+  User_Model_City_601:
+    title: Княгинино
+    Region: User_Model_Region_44
+  User_Model_City_602:
+    title: Кстово
+    Region: User_Model_Region_44
+  User_Model_City_603:
+    title: Кулебаки
+    Region: User_Model_Region_44
+  User_Model_City_604:
+    title: Лукоянов
+    Region: User_Model_Region_44
+  User_Model_City_605:
+    title: Лысково
+    Region: User_Model_Region_44
+  User_Model_City_606:
+    title: Навашино
+    Region: User_Model_Region_44
+  User_Model_City_607:
+    title: Павлово
+    Region: User_Model_Region_44
+  User_Model_City_608:
+    title: Ворсма
+    Region: User_Model_Region_44
+  User_Model_City_609:
+    title: Горбатов
+    Region: User_Model_Region_44
+  User_Model_City_610:
+    title: Первомайск
+    Region: User_Model_Region_44
+  User_Model_City_611:
+    title: Семенов
+    Region: User_Model_Region_44
+  User_Model_City_612:
+    title: Сергач
+    Region: User_Model_Region_44
+  User_Model_City_613:
+    title: Урень
+    Region: User_Model_Region_44
+  User_Model_City_614:
+    title: Чкаловск
+    Region: User_Model_Region_44
+  User_Model_City_615:
+    title: Шахунья
+    Region: User_Model_Region_44
+  User_Model_City_616:
+    title: Новосибирск
+    Region: User_Model_Region_45
+  User_Model_City_617:
+    title: Бердск
+    Region: User_Model_Region_45
+  User_Model_City_618:
+    title: Обь
+    Region: User_Model_Region_45
+  User_Model_City_619:
+    title: Барабинск
+    Region: User_Model_Region_45
+  User_Model_City_620:
+    title: Искитим
+    Region: User_Model_Region_45
+  User_Model_City_621:
+    title: Куйбышев
+    Region: User_Model_Region_45
+  User_Model_City_622:
+    title: Татарск
+    Region: User_Model_Region_45
+  User_Model_City_623:
+    title: Болотное
+    Region: User_Model_Region_45
+  User_Model_City_624:
+    title: Карасук
+    Region: User_Model_Region_45
+  User_Model_City_625:
+    title: Каргат
+    Region: User_Model_Region_45
+  User_Model_City_626:
+    title: Купино
+    Region: User_Model_Region_45
+  User_Model_City_627:
+    title: Тогучин
+    Region: User_Model_Region_45
+  User_Model_City_628:
+    title: Черепаново
+    Region: User_Model_Region_45
+  User_Model_City_629:
+    title: Чулым
+    Region: User_Model_Region_45
+  User_Model_City_630:
+    title: Омск
+    Region: User_Model_Region_46
+  User_Model_City_631:
+    title: Исилькуль
+    Region: User_Model_Region_46
+  User_Model_City_632:
+    title: Калачинск
+    Region: User_Model_Region_46
+  User_Model_City_633:
+    title: Называевск
+    Region: User_Model_Region_46
+  User_Model_City_634:
+    title: Тара
+    Region: User_Model_Region_46
+  User_Model_City_635:
+    title: Тюкалинск
+    Region: User_Model_Region_46
+  User_Model_City_636:
+    title: Оренбург
+    Region: User_Model_Region_47
+  User_Model_City_637:
+    title: Медногорск
+    Region: User_Model_Region_47
+  User_Model_City_638:
+    title: Новотроицк
+    Region: User_Model_Region_47
+  User_Model_City_639:
+    title: Орск
+    Region: User_Model_Region_47
+  User_Model_City_640:
+    title: Бугуруслан
+    Region: User_Model_Region_47
+  User_Model_City_641:
+    title: Гай
+    Region: User_Model_Region_47
+  User_Model_City_642:
+    title: Сорочинск
+    Region: User_Model_Region_47
+  User_Model_City_643:
+    title: Ясный
+    Region: User_Model_Region_47
+  User_Model_City_644:
+    title: Бузулук
+    Region: User_Model_Region_47
+  User_Model_City_645:
+    title: Кувандык
+    Region: User_Model_Region_47
+  User_Model_City_646:
+    title: Соль-Илецк
+    Region: User_Model_Region_47
+  User_Model_City_647:
+    title: Абдулино
+    Region: User_Model_Region_47
+  User_Model_City_648:
+    title: Орел
+    Region: User_Model_Region_48
+  User_Model_City_649:
+    title: Болхов
+    Region: User_Model_Region_48
+  User_Model_City_650:
+    title: Дмитровск
+    Region: User_Model_Region_48
+  User_Model_City_651:
+    title: Ливны
+    Region: User_Model_Region_48
+  User_Model_City_652:
+    title: Малоархангельск
+    Region: User_Model_Region_48
+  User_Model_City_653:
+    title: Мценск
+    Region: User_Model_Region_48
+  User_Model_City_654:
+    title: Новосиль
+    Region: User_Model_Region_48
+  User_Model_City_655:
+    title: Пенза
+    Region: User_Model_Region_49
+  User_Model_City_656:
+    title: Заречный
+    Region: User_Model_Region_49
+  User_Model_City_657:
+    title: Спасск
+    Region: User_Model_Region_49
+  User_Model_City_658:
+    title: Белинский
+    Region: User_Model_Region_49
+  User_Model_City_659:
+    title: Городище
+    Region: User_Model_Region_49
+  User_Model_City_660:
+    title: Сурск
+    Region: User_Model_Region_49
+  User_Model_City_661:
+    title: Каменка
+    Region: User_Model_Region_49
+  User_Model_City_662:
+    title: Кузнецк
+    Region: User_Model_Region_49
+  User_Model_City_663:
+    title: 'Нижний Ломов'
+    Region: User_Model_Region_49
+  User_Model_City_664:
+    title: Никольск
+    Region: User_Model_Region_49
+  User_Model_City_665:
+    title: Сердобск
+    Region: User_Model_Region_49
+  User_Model_City_666:
+    title: Пермь
+    Region: User_Model_Region_50
+  User_Model_City_667:
+    title: Березники
+    Region: User_Model_Region_50
+  User_Model_City_668:
+    title: Александровск
+    Region: User_Model_Region_50
+  User_Model_City_669:
+    title: Гремячинск
+    Region: User_Model_Region_50
+  User_Model_City_670:
+    title: Губаха
+    Region: User_Model_Region_50
+  User_Model_City_671:
+    title: Добрянка
+    Region: User_Model_Region_50
+  User_Model_City_672:
+    title: Кизел
+    Region: User_Model_Region_50
+  User_Model_City_673:
+    title: Краснокамск
+    Region: User_Model_Region_50
+  User_Model_City_674:
+    title: Кунгур
+    Region: User_Model_Region_50
+  User_Model_City_675:
+    title: Лысьва
+    Region: User_Model_Region_50
+  User_Model_City_676:
+    title: Соликамск
+    Region: User_Model_Region_50
+  User_Model_City_677:
+    title: Чайковский
+    Region: User_Model_Region_50
+  User_Model_City_678:
+    title: Чусовой
+    Region: User_Model_Region_50
+  User_Model_City_679:
+    title: Верещагино
+    Region: User_Model_Region_50
+  User_Model_City_680:
+    title: Горнозаводск
+    Region: User_Model_Region_50
+  User_Model_City_681:
+    title: Чермоз
+    Region: User_Model_Region_50
+  User_Model_City_682:
+    title: Красновишерск
+    Region: User_Model_Region_50
+  User_Model_City_683:
+    title: Нытва
+    Region: User_Model_Region_50
+  User_Model_City_684:
+    title: Оса
+    Region: User_Model_Region_50
+  User_Model_City_685:
+    title: Оханск
+    Region: User_Model_Region_50
+  User_Model_City_686:
+    title: Очер
+    Region: User_Model_Region_50
+  User_Model_City_687:
+    title: Усолье
+    Region: User_Model_Region_50
+  User_Model_City_688:
+    title: Чердынь
+    Region: User_Model_Region_50
+  User_Model_City_689:
+    title: Чернушка
+    Region: User_Model_Region_50
+  User_Model_City_690:
+    title: Псков
+    Region: User_Model_Region_51
+  User_Model_City_691:
+    title: 'Великие Луки'
+    Region: User_Model_Region_51
+  User_Model_City_692:
+    title: Гдов
+    Region: User_Model_Region_51
+  User_Model_City_693:
+    title: Дно
+    Region: User_Model_Region_51
+  User_Model_City_694:
+    title: Невель
+    Region: User_Model_Region_51
+  User_Model_City_695:
+    title: Новоржев
+    Region: User_Model_Region_51
+  User_Model_City_696:
+    title: Новосокольники
+    Region: User_Model_Region_51
+  User_Model_City_697:
+    title: Опочка
+    Region: User_Model_Region_51
+  User_Model_City_698:
+    title: Остров
+    Region: User_Model_Region_51
+  User_Model_City_699:
+    title: Печоры
+    Region: User_Model_Region_51
+  User_Model_City_700:
+    title: Порхов
+    Region: User_Model_Region_51
+  User_Model_City_701:
+    title: Пустошка
+    Region: User_Model_Region_51
+  User_Model_City_702:
+    title: Пыталово
+    Region: User_Model_Region_51
+  User_Model_City_703:
+    title: Себеж
+    Region: User_Model_Region_51
+  User_Model_City_704:
+    title: Ростов-на-Дону
+    Region: User_Model_Region_52
+  User_Model_City_705:
+    title: Батайск
+    Region: User_Model_Region_52
+  User_Model_City_706:
+    title: Волгодонск
+    Region: User_Model_Region_52
+  User_Model_City_707:
+    title: Гуково
+    Region: User_Model_Region_52
+  User_Model_City_708:
+    title: Донецк
+    Region: User_Model_Region_52
+  User_Model_City_709:
+    title: Зверево
+    Region: User_Model_Region_52
+  User_Model_City_710:
+    title: Каменск-Шахтинский
+    Region: User_Model_Region_52
+  User_Model_City_711:
+    title: Новочеркасск
+    Region: User_Model_Region_52
+  User_Model_City_712:
+    title: Новошахтинск
+    Region: User_Model_Region_52
+  User_Model_City_713:
+    title: Таганрог
+    Region: User_Model_Region_52
+  User_Model_City_714:
+    title: Шахты
+    Region: User_Model_Region_52
+  User_Model_City_715:
+    title: Азов
+    Region: User_Model_Region_52
+  User_Model_City_716:
+    title: Аксай
+    Region: User_Model_Region_52
+  User_Model_City_717:
+    title: 'Белая Калитва'
+    Region: User_Model_Region_52
+  User_Model_City_718:
+    title: Зерноград
+    Region: User_Model_Region_52
+  User_Model_City_719:
+    title: Константиновск
+    Region: User_Model_Region_52
+  User_Model_City_720:
+    title: 'Красный Сулин'
+    Region: User_Model_Region_52
+  User_Model_City_721:
+    title: Миллерово
+    Region: User_Model_Region_52
+  User_Model_City_722:
+    title: Морозовск
+    Region: User_Model_Region_52
+  User_Model_City_723:
+    title: Пролетарск
+    Region: User_Model_Region_52
+  User_Model_City_724:
+    title: Сальск
+    Region: User_Model_Region_52
+  User_Model_City_725:
+    title: Семикаракорск
+    Region: User_Model_Region_52
+  User_Model_City_726:
+    title: Цимлянск
+    Region: User_Model_Region_52
+  User_Model_City_727:
+    title: Рязань
+    Region: User_Model_Region_53
+  User_Model_City_728:
+    title: Касимов
+    Region: User_Model_Region_53
+  User_Model_City_729:
+    title: Спас-Клепики
+    Region: User_Model_Region_53
+  User_Model_City_730:
+    title: Кораблино
+    Region: User_Model_Region_53
+  User_Model_City_731:
+    title: Михайлов
+    Region: User_Model_Region_53
+  User_Model_City_732:
+    title: Новомичуринск
+    Region: User_Model_Region_53
+  User_Model_City_733:
+    title: Рыбное
+    Region: User_Model_Region_53
+  User_Model_City_734:
+    title: Ряжск
+    Region: User_Model_Region_53
+  User_Model_City_735:
+    title: Сасово
+    Region: User_Model_Region_53
+  User_Model_City_736:
+    title: Скопин
+    Region: User_Model_Region_53
+  User_Model_City_737:
+    title: Спасск-Рязанский
+    Region: User_Model_Region_53
+  User_Model_City_738:
+    title: Шацк
+    Region: User_Model_Region_53
+  User_Model_City_739:
+    title: Жигулевск
+    Region: User_Model_Region_54
+  User_Model_City_740:
+    title: Новокуйбышевск
+    Region: User_Model_Region_54
+  User_Model_City_741:
+    title: Октябрьск
+    Region: User_Model_Region_54
+  User_Model_City_742:
+    title: Отрадный
+    Region: User_Model_Region_54
+  User_Model_City_743:
+    title: Чапаевск
+    Region: User_Model_Region_54
+  User_Model_City_744:
+    title: Самара
+    Region: User_Model_Region_54
+  User_Model_City_745:
+    title: Кинель
+    Region: User_Model_Region_54
+  User_Model_City_746:
+    title: Нефтегорск
+    Region: User_Model_Region_54
+  User_Model_City_747:
+    title: Похвистнево
+    Region: User_Model_Region_54
+  User_Model_City_748:
+    title: Тольятти
+    Region: User_Model_Region_54
+  User_Model_City_749:
+    title: Сызрань
+    Region: User_Model_Region_54
+  User_Model_City_750:
+    title: Саратов
+    Region: User_Model_Region_55
+  User_Model_City_751:
+    title: Аркадак
+    Region: User_Model_Region_55
+  User_Model_City_752:
+    title: Аткарск
+    Region: User_Model_Region_55
+  User_Model_City_753:
+    title: Балаково
+    Region: User_Model_Region_55
+  User_Model_City_754:
+    title: Балашов
+    Region: User_Model_Region_55
+  User_Model_City_755:
+    title: Вольск
+    Region: User_Model_Region_55
+  User_Model_City_756:
+    title: Ершов
+    Region: User_Model_Region_55
+  User_Model_City_757:
+    title: Калининск
+    Region: User_Model_Region_55
+  User_Model_City_758:
+    title: Красноармейск
+    Region: User_Model_Region_55
+  User_Model_City_759:
+    title: 'Красный Кут'
+    Region: User_Model_Region_55
+  User_Model_City_760:
+    title: Маркс
+    Region: User_Model_Region_55
+  User_Model_City_761:
+    title: Новоузенск
+    Region: User_Model_Region_55
+  User_Model_City_762:
+    title: Петровск
+    Region: User_Model_Region_55
+  User_Model_City_763:
+    title: Пугачев
+    Region: User_Model_Region_55
+  User_Model_City_764:
+    title: Ртищево
+    Region: User_Model_Region_55
+  User_Model_City_765:
+    title: Хвалынск
+    Region: User_Model_Region_55
+  User_Model_City_766:
+    title: Энгельс
+    Region: User_Model_Region_55
+  User_Model_City_767:
+    title: Южно-Сахалинск
+    Region: User_Model_Region_56
+  User_Model_City_768:
+    title: Анива
+    Region: User_Model_Region_56
+  User_Model_City_769:
+    title: Долинск
+    Region: User_Model_Region_56
+  User_Model_City_770:
+    title: Корсаков
+    Region: User_Model_Region_56
+  User_Model_City_771:
+    title: Курильск
+    Region: User_Model_Region_56
+  User_Model_City_772:
+    title: Макаров
+    Region: User_Model_Region_56
+  User_Model_City_773:
+    title: Невельск
+    Region: User_Model_Region_56
+  User_Model_City_774:
+    title: Оха
+    Region: User_Model_Region_56
+  User_Model_City_775:
+    title: Поронайск
+    Region: User_Model_Region_56
+  User_Model_City_776:
+    title: Северо-Курильск
+    Region: User_Model_Region_56
+  User_Model_City_777:
+    title: Томари
+    Region: User_Model_Region_56
+  User_Model_City_778:
+    title: Углегорск
+    Region: User_Model_Region_56
+  User_Model_City_779:
+    title: Шахтерск
+    Region: User_Model_Region_56
+  User_Model_City_780:
+    title: Холмск
+    Region: User_Model_Region_56
+  User_Model_City_781:
+    title: Александровск-Сахалинский
+    Region: User_Model_Region_56
+  User_Model_City_782:
+    title: Десногорск
+    Region: User_Model_Region_57
+  User_Model_City_783:
+    title: Смоленск
+    Region: User_Model_Region_57
+  User_Model_City_784:
+    title: Велиж
+    Region: User_Model_Region_57
+  User_Model_City_785:
+    title: Вязьма
+    Region: User_Model_Region_57
+  User_Model_City_786:
+    title: Гагарин
+    Region: User_Model_Region_57
+  User_Model_City_787:
+    title: Демидов
+    Region: User_Model_Region_57
+  User_Model_City_788:
+    title: Дорогобуж
+    Region: User_Model_Region_57
+  User_Model_City_789:
+    title: Духовщина
+    Region: User_Model_Region_57
+  User_Model_City_790:
+    title: Ельня
+    Region: User_Model_Region_57
+  User_Model_City_791:
+    title: Починок
+    Region: User_Model_Region_57
+  User_Model_City_792:
+    title: Рославль
+    Region: User_Model_Region_57
+  User_Model_City_793:
+    title: Рудня
+    Region: User_Model_Region_57
+  User_Model_City_794:
+    title: Сафоново
+    Region: User_Model_Region_57
+  User_Model_City_795:
+    title: Сычевка
+    Region: User_Model_Region_57
+  User_Model_City_796:
+    title: Ярцево
+    Region: User_Model_Region_57
+  User_Model_City_797:
+    title: Котовск
+    Region: User_Model_Region_58
+  User_Model_City_798:
+    title: Тамбов
+    Region: User_Model_Region_58
+  User_Model_City_799:
+    title: Жердевка
+    Region: User_Model_Region_58
+  User_Model_City_800:
+    title: Кирсанов
+    Region: User_Model_Region_58
+  User_Model_City_801:
+    title: Мичуринск
+    Region: User_Model_Region_58
+  User_Model_City_802:
+    title: Моршанск
+    Region: User_Model_Region_58
+  User_Model_City_803:
+    title: Рассказово
+    Region: User_Model_Region_58
+  User_Model_City_804:
+    title: Уварово
+    Region: User_Model_Region_58
+  User_Model_City_805:
+    title: Тверь
+    Region: User_Model_Region_59
+  User_Model_City_806:
+    title: Андреаполь
+    Region: User_Model_Region_59
+  User_Model_City_807:
+    title: Бежецк
+    Region: User_Model_Region_59
+  User_Model_City_808:
+    title: Белый
+    Region: User_Model_Region_59
+  User_Model_City_809:
+    title: Бологое
+    Region: User_Model_Region_59
+  User_Model_City_810:
+    title: Весьегонск
+    Region: User_Model_Region_59
+  User_Model_City_811:
+    title: 'Вышний Волочек'
+    Region: User_Model_Region_59
+  User_Model_City_812:
+    title: 'Западная Двина'
+    Region: User_Model_Region_59
+  User_Model_City_813:
+    title: Зубцов
+    Region: User_Model_Region_59
+  User_Model_City_814:
+    title: Калязин
+    Region: User_Model_Region_59
+  User_Model_City_815:
+    title: Кашин
+    Region: User_Model_Region_59
+  User_Model_City_816:
+    title: Кимры
+    Region: User_Model_Region_59
+  User_Model_City_817:
+    title: Конаково
+    Region: User_Model_Region_59
+  User_Model_City_818:
+    title: 'Красный Холм'
+    Region: User_Model_Region_59
+  User_Model_City_819:
+    title: Кувшиново
+    Region: User_Model_Region_59
+  User_Model_City_820:
+    title: Лихославль
+    Region: User_Model_Region_59
+  User_Model_City_821:
+    title: Нелидово
+    Region: User_Model_Region_59
+  User_Model_City_822:
+    title: Осташков
+    Region: User_Model_Region_59
+  User_Model_City_823:
+    title: Ржев
+    Region: User_Model_Region_59
+  User_Model_City_824:
+    title: Старица
+    Region: User_Model_Region_59
+  User_Model_City_825:
+    title: Торжок
+    Region: User_Model_Region_59
+  User_Model_City_826:
+    title: Торопец
+    Region: User_Model_Region_59
+  User_Model_City_827:
+    title: Удомля
+    Region: User_Model_Region_59
+  User_Model_City_828:
+    title: Кедровый
+    Region: User_Model_Region_60
+  User_Model_City_829:
+    title: Северск
+    Region: User_Model_Region_60
+  User_Model_City_830:
+    title: Стрежевой
+    Region: User_Model_Region_60
+  User_Model_City_831:
+    title: Томск
+    Region: User_Model_Region_60
+  User_Model_City_832:
+    title: Асино
+    Region: User_Model_Region_60
+  User_Model_City_833:
+    title: Колпашево
+    Region: User_Model_Region_60
+  User_Model_City_834:
+    title: Тула
+    Region: User_Model_Region_61
+  User_Model_City_835:
+    title: Донской
+    Region: User_Model_Region_61
+  User_Model_City_836:
+    title: Алексин
+    Region: User_Model_Region_61
+  User_Model_City_837:
+    title: Белев
+    Region: User_Model_Region_61
+  User_Model_City_838:
+    title: Богородицк
+    Region: User_Model_Region_61
+  User_Model_City_839:
+    title: Венев
+    Region: User_Model_Region_61
+  User_Model_City_840:
+    title: Ефремов
+    Region: User_Model_Region_61
+  User_Model_City_841:
+    title: Кимовск
+    Region: User_Model_Region_61
+  User_Model_City_842:
+    title: Киреевск
+    Region: User_Model_Region_61
+  User_Model_City_843:
+    title: Болохово
+    Region: User_Model_Region_61
+  User_Model_City_844:
+    title: Липки
+    Region: User_Model_Region_61
+  User_Model_City_845:
+    title: Новомосковск
+    Region: User_Model_Region_61
+  User_Model_City_846:
+    title: Плавск
+    Region: User_Model_Region_61
+  User_Model_City_847:
+    title: Суворов
+    Region: User_Model_Region_61
+  User_Model_City_848:
+    title: Чекалин
+    Region: User_Model_Region_61
+  User_Model_City_849:
+    title: Узловая
+    Region: User_Model_Region_61
+  User_Model_City_850:
+    title: Щекино
+    Region: User_Model_Region_61
+  User_Model_City_851:
+    title: Советск
+    Region: User_Model_Region_61
+  User_Model_City_852:
+    title: Ясногорск
+    Region: User_Model_Region_61
+  User_Model_City_853:
+    title: Заводоуковск
+    Region: User_Model_Region_62
+  User_Model_City_854:
+    title: Ишим
+    Region: User_Model_Region_62
+  User_Model_City_855:
+    title: Тобольск
+    Region: User_Model_Region_62
+  User_Model_City_856:
+    title: Ялуторовск
+    Region: User_Model_Region_62
+  User_Model_City_857:
+    title: Ульяновск
+    Region: User_Model_Region_63
+  User_Model_City_858:
+    title: Димитровград
+    Region: User_Model_Region_63
+  User_Model_City_859:
+    title: Барыш
+    Region: User_Model_Region_63
+  User_Model_City_860:
+    title: Новоульяновск
+    Region: User_Model_Region_63
+  User_Model_City_861:
+    title: Инза
+    Region: User_Model_Region_63
+  User_Model_City_862:
+    title: Сенгилей
+    Region: User_Model_Region_63
+  User_Model_City_863:
+    title: Челябинск
+    Region: User_Model_Region_64
+  User_Model_City_864:
+    title: 'Верхний Уфалей'
+    Region: User_Model_Region_64
+  User_Model_City_865:
+    title: Еманжелинск
+    Region: User_Model_Region_64
+  User_Model_City_866:
+    title: Златоуст
+    Region: User_Model_Region_64
+  User_Model_City_867:
+    title: Карабаш
+    Region: User_Model_Region_64
+  User_Model_City_868:
+    title: Копейск
+    Region: User_Model_Region_64
+  User_Model_City_869:
+    title: Коркино
+    Region: User_Model_Region_64
+  User_Model_City_870:
+    title: Кыштым
+    Region: User_Model_Region_64
+  User_Model_City_871:
+    title: Магнитогорск
+    Region: User_Model_Region_64
+  User_Model_City_872:
+    title: Миасс
+    Region: User_Model_Region_64
+  User_Model_City_873:
+    title: Озерск
+    Region: User_Model_Region_64
+  User_Model_City_874:
+    title: Пласт
+    Region: User_Model_Region_64
+  User_Model_City_875:
+    title: Снежинск
+    Region: User_Model_Region_64
+  User_Model_City_876:
+    title: Трехгорный
+    Region: User_Model_Region_64
+  User_Model_City_877:
+    title: Усть-Катав
+    Region: User_Model_Region_64
+  User_Model_City_878:
+    title: Южноуральск
+    Region: User_Model_Region_64
+  User_Model_City_879:
+    title: Катав-Ивановск
+    Region: User_Model_Region_64
+  User_Model_City_880:
+    title: Юрюзань
+    Region: User_Model_Region_64
+  User_Model_City_881:
+    title: Нязепетровск
+    Region: User_Model_Region_64
+  User_Model_City_882:
+    title: Аша
+    Region: User_Model_Region_64
+  User_Model_City_883:
+    title: Миньяр
+    Region: User_Model_Region_64
+  User_Model_City_884:
+    title: Сим
+    Region: User_Model_Region_64
+  User_Model_City_885:
+    title: Карталы
+    Region: User_Model_Region_64
+  User_Model_City_886:
+    title: Касли
+    Region: User_Model_Region_64
+  User_Model_City_887:
+    title: Сатка
+    Region: User_Model_Region_64
+  User_Model_City_888:
+    title: Куса
+    Region: User_Model_Region_64
+  User_Model_City_889:
+    title: Троицк
+    Region: User_Model_Region_64
+  User_Model_City_890:
+    title: Чебаркуль
+    Region: User_Model_Region_64
+  User_Model_City_891:
+    title: Трехгорный-1
+    Region: User_Model_Region_64
+  User_Model_City_892:
+    title: Бакал
+    Region: User_Model_Region_64
+  User_Model_City_893:
+    title: Верхнеуральск
+    Region: User_Model_Region_64
+  User_Model_City_894:
+    title: Чита
+    Region: User_Model_Region_65
+  User_Model_City_895:
+    title: Балей
+    Region: User_Model_Region_65
+  User_Model_City_896:
+    title: Борзя
+    Region: User_Model_Region_65
+  User_Model_City_897:
+    title: Краснокаменск
+    Region: User_Model_Region_65
+  User_Model_City_898:
+    title: Могоча
+    Region: User_Model_Region_65
+  User_Model_City_899:
+    title: Нерчинск
+    Region: User_Model_Region_65
+  User_Model_City_900:
+    title: Петровск-Забайкальский
+    Region: User_Model_Region_65
+  User_Model_City_901:
+    title: Сретенск
+    Region: User_Model_Region_65
+  User_Model_City_902:
+    title: Хилок
+    Region: User_Model_Region_65
+  User_Model_City_903:
+    title: Шилка
+    Region: User_Model_Region_65
+  User_Model_City_904:
+    title: Ярославль
+    Region: User_Model_Region_66
+  User_Model_City_905:
+    title: Переславль-Залесский
+    Region: User_Model_Region_66
+  User_Model_City_906:
+    title: Гаврилов-Ям
+    Region: User_Model_Region_66
+  User_Model_City_907:
+    title: Данилов
+    Region: User_Model_Region_66
+  User_Model_City_908:
+    title: Любим
+    Region: User_Model_Region_66
+  User_Model_City_909:
+    title: Мышкин
+    Region: User_Model_Region_66
+  User_Model_City_910:
+    title: Пошехонье
+    Region: User_Model_Region_66
+  User_Model_City_911:
+    title: Ростов
+    Region: User_Model_Region_66
+  User_Model_City_912:
+    title: Рыбинск
+    Region: User_Model_Region_66
+  User_Model_City_913:
+    title: Тутаев
+    Region: User_Model_Region_66
+  User_Model_City_914:
+    title: Углич
+    Region: User_Model_Region_66
+  User_Model_City_915:
+    title: Биробиджан
+    Region: User_Model_Region_67
+  User_Model_City_916:
+    title: Облучье
+    Region: User_Model_Region_67
+  User_Model_City_917:
+    title: Кудымкар
+    Region: User_Model_Region_50
+  User_Model_City_918:
+    title: Нарьян-Мар
+    Region: User_Model_Region_68
+  User_Model_City_919:
+    title: Дудинка
+    Region: User_Model_Region_69
+  User_Model_City_920:
+    title: Когалым
+    Region: User_Model_Region_70
+  User_Model_City_921:
+    title: Лангепас
+    Region: User_Model_Region_70
+  User_Model_City_922:
+    title: Мегион
+    Region: User_Model_Region_70
+  User_Model_City_923:
+    title: Нягань
+    Region: User_Model_Region_70
+  User_Model_City_924:
+    title: Покачи
+    Region: User_Model_Region_70
+  User_Model_City_925:
+    title: Пыть-Ях
+    Region: User_Model_Region_70
+  User_Model_City_926:
+    title: Урай
+    Region: User_Model_Region_70
+  User_Model_City_927:
+    title: Ханты-Мансийск
+    Region: User_Model_Region_70
+  User_Model_City_928:
+    title: Белоярский
+    Region: User_Model_Region_70
+  User_Model_City_929:
+    title: Нефтеюганск
+    Region: User_Model_Region_70
+  User_Model_City_930:
+    title: Нижневартовск
+    Region: User_Model_Region_70
+  User_Model_City_931:
+    title: Радужный
+    Region: User_Model_Region_70
+  User_Model_City_932:
+    title: Советский
+    Region: User_Model_Region_70
+  User_Model_City_933:
+    title: Югорск
+    Region: User_Model_Region_70
+  User_Model_City_934:
+    title: Сургут
+    Region: User_Model_Region_70
+  User_Model_City_935:
+    title: Лянтор
+    Region: User_Model_Region_70
+  User_Model_City_936:
+    title: Анадырь
+    Region: User_Model_Region_71
+  User_Model_City_937:
+    title: Билибино
+    Region: User_Model_Region_71
+  User_Model_City_938:
+    title: Певек
+    Region: User_Model_Region_71
+  User_Model_City_939:
+    title: Салехард
+    Region: User_Model_Region_72
+  User_Model_City_940:
+    title: Губкинский
+    Region: User_Model_Region_72
+  User_Model_City_941:
+    title: Лабытнанги
+    Region: User_Model_Region_72
+  User_Model_City_942:
+    title: Муравленко
+    Region: User_Model_Region_72
+  User_Model_City_943:
+    title: Надым
+    Region: User_Model_Region_72
+  User_Model_City_944:
+    title: 'Новый Уренгой'
+    Region: User_Model_Region_72
+  User_Model_City_945:
+    title: Ноябрьск
+    Region: User_Model_Region_72
+  User_Model_City_946:
+    title: Чегем
+    Region: User_Model_Region_3
+  User_Model_City_947:
+    title: Арск
+    Region: User_Model_Region_10
+  User_Model_City_948:
+    title: Лаишево
+    Region: User_Model_Region_10
+  User_Model_City_949:
+    title: Бирюч
+    Region: User_Model_Region_23
+  User_Model_City_950:
+    title: Красавино
+    Region: User_Model_Region_27
+  User_Model_City_951:
+    title: Ермолино
+    Region: User_Model_Region_32
+  User_Model_City_952:
+    title: Волосово
+    Region: User_Model_Region_39
+  User_Model_City_953:
+    title: Сертолово
+    Region: User_Model_Region_39
+  User_Model_City_954:
+    title: Любань
+    Region: User_Model_Region_39
+  User_Model_City_955:
+    title: Московский
+    Region: User_Model_Region_42
+  User_Model_City_956:
+    title: Котельники
+    Region: User_Model_Region_42
+  User_Model_City_957:
+    title: 'Старая Купавна'
+    Region: User_Model_Region_42
+  User_Model_City_958:
+    title: Черноголовка
+    Region: User_Model_Region_42
+  User_Model_City_959:
+    title: Голицыно
+    Region: User_Model_Region_42
+  User_Model_City_960:
+    title: Кубинка
+    Region: User_Model_Region_42
+  User_Model_City_961:
+    title: Пересвет
+    Region: User_Model_Region_42
+  User_Model_City_962:
+    title: Солнечногорск-2
+    Region: User_Model_Region_42
+  User_Model_City_963:
+    title: Солнечногорск-7
+    Region: User_Model_Region_42
+  User_Model_City_964:
+    title: Солнечногорск-25
+    Region: User_Model_Region_42
+  User_Model_City_965:
+    title: Солнечногорск-30
+    Region: User_Model_Region_42
+  User_Model_City_966:
+    title: Перевоз
+    Region: User_Model_Region_44
+  User_Model_City_967:
+    title: Кузнецк-12
+    Region: User_Model_Region_49
+  User_Model_City_968:
+    title: Кузнецк-8
+    Region: User_Model_Region_49
+  User_Model_City_969:
+    title: Шиханы
+    Region: User_Model_Region_55
+  User_Model_City_970:
+    title: Тарко-Сале
+    Region: User_Model_Region_72
+  User_Model_City_971:
+    title: Магас
+    Region: User_Model_Region_2
+  User_Model_City_972:
+    title: Грозный
+    Region: User_Model_Region_73
+  User_Model_City_973:
+    title: Аргун
+    Region: User_Model_Region_73
+  User_Model_City_974:
+    title: Гудермес
+    Region: User_Model_Region_73
+  User_Model_City_975:
+    title: Урус-Мартан
+    Region: User_Model_Region_73
+  User_Model_City_976:
+    title: Шали
+    Region: User_Model_Region_73
+  User_Model_City_977:
+    title: Екатеринбург
+    Region: User_Model_Region_74
+  User_Model_City_978:
+    title: Асбест
+    Region: User_Model_Region_74
+  User_Model_City_979:
+    title: Березовский
+    Region: User_Model_Region_74
+  User_Model_City_980:
+    title: 'Верхняя Пышма'
+    Region: User_Model_Region_74
+  User_Model_City_981:
+    title: Заречный
+    Region: User_Model_Region_74
+  User_Model_City_982:
+    title: Ивдель
+    Region: User_Model_Region_74
+  User_Model_City_983:
+    title: Карпинск
+    Region: User_Model_Region_74
+  User_Model_City_984:
+    title: Качканар
+    Region: User_Model_Region_74
+  User_Model_City_985:
+    title: Кировград
+    Region: User_Model_Region_74
+  User_Model_City_986:
+    title: Краснотурьинск
+    Region: User_Model_Region_74
+  User_Model_City_987:
+    title: Красноуральск
+    Region: User_Model_Region_74
+  User_Model_City_988:
+    title: Кушва
+    Region: User_Model_Region_74
+  User_Model_City_989:
+    title: Лесной
+    Region: User_Model_Region_74
+  User_Model_City_990:
+    title: 'Нижняя Тура'
+    Region: User_Model_Region_74
+  User_Model_City_991:
+    title: Новоуральск
+    Region: User_Model_Region_74
+  User_Model_City_992:
+    title: Первоуральск
+    Region: User_Model_Region_74
+  User_Model_City_993:
+    title: Полевской
+    Region: User_Model_Region_74
+  User_Model_City_994:
+    title: Ревда
+    Region: User_Model_Region_74
+  User_Model_City_995:
+    title: Североуральск
+    Region: User_Model_Region_74
+  User_Model_City_996:
+    title: Каменск-Уральский
+    Region: User_Model_Region_74
+  User_Model_City_997:
+    title: 'Нижний Тагил'
+    Region: User_Model_Region_74
+  User_Model_City_998:
+    title: Алапаевск
+    Region: User_Model_Region_74
+  User_Model_City_999:
+    title: Артемовский
+    Region: User_Model_Region_74
+  User_Model_City_1000:
+    title: Богданович
+    Region: User_Model_Region_74
+  User_Model_City_1001:
+    title: 'Нижняя Салда'
+    Region: User_Model_Region_74
+  User_Model_City_1002:
+    title: 'Верхняя Салда'
+    Region: User_Model_Region_74
+  User_Model_City_1003:
+    title: Ирбит
+    Region: User_Model_Region_74
+  User_Model_City_1004:
+    title: Камышлов
+    Region: User_Model_Region_74
+  User_Model_City_1005:
+    title: Красноуфимск
+    Region: User_Model_Region_74
+  User_Model_City_1006:
+    title: Невьянск
+    Region: User_Model_Region_74
+  User_Model_City_1007:
+    title: Реж
+    Region: User_Model_Region_74
+  User_Model_City_1008:
+    title: Серов
+    Region: User_Model_Region_74
+  User_Model_City_1009:
+    title: 'Сухой Лог'
+    Region: User_Model_Region_74
+  User_Model_City_1010:
+    title: Тавда
+    Region: User_Model_Region_74
+  User_Model_City_1011:
+    title: 'Верхний Тагил'
+    Region: User_Model_Region_74
+  User_Model_City_1012:
+    title: Среднеуральск
+    Region: User_Model_Region_74
+  User_Model_City_1013:
+    title: Волчанск
+    Region: User_Model_Region_74
+  User_Model_City_1014:
+    title: 'Верхняя Тура'
+    Region: User_Model_Region_74
+  User_Model_City_1015:
+    title: Дегтярск
+    Region: User_Model_Region_74
+  User_Model_City_1016:
+    title: Верхотурье
+    Region: User_Model_Region_74
+  User_Model_City_1017:
+    title: 'Нижние Серги'
+    Region: User_Model_Region_74
+  User_Model_City_1018:
+    title: Михайловск
+    Region: User_Model_Region_74
+  User_Model_City_1019:
+    title: 'Новая Ляля'
+    Region: User_Model_Region_74
+  User_Model_City_1020:
+    title: Сысерть
+    Region: User_Model_Region_74
+  User_Model_City_1021:
+    title: Арамиль
+    Region: User_Model_Region_74
+  User_Model_City_1022:
+    title: Талица
+    Region: User_Model_Region_74
+  User_Model_City_1023:
+    title: Туринск
+    Region: User_Model_Region_74
+  User_Model_City_1024:
+    title: 'Великий Новгород'
+    Region: User_Model_Region_75
+  User_Model_City_1025:
+    title: Боровичи
+    Region: User_Model_Region_75
+  User_Model_City_1026:
+    title: Валдай
+    Region: User_Model_Region_75
+  User_Model_City_1027:
+    title: 'Малая Вишера'
+    Region: User_Model_Region_75
+  User_Model_City_1028:
+    title: Окуловка
+    Region: User_Model_Region_75
+  User_Model_City_1029:
+    title: Пестово
+    Region: User_Model_Region_75
+  User_Model_City_1030:
+    title: Сольцы
+    Region: User_Model_Region_75
+  User_Model_City_1031:
+    title: 'Старая Русса'
+    Region: User_Model_Region_75
+  User_Model_City_1032:
+    title: Холм
+    Region: User_Model_Region_75
+  User_Model_City_1033:
+    title: Чудово
+    Region: User_Model_Region_75
+  User_Model_City_1034:
+    title: Свердловск
+    Region: User_Model_Region_74
+  User_Model_City_1035:
+    title: Свердловск-44
+    Region: User_Model_Region_74
+  User_Model_City_1036:
+    title: Свердловск-45
+    Region: User_Model_Region_74
+  User_Model_City_1037:
+    title: Калинин
+    Region: User_Model_Region_59
+  User_Model_City_1038:
+    title: Калининград
+    Region: User_Model_Region_42
+  User_Model_City_1039:
+    title: Чехов-1
+    Region: User_Model_Region_42
+  User_Model_City_1040:
+    title: Чехов-4
+    Region: User_Model_Region_42
+  User_Model_City_1041:
+    title: Чехов-5
+    Region: User_Model_Region_42
+  User_Model_City_1042:
+    title: Чехов-6
+    Region: User_Model_Region_42
+  User_Model_City_1043:
+    title: Тюмень
+    Region: User_Model_Region_62
+  User_Model_City_1044:
+    title: Горький
+    Region: User_Model_Region_44
+  User_Model_City_1045:
+    title: Лабинск
+    Region: User_Model_Region_16
+  User_Model_City_1046:
+    title: Новоульяновск
+    Region: User_Model_Region_63
+  User_Model_City_1047:
+    title: Волосово
+    Region: User_Model_Region_39
+  User_Model_City_1048:
+    title: Солнечногорск-2
+    Region: User_Model_Region_42
+  User_Model_City_1049:
+    title: Солнечногорск-7
+    Region: User_Model_Region_42
+  User_Model_City_1050:
+    title: Солнечногорск-25
+    Region: User_Model_Region_42
+  User_Model_City_1051:
+    title: Солнечногорск-30
+    Region: User_Model_Region_42
+  User_Model_City_1052:
+    title: Иркутск
+    Region: User_Model_Region_30
+  User_Model_City_1053:
+    title: Ангарск
+    Region: User_Model_Region_30
+  User_Model_City_1054:
+    title: Бодайбо
+    Region: User_Model_Region_30
+  User_Model_City_1055:
+    title: Братск
+    Region: User_Model_Region_30
+  User_Model_City_1056:
+    title: Зима
+    Region: User_Model_Region_30
+  User_Model_City_1057:
+    title: Нижнеудинск
+    Region: User_Model_Region_30
+  User_Model_City_1058:
+    title: Тайшет
+    Region: User_Model_Region_30
+  User_Model_City_1059:
+    title: Тулун
+    Region: User_Model_Region_30
+  User_Model_City_1060:
+    title: Усолье-Сибирское
+    Region: User_Model_Region_30
+  User_Model_City_1061:
+    title: Усть-Илимск
+    Region: User_Model_Region_30
+  User_Model_City_1062:
+    title: Усть-Кут
+    Region: User_Model_Region_30
+  User_Model_City_1063:
+    title: Черемхово
+    Region: User_Model_Region_30
+  User_Model_City_1064:
+    title: Шелехов
+    Region: User_Model_Region_30
+  User_Model_City_1065:
+    title: Горнозаводск
+    Region: User_Model_Region_56
+  User_Model_City_1066:
+    title: Красногорск
+    Region: User_Model_Region_56
+  User_Model_City_1067:
+    title: Красногорск
+    Region: User_Model_Region_56
+  User_Model_City_1068:
+    title: Чехов
+    Region: User_Model_Region_56
+  User_Model_City_1069:
+    title: Чехов
+    Region: User_Model_Region_56
+  User_Model_City_1070:
+    title: 'Сольцы 2'
+    Region: User_Model_Region_75
+  User_Model_City_1071:
+    title: Воткинск
+    Region: User_Model_Region_12
+  User_Model_City_1072:
+    title: Улан-Удэ
+    Region: User_Model_Region_76
+  User_Model_City_1073:
+    title: Закаменск
+    Region: User_Model_Region_76
+  User_Model_City_1074:
+    title: Бабушкин
+    Region: User_Model_Region_76
+  User_Model_City_1075:
+    title: Кяхта
+    Region: User_Model_Region_76
+  User_Model_City_1076:
+    title: Северобайкальск
+    Region: User_Model_Region_76
+  User_Model_City_1077:
+    title: Гусиноозерск
+    Region: User_Model_Region_76
+  User_Model_City_1078:
+    title: Северобайкальск
+    Region: User_Model_Region_76
+  User_Model_City_1079:
+    title: Халтурин
+    Region: User_Model_Region_35
+  User_Model_City_1080:
+    title: Арзамас
+    Region: User_Model_Region_44
+  User_Model_City_1081:
+    title: Голицыно
+    Region: User_Model_Region_42
+  User_Model_City_1082:
+    title: Абаза
+    Region: User_Model_Region_13
+  User_Model_City_1083:
+    title: Кемерово
+    Region: User_Model_Region_34
+  User_Model_City_1084:
+    title: Ленинск-Кузнецкий
+    Region: User_Model_Region_34
+  User_Model_City_1085:
+    title: Полысаево
+    Region: User_Model_Region_34
+  User_Model_City_1086:
+    title: Новокузнецк
+    Region: User_Model_Region_34
+  User_Model_City_1087:
+    title: Прокопьевск
+    Region: User_Model_Region_34
+  User_Model_City_1088:
+    title: Юрга
+    Region: User_Model_Region_34
+  User_Model_City_1089:
+    title: Белово
+    Region: User_Model_Region_34
+  User_Model_City_1090:
+    title: Лиски
+    Region: User_Model_Region_28
+  User_Model_City_1091:
+    title: Чулым-3
+    Region: User_Model_Region_45
+  User_Model_City_1092:
+    title: Ермолино
+    Region: User_Model_Region_32
+  User_Model_City_1093:
+    title: Рязань
+    Region: User_Model_Region_53
+  User_Model_City_1094:
+    title: Глазов
+    Region: User_Model_Region_12
+  User_Model_City_1095:
+    title: Куса
+    Region: User_Model_Region_64
+  User_Model_City_1096:
+    title: Нязепетровск
+    Region: User_Model_Region_64
+  User_Model_City_1097:
+    title: Химки
+    Region: User_Model_Region_42
+  User_Model_City_1098:
+    title: Пикалево
+    Region: User_Model_Region_39
+  User_Model_City_1099:
+    title: Беднодемьяновск
+    Region: User_Model_Region_49
+  User_Model_City_1100:
+    title: 'Старая Купавна'
+    Region: User_Model_Region_42
+  User_Model_City_1101:
+    title: Долгопрудный
+    Region: User_Model_Region_42
+  User_Model_City_1102:
+    title: Ступино
+    Region: User_Model_Region_42
+  User_Model_City_1103:
+    title: Олекминск
+    Region: User_Model_Region_9
+  User_Model_City_1104:
+    title: Наро-Фоминск
+    Region: User_Model_Region_42
+  User_Model_City_1105:
+    title: Апрелевка
+    Region: User_Model_Region_42
+  User_Model_City_1106:
+    title: Верея
+    Region: User_Model_Region_42
+  User_Model_City_1107:
+    title: Балаково
+    Region: User_Model_Region_55
+  User_Model_City_1108:
+    title: Балашов
+    Region: User_Model_Region_55
+  User_Model_City_1109:
+    title: Вольск
+    Region: User_Model_Region_55
+  User_Model_City_1110:
+    title: Красноармейск
+    Region: User_Model_Region_55
+  User_Model_City_1111:
+    title: Маркс
+    Region: User_Model_Region_55
+  User_Model_City_1112:
+    title: Петровск
+    Region: User_Model_Region_55
+  User_Model_City_1113:
+    title: Пугачев
+    Region: User_Model_Region_55
+  User_Model_City_1114:
+    title: Ртищево
+    Region: User_Model_Region_55
+  User_Model_City_1115:
+    title: Хвалынск
+    Region: User_Model_Region_55
+  User_Model_City_1116:
+    title: Энгельс
+    Region: User_Model_Region_55
+  User_Model_City_1117:
+    title: Красноярск
+    Region: User_Model_Region_69
+  User_Model_City_1118:
+    title: Бородино
+    Region: User_Model_Region_69
+  User_Model_City_1119:
+    title: Дивногорск
+    Region: User_Model_Region_69
+  User_Model_City_1120:
+    title: Железногорск
+    Region: User_Model_Region_69
+  User_Model_City_1121:
+    title: Зеленогорск
+    Region: User_Model_Region_69
+  User_Model_City_1122:
+    title: Игарка
+    Region: User_Model_Region_69
+  User_Model_City_1123:
+    title: Лесосибирск
+    Region: User_Model_Region_69
+  User_Model_City_1124:
+    title: Норильск
+    Region: User_Model_Region_69
+  User_Model_City_1125:
+    title: Сосновоборск
+    Region: User_Model_Region_69
+  User_Model_City_1126:
+    title: Ачинск
+    Region: User_Model_Region_69
+  User_Model_City_1127:
+    title: Боготол
+    Region: User_Model_Region_69
+  User_Model_City_1128:
+    title: Енисейск
+    Region: User_Model_Region_69
+  User_Model_City_1129:
+    title: Иланский
+    Region: User_Model_Region_69
+  User_Model_City_1130:
+    title: Канск
+    Region: User_Model_Region_69
+  User_Model_City_1131:
+    title: Кодинск
+    Region: User_Model_Region_69
+  User_Model_City_1132:
+    title: Артемовск
+    Region: User_Model_Region_69
+  User_Model_City_1133:
+    title: Минусинск
+    Region: User_Model_Region_69
+  User_Model_City_1134:
+    title: Назарово
+    Region: User_Model_Region_69
+  User_Model_City_1135:
+    title: Заозерный
+    Region: User_Model_Region_69
+  User_Model_City_1136:
+    title: Ужур
+    Region: User_Model_Region_69
+  User_Model_City_1137:
+    title: Уяр
+    Region: User_Model_Region_69
+  User_Model_City_1138:
+    title: Шарыпово
+    Region: User_Model_Region_69
+  User_Model_City_1139:
+    title: Красноярск-45
+    Region: User_Model_Region_69
+  User_Model_City_1140:
+    title: Красноярск-26
+    Region: User_Model_Region_69
+  User_Model_City_1141:
+    title: Игарка
+    Region: User_Model_Region_69
+  User_Model_City_1142:
+    title: Талнах
+    Region: User_Model_Region_69
+  User_Model_City_1143:
+    title: Кайеркан
+    Region: User_Model_Region_69
+  User_Model_City_1144:
+    title: Ачинск
+    Region: User_Model_Region_69
+  User_Model_City_1145:
+    title: Боготол
+    Region: User_Model_Region_69
+  User_Model_City_1146:
+    title: Енисейск
+    Region: User_Model_Region_69
+  User_Model_City_1147:
+    title: Канск
+    Region: User_Model_Region_69
+  User_Model_City_1148:
+    title: Минусинск
+    Region: User_Model_Region_69
+  User_Model_City_1149:
+    title: Назарово
+    Region: User_Model_Region_69
+  User_Model_City_1150:
+    title: Заозерный
+    Region: User_Model_Region_69
+  User_Model_City_1151:
+    title: Шарыпово
+    Region: User_Model_Region_69
+  User_Model_City_1152:
+    title: Уяр
+    Region: User_Model_Region_69
+  User_Model_City_1153:
+    title: Чита-46
+    Region: User_Model_Region_65
+  User_Model_City_1154:
+    title: Сходня
+    Region: User_Model_Region_42
+  User_Model_City_1155:
+    title: Владикавказ
+    Region: User_Model_Region_77
+  User_Model_City_1156:
+    title: Алагир
+    Region: User_Model_Region_77
+  User_Model_City_1157:
+    title: Ардон
+    Region: User_Model_Region_77
+  User_Model_City_1158:
+    title: Дигора
+    Region: User_Model_Region_77
+  User_Model_City_1159:
+    title: Моздок
+    Region: User_Model_Region_77
+  User_Model_City_1160:
+    title: Беслан
+    Region: User_Model_Region_77
+  User_Model_City_1161:
+    title: Воркута
+    Region: User_Model_Region_6
+  User_Model_City_1162:
+    title: Вуктыл
+    Region: User_Model_Region_6
+  User_Model_City_1163:
+    title: Инта
+    Region: User_Model_Region_6
+  User_Model_City_1164:
+    title: Печора
+    Region: User_Model_Region_6
+  User_Model_City_1165:
+    title: Сосногорск
+    Region: User_Model_Region_6
+  User_Model_City_1166:
+    title: Усинск
+    Region: User_Model_Region_6
+  User_Model_City_1167:
+    title: Ухта
+    Region: User_Model_Region_6
+  User_Model_City_1168:
+    title: 'Великий Новгород'
+    Region: User_Model_Region_75
+  User_Model_City_1169:
+    title: Амурск
+    Region: User_Model_Region_19
+  User_Model_City_1170:
+    title: Бикин
+    Region: User_Model_Region_19
+  User_Model_City_1171:
+    title: Николаевск-на-Амуре
+    Region: User_Model_Region_19
+  User_Model_City_1172:
+    title: 'Советская Гавань'
+    Region: User_Model_Region_19
+  User_Model_City_1173:
+    title: Элиста
+    Region: User_Model_Region_78
+  User_Model_City_1174:
+    title: Городовиковск
+    Region: User_Model_Region_78
+  User_Model_City_1175:
+    title: Лагань
+    Region: User_Model_Region_78
+  User_Model_City_1176:
+    title: Ивангород
+    Region: User_Model_Region_39
+  User_Model_City_1177:
+    title: Оленегорск-1
+    Region: User_Model_Region_43
+  User_Model_City_1178:
+    title: Оленегорск-2
+    Region: User_Model_Region_43
+  User_Model_City_1179:
+    title: Реж
+    Region: User_Model_Region_74
+  User_Model_City_1180:
+    title: Буденновск
+    Region: User_Model_Region_18
+  User_Model_City_1181:
+    title: Георгиевск
+    Region: User_Model_Region_18
+  User_Model_City_1182:
+    title: Дудинка
+    Region: User_Model_Region_79
+  User_Model_City_1183:
+    title: 'Минеральные Воды'
+    Region: User_Model_Region_18
+  User_Model_City_1184:
+    title: Оленегорск-4
+    Region: User_Model_Region_43
+  User_Model_City_1185:
+    title: Азов
+    Region: User_Model_Region_52
+  User_Model_City_1186:
+    title: Сокольники
+    Region: User_Model_Region_61
+  User_Model_City_1187:
+    title: Свирск
+    Region: User_Model_Region_30
+  User_Model_City_1188:
+    title: Змеиногорск
+    Region: User_Model_Region_15
+  User_Model_City_1189:
+    title: 'Набережные Челны'
+    Region: User_Model_Region_10
+  User_Model_City_1190:
+    title: Тверь
+    Region: User_Model_Region_59
+  User_Model_City_1191:
+    title: Торжок
+    Region: User_Model_Region_59
+  User_Model_City_1192:
+    title: Ржев
+    Region: User_Model_Region_59
+  User_Model_City_1193:
+    title: Нелидово
+    Region: User_Model_Region_59
+  User_Model_City_1194:
+    title: Кимры
+    Region: User_Model_Region_59
+  User_Model_City_1195:
+    title: 'Вышний Волочек'
+    Region: User_Model_Region_59
+  User_Model_City_1196:
+    title: Юхнов-1
+    Region: User_Model_Region_32
+  User_Model_City_1197:
+    title: Юхнов-2
+    Region: User_Model_Region_32
+  User_Model_City_1198:
+    title: Волжск
+    Region: User_Model_Region_7
+  User_Model_City_1199:
+    title: Козьмодемьянск
+    Region: User_Model_Region_7
+  User_Model_City_1200:
+    title: Махачкала
+    Region: User_Model_Region_80
+  User_Model_City_1201:
+    title: 'Дагестанские Огни'
+    Region: User_Model_Region_80
+  User_Model_City_1202:
+    title: Избербаш
+    Region: User_Model_Region_80
+  User_Model_City_1203:
+    title: Каспийск
+    Region: User_Model_Region_80
+  User_Model_City_1204:
+    title: Южно-Сухокумск
+    Region: User_Model_Region_80
+  User_Model_City_1205:
+    title: Дербент
+    Region: User_Model_Region_80
+  User_Model_City_1206:
+    title: Кизилюрт
+    Region: User_Model_Region_80
+  User_Model_City_1207:
+    title: Кизляр
+    Region: User_Model_Region_80
+  User_Model_City_1208:
+    title: Хасавюрт
+    Region: User_Model_Region_80
+  User_Model_City_1209:
+    title: Буйнакск
+    Region: User_Model_Region_80
+  User_Model_City_1210:
+    title: Кропоткин
+    Region: User_Model_Region_16
+  User_Model_City_1211:
+    title: Воронеж-45
+    Region: User_Model_Region_28
+  User_Model_City_1212:
+    title: Заозерный
+    Region: User_Model_Region_69
+  User_Model_City_1213:
+    title: Биробиджан
+    Region: User_Model_Region_67
+  User_Model_City_1214:
+    title: Карабулак
+    Region: User_Model_Region_2
+  User_Model_City_1215:
+    title: Назрань
+    Region: User_Model_Region_2
+  User_Model_City_1216:
+    title: Малгобек
+    Region: User_Model_Region_2
+  User_Model_City_1217:
+    title: Лосино-Петровский
+    Region: User_Model_Region_42
+  User_Model_City_1218:
+    title: Чебаркуль
+    Region: User_Model_Region_64
+  User_Model_City_1219:
+    title: Энгельс-19
+    Region: User_Model_Region_55
+  User_Model_City_1220:
+    title: Можга
+    Region: User_Model_Region_12
+  User_Model_City_1221:
+    title: Гусь-Хрустальный
+    Region: User_Model_Region_25
+  User_Model_City_1222:
+    title: Ковров
+    Region: User_Model_Region_25
+  User_Model_City_1223:
+    title: Муром
+    Region: User_Model_Region_25
+  User_Model_City_1224:
+    title: Ладушкин
+    Region: User_Model_Region_31
+  User_Model_City_1225:
+    title: Мамоново
+    Region: User_Model_Region_31
+  User_Model_City_1226:
+    title: Балтийск
+    Region: User_Model_Region_31
+  User_Model_City_1227:
+    title: Светлогорск
+    Region: User_Model_Region_31
+  User_Model_City_1228:
+    title: Котельники
+    Region: User_Model_Region_42
+  User_Model_City_1229:
+    title: Орел
+    Region: User_Model_Region_48
+  User_Model_City_1230:
+    title: Ливны
+    Region: User_Model_Region_48
+  User_Model_City_1231:
+    title: Мценск
+    Region: User_Model_Region_48
+  User_Model_City_1232:
+    title: Елец
+    Region: User_Model_Region_40
+  User_Model_City_1233:
+    title: Бор
+    Region: User_Model_Region_44
+  User_Model_City_1234:
+    title: Вольск-18
+    Region: User_Model_Region_55
+  User_Model_City_1235:
+    title: Троицк
+    Region: User_Model_Region_64
+  User_Model_City_1236:
+    title: Сорск
+    Region: User_Model_Region_13
+  User_Model_City_1237:
+    title: Краснокамск
+    Region: User_Model_Region_50
+  User_Model_City_1238:
+    title: Камышин
+    Region: User_Model_Region_26
+  User_Model_City_1239:
+    title: Михайловка
+    Region: User_Model_Region_26
+  User_Model_City_1240:
+    title: Урюпинск
+    Region: User_Model_Region_26
+  User_Model_City_1241:
+    title: Фролово
+    Region: User_Model_Region_26
+  User_Model_City_1242:
+    title: Бугуруслан
+    Region: User_Model_Region_47
+  User_Model_City_1243:
+    title: Бузулук
+    Region: User_Model_Region_47
+  User_Model_City_1244:
+    title: Гай
+    Region: User_Model_Region_47
+  User_Model_City_1245:
+    title: Кувандык
+    Region: User_Model_Region_47
+  User_Model_City_1246:
+    title: Сорочинск
+    Region: User_Model_Region_47
+  User_Model_City_1247:
+    title: Энгельс-2
+    Region: User_Model_Region_55
+  User_Model_City_1248:
+    title: Энгельс-1
+    Region: User_Model_Region_55
+  User_Model_City_1249:
+    title: Электрогорск
+    Region: User_Model_Region_42

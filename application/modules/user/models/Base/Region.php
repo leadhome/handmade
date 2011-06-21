@@ -8,7 +8,7 @@
  * @property integer $region_id
  * @property string $title
  * @property integer $country_id
- * @property User_Model_Country $country
+ * @property User_Model_Country $Country
  * @property Doctrine_Collection $User__Model__Cities
  * @property Doctrine_Collection $User__Model__ShippAddresses
  * 
@@ -52,7 +52,7 @@ abstract class User_Model_Base_Region extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_Country as country', array(
+        $this->hasOne('User_Model_Country as Country', array(
              'local' => 'country_id',
              'foreign' => 'country_id'));
 

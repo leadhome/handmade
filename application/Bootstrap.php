@@ -112,6 +112,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$frontController = $this->getResource('frontController');
 		$frontController->registerPlugin($debug);
 	}
-
+	protected function _initFormValidationTranslator() {
+        $lang = 'ru';
+        $translator = new Zend_Translate(array(
+                    'adapter' => 'array',
+                    'content' => APPLICATION_PATH . '/lang',
+                    'locale' => $lang,
+                    'scan' => Zend_Translate::LOCALE_DIRECTORY
+                ));
+        Zend_Validate_Abstract::setDefaultTranslator($translator);
+    }
 }
 

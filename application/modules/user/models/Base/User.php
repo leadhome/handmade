@@ -11,15 +11,16 @@
  * @property string $firstname
  * @property string $lastname
  * @property string $midname
+ * @property clob $about
  * @property integer $group_id
  * @property integer $tarif_id
  * @property integer $city_id
  * @property timestamp $date_expire
  * @property float $rating
  * @property float $summ
- * @property User_Model_Group $group
- * @property User_Model_Tarif $tarif
- * @property User_Model_City $city
+ * @property User_Model_Group $Group
+ * @property User_Model_Tarif $Tarif
+ * @property User_Model_City $City
  * @property Doctrine_Collection $User__Model__Messages
  * @property Doctrine_Collection $User__Model__Comments
  * @property Doctrine_Collection $User__Model__ShippAddresses
@@ -67,6 +68,10 @@ abstract class User_Model_Base_User extends Doctrine_Record
         $this->hasColumn('midname', 'string', 100, array(
              'type' => 'string',
              'length' => '100',
+             ));
+        $this->hasColumn('about', 'clob', 65535, array(
+             'type' => 'clob',
+             'length' => '65535',
              ));
         $this->hasColumn('group_id', 'integer', 4, array(
              'type' => 'integer',
@@ -117,15 +122,15 @@ abstract class User_Model_Base_User extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_Group as group', array(
+        $this->hasOne('User_Model_Group as Group', array(
              'local' => 'group_id',
              'foreign' => 'group_id'));
 
-        $this->hasOne('User_Model_Tarif as tarif', array(
+        $this->hasOne('User_Model_Tarif as Tarif', array(
              'local' => 'tarif_id',
              'foreign' => 'tarif_id'));
 
-        $this->hasOne('User_Model_City as city', array(
+        $this->hasOne('User_Model_City as City', array(
              'local' => 'city_id',
              'foreign' => 'city_id'));
 

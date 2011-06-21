@@ -14,10 +14,10 @@
  * @property timestamp $date_start
  * @property timestamp $date_end
  * @property integer $period
- * @property Banner_Model_Template $template
- * @property User_Model_User $user
- * @property Banner_Model_Statu $statu
- * @property Product_Model_Product $product
+ * @property Banner_Model_Template $Template
+ * @property User_Model_User $User
+ * @property Banner_Model_Status $Status
+ * @property Product_Model_Product $Product
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -99,19 +99,19 @@ abstract class Banner_Model_Base_Main extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Banner_Model_Template as template', array(
+        $this->hasOne('Banner_Model_Template as Template', array(
              'local' => 'template_id',
              'foreign' => 'template_id'));
 
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
 
-        $this->hasOne('Banner_Model_Statu as statu', array(
+        $this->hasOne('Banner_Model_Status as Status', array(
              'local' => 'status_id',
              'foreign' => 'status_id'));
 
-        $this->hasOne('Product_Model_Product as product', array(
+        $this->hasOne('Product_Model_Product as Product', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
     }

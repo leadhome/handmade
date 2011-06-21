@@ -8,8 +8,8 @@
  * @property integer $paymentShop_id
  * @property integer $shop_id
  * @property integer $payment_id
- * @property User_Model_Shop $shop
- * @property User_Model_Payment $payment
+ * @property User_Model_Shop $Shop
+ * @property User_Model_Payment $Payment
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -71,11 +71,11 @@ abstract class User_Model_Base_PaymentsShop extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_Shop as shop', array(
+        $this->hasOne('User_Model_Shop as Shop', array(
              'local' => 'shop_id',
              'foreign' => 'shop_id'));
 
-        $this->hasOne('User_Model_Payment as payment', array(
+        $this->hasOne('User_Model_Payment as Payment', array(
              'local' => 'payment_id',
              'foreign' => 'payment_id'));
     }

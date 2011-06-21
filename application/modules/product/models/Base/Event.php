@@ -7,8 +7,8 @@
  * 
  * @property integer $event_id
  * @property string $title
- * @property timestamp $date_start
- * @property timestamp $date_end
+ * @property string $date_start
+ * @property string $date_end
  * @property Doctrine_Collection $Product__Model__EventProducts
  * 
  * @package    ##PACKAGE##
@@ -31,11 +31,13 @@ abstract class Product_Model_Base_Event extends Doctrine_Record
              'type' => 'string',
              'length' => '255',
              ));
-        $this->hasColumn('date_start', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('date_start', 'string', 6, array(
+             'type' => 'string',
+             'length' => '6',
              ));
-        $this->hasColumn('date_end', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('date_end', 'string', 6, array(
+             'type' => 'string',
+             'length' => '6',
              ));
 
         $this->option('collate', 'utf8_general_ci');

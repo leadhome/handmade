@@ -13,8 +13,8 @@
  * @property boolean $status
  * @property boolean $replied
  * @property boolean $deleted
- * @property User_Model_User $user
- * @property User_Model_User $whomUser
+ * @property User_Model_User $User
+ * @property User_Model_User $WhomUser
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -78,11 +78,11 @@ abstract class User_Model_Base_Message extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
 
-        $this->hasOne('User_Model_User as whomUser', array(
+        $this->hasOne('User_Model_User as WhomUser', array(
              'local' => 'whom_user_id',
              'foreign' => 'user_id'));
     }

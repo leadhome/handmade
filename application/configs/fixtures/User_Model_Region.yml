@@ -1,4 +1,241 @@
 User_Model_Region:
   User_Model_Region_1:
+    title: 'Республика Алтай'
+    Country: User_Model_Country_1
+  User_Model_Region_2:
+    title: 'Республика Ингушетия'
+    Country: User_Model_Country_1
+  User_Model_Region_3:
+    title: 'Кабардино-Балкарская республика'
+    Country: User_Model_Country_1
+  User_Model_Region_4:
+    title: 'Карачаево-Черкесская республика'
+    Country: User_Model_Country_1
+  User_Model_Region_5:
+    title: 'Республика Карелия'
+    Country: User_Model_Country_1
+  User_Model_Region_6:
+    title: 'Республика Коми'
+    Country: User_Model_Country_1
+  User_Model_Region_7:
+    title: 'Республика Марий Эл'
+    Country: User_Model_Country_1
+  User_Model_Region_8:
+    title: 'Республика Мордовия'
+    Country: User_Model_Country_1
+  User_Model_Region_9:
+    title: 'Республика Саха-Якутия'
+    Country: User_Model_Country_1
+  User_Model_Region_10:
+    title: 'Республика Татарстан'
+    Country: User_Model_Country_1
+  User_Model_Region_11:
+    title: 'Республика Тыва'
+    Country: User_Model_Country_1
+  User_Model_Region_12:
+    title: 'Удмуртская республика'
+    Country: User_Model_Country_1
+  User_Model_Region_13:
+    title: 'Республика Хакасия'
+    Country: User_Model_Country_1
+  User_Model_Region_14:
+    title: 'Чувашская республика'
+    Country: User_Model_Country_1
+  User_Model_Region_15:
+    title: 'Алтайский край'
+    Country: User_Model_Country_1
+  User_Model_Region_16:
+    title: 'Краснодарский край'
+    Country: User_Model_Country_1
+  User_Model_Region_17:
+    title: 'Приморский край'
+    Country: User_Model_Country_1
+  User_Model_Region_18:
+    title: 'Ставропольский край'
+    Country: User_Model_Country_1
+  User_Model_Region_19:
+    title: 'Хабаровский край'
+    Country: User_Model_Country_1
+  User_Model_Region_20:
     title: 'Амурская область'
-    country: User_Model_Country_1
+    Country: User_Model_Country_1
+  User_Model_Region_21:
+    title: 'Архангельская область'
+    Country: User_Model_Country_1
+  User_Model_Region_22:
+    title: 'Астраханская область'
+    Country: User_Model_Country_1
+  User_Model_Region_23:
+    title: 'Белгородская область'
+    Country: User_Model_Country_1
+  User_Model_Region_24:
+    title: 'Брянская область'
+    Country: User_Model_Country_1
+  User_Model_Region_25:
+    title: 'Владимирская область'
+    Country: User_Model_Country_1
+  User_Model_Region_26:
+    title: 'Волгоградская область'
+    Country: User_Model_Country_1
+  User_Model_Region_27:
+    title: 'Вологодская область'
+    Country: User_Model_Country_1
+  User_Model_Region_28:
+    title: 'Воронежская область'
+    Country: User_Model_Country_1
+  User_Model_Region_29:
+    title: 'Ивановская область'
+    Country: User_Model_Country_1
+  User_Model_Region_30:
+    title: 'Иркутская область'
+    Country: User_Model_Country_1
+  User_Model_Region_31:
+    title: 'Калининградская область'
+    Country: User_Model_Country_1
+  User_Model_Region_32:
+    title: 'Калужская область'
+    Country: User_Model_Country_1
+  User_Model_Region_33:
+    title: 'Камчатская область'
+    Country: User_Model_Country_1
+  User_Model_Region_34:
+    title: 'Кемеровская область'
+    Country: User_Model_Country_1
+  User_Model_Region_35:
+    title: 'Кировская область'
+    Country: User_Model_Country_1
+  User_Model_Region_36:
+    title: 'Костромская область'
+    Country: User_Model_Country_1
+  User_Model_Region_37:
+    title: 'Курганская область'
+    Country: User_Model_Country_1
+  User_Model_Region_38:
+    title: 'Курская область'
+    Country: User_Model_Country_1
+  User_Model_Region_39:
+    title: 'Ленинградская область'
+    Country: User_Model_Country_1
+  User_Model_Region_40:
+    title: 'Липецкая область'
+    Country: User_Model_Country_1
+  User_Model_Region_41:
+    title: 'Магаданская область'
+    Country: User_Model_Country_1
+  User_Model_Region_42:
+    title: 'Московская область'
+    Country: User_Model_Country_1
+  User_Model_Region_43:
+    title: 'Мурманская область'
+    Country: User_Model_Country_1
+  User_Model_Region_44:
+    title: 'Горьковская область'
+    Country: User_Model_Country_1
+  User_Model_Region_45:
+    title: 'Новосибирская область'
+    Country: User_Model_Country_1
+  User_Model_Region_46:
+    title: 'Омская область'
+    Country: User_Model_Country_1
+  User_Model_Region_47:
+    title: 'Оренбургская область'
+    Country: User_Model_Country_1
+  User_Model_Region_48:
+    title: 'Орловская область'
+    Country: User_Model_Country_1
+  User_Model_Region_49:
+    title: 'Пензенская область'
+    Country: User_Model_Country_1
+  User_Model_Region_50:
+    title: 'Пермская область'
+    Country: User_Model_Country_1
+  User_Model_Region_51:
+    title: 'Псковская область'
+    Country: User_Model_Country_1
+  User_Model_Region_52:
+    title: 'Ростовская область'
+    Country: User_Model_Country_1
+  User_Model_Region_53:
+    title: 'Рязанская область'
+    Country: User_Model_Country_1
+  User_Model_Region_54:
+    title: 'Самарская область'
+    Country: User_Model_Country_1
+  User_Model_Region_55:
+    title: 'Саратовская область'
+    Country: User_Model_Country_1
+  User_Model_Region_56:
+    title: 'Сахалинская область'
+    Country: User_Model_Country_1
+  User_Model_Region_57:
+    title: 'Смоленская область'
+    Country: User_Model_Country_1
+  User_Model_Region_58:
+    title: 'Тамбовская область'
+    Country: User_Model_Country_1
+  User_Model_Region_59:
+    title: 'Тверская область'
+    Country: User_Model_Country_1
+  User_Model_Region_60:
+    title: 'Томская область'
+    Country: User_Model_Country_1
+  User_Model_Region_61:
+    title: 'Тульская область'
+    Country: User_Model_Country_1
+  User_Model_Region_62:
+    title: 'Тюменская область'
+    Country: User_Model_Country_1
+  User_Model_Region_63:
+    title: 'Ульяновская область'
+    Country: User_Model_Country_1
+  User_Model_Region_64:
+    title: 'Челябинская область'
+    Country: User_Model_Country_1
+  User_Model_Region_65:
+    title: 'Агинский Бурятский автономный округ'
+    Country: User_Model_Country_1
+  User_Model_Region_66:
+    title: 'Ярославская область'
+    Country: User_Model_Country_1
+  User_Model_Region_67:
+    title: 'Еврейская автономная область'
+    Country: User_Model_Country_1
+  User_Model_Region_68:
+    title: 'Ненецкий автономный округ'
+    Country: User_Model_Country_1
+  User_Model_Region_69:
+    title: 'Красноярский край'
+    Country: User_Model_Country_1
+  User_Model_Region_70:
+    title: 'Ханты-Мансийский автономный округ'
+    Country: User_Model_Country_1
+  User_Model_Region_71:
+    title: 'Чукотский автономный округ'
+    Country: User_Model_Country_1
+  User_Model_Region_72:
+    title: 'Ямало-Ненецкий автономный округ'
+    Country: User_Model_Country_1
+  User_Model_Region_73:
+    title: 'Чеченская республика'
+    Country: User_Model_Country_1
+  User_Model_Region_74:
+    title: 'Свердловская область'
+    Country: User_Model_Country_1
+  User_Model_Region_75:
+    title: 'Новгородская область'
+    Country: User_Model_Country_1
+  User_Model_Region_76:
+    title: 'Республика Бурятия'
+    Country: User_Model_Country_1
+  User_Model_Region_77:
+    title: 'Республика Северная Осетия - Алания'
+    Country: User_Model_Country_1
+  User_Model_Region_78:
+    title: 'Республика Калмыкия'
+    Country: User_Model_Country_1
+  User_Model_Region_79:
+    title: 'Таймырский (Долгано-Ненецкий) автономный округ'
+    Country: User_Model_Country_1
+  User_Model_Region_80:
+    title: 'Республика Дагестан'
+    Country: User_Model_Country_1

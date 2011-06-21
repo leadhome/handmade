@@ -8,8 +8,8 @@
  * @property integer $colorProduct_id
  * @property integer $product_id
  * @property integer $color_id
- * @property Product_Model_Product $product
- * @property Product_Model_Color $color
+ * @property Product_Model_Product $Product
+ * @property Product_Model_Color $Color
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -71,11 +71,11 @@ abstract class Product_Model_Base_ColorProduct extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Product as product', array(
+        $this->hasOne('Product_Model_Product as Product', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
 
-        $this->hasOne('Product_Model_Color as color', array(
+        $this->hasOne('Product_Model_Color as Color', array(
              'local' => 'color_id',
              'foreign' => 'color_id'));
     }

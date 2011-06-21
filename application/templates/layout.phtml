@@ -1,39 +1,74 @@
 <?=$this->layout()->header?>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<?php $this->headTitle()->setSeparator(' / '); ?>
-<?=$this->headTitle('HandMade'); ?>
-
- <?// stylesheets
-            $this->headLink()
-                ->appendStylesheet('/css/main.css')
-                ->appendStylesheet('/css/my_style.css');
-                // ->appendStylesheet('/css/common.css')
-                // ->appendStylesheet('/css/ajax_styles.css')
-                // ->appendStylesheet('/css/style.css'); ?>
-        <?=$this->headLink(); ?>
-        
-        <?// javascript files
-            $this->headScript()
-                ->prependFile('/js/jquery.js')
-                ->appendFile('/js/menu.js');
-                // ->appendFile('/js/forms.js'); ?>
-        <?=$this->headScript(); ?>
-<title></title>
-</head>
-<body>
-<table width="100%" border="0">
-	<tr>
-		<td width="10%">
- 		</td>
-		<td width="80%">
-			<?//= $this->layout()->content ?>
-			<?= $this->action('menu', 'module','product');?>    
-			<?//= $this->action('editorschoice', 'module','product');?>    
-		</td>
-		<td width="10%">
- 		</td>
-	</tr>
-</table>
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<?php $this->headTitle()->setSeparator(' / '); ?>
+		<?=$this->headTitle('HandMade'); ?>
+		<?	// stylesheets
+			$this->headLink()
+				 ->appendStylesheet('/css/main.css')
+				 ->appendStylesheet('/css/my_style.css');
+			// javascript files
+			$this->headScript()
+				 ->prependFile('/js/jquery.js')
+				 ->appendFile('/js/menu.js');
+		?>
+		<?=$this->headLink(); ?>
+		<?=$this->headScript(); ?>
+		<title></title>
+	</head>
+	<body>
+		<table width="100%" border="0">
+			<tr>
+				<td width="10%">&nbsp;</td>
+				<td width="80%">
+					<table width="100%" border="0">	
+						<tr>
+							<td colspan="2">		
+								<!--Header-->
+								<?= $this->action('header', 'index','index');?>  
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">							
+								<?= $this->action('menu', 'module','product');?>  
+							</td>
+						</tr>
+						<tr>
+							<td width="200px">
+								<!--Меню-->
+								<div class="createShopButton marginTop">
+									<a href="/user/shop/createshop">Создать свой магазин</a>
+								</div>
+								<div class="mainMenuLeft">
+									<ul>
+										<li>
+											<a href="">
+												Праздничные акции
+											</a>
+										</li>
+										<li>
+											<a href="">											
+												Новинки										
+											</a>
+										</li>
+										<li>
+											<a href="">											
+												Популярное												
+											</a>
+										</li>
+									</ul>
+								</div>
+							</td>
+							<td>
+								<!--Баннер-->
+								<?//= $this->action('main_page', 'module','banner');?>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="10%">&nbsp;</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -8,8 +8,8 @@
  * @property integer $sizeProduct_id
  * @property integer $product_id
  * @property integer $size_id
- * @property Product_Model_Product $product
- * @property Product_Model_Size $size
+ * @property Product_Model_Product $Product
+ * @property Product_Model_Size $Size
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -71,11 +71,11 @@ abstract class Product_Model_Base_SizeProduct extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Product as product', array(
+        $this->hasOne('Product_Model_Product as Product', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
 
-        $this->hasOne('Product_Model_Size as size', array(
+        $this->hasOne('Product_Model_Size as Size', array(
              'local' => 'size_id',
              'foreign' => 'size_id'));
     }

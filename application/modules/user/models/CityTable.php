@@ -16,4 +16,100 @@ class User_Model_CityTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('User_Model_City');
     }
+	
+	public function getCity($infoIp) {
+		if($infoIp['city_id']) {
+			$locationUser = Doctrine_Query::create()
+							->select('city.city_id,city.title as city_title,city.region_id,region.title as region_title,region.country_id as country_id,country.title as country_title')
+							->from('User_Model_City city')
+							->leftJoin('city.Region region')
+							->leftJoin('region.Country country')
+							->where('city.title = ?',$infoIp['city'])
+							->addWhere('region.title = ?',$infoIp['region'])
+							->addWhere('country.title = ?',$infoIp['country'])
+							->limit(1)
+							->execute()
+							->toArray();
+							
+			if(count($locationUser)>0) {
+				$locationUser = $locationUser[0];
+				$user->city_id = $locationUser['city_id'];
+				$user->city = $locationUser['city_title'];
+				$user->region_id = $locationUser['region_id'];
+				$user->region = $locationUser['region_title'];
+				$user->country_id = $locationUser['country_id'];
+				$user->country = $locationUser['country_title'];
+			} else {
+				if($infoIp['region_id']!=0 && $infoIp['country_id']!=0) {
+					// добавить запись
+					
+					$region = User_Model_RegionTable::getInstance()->findOneByTitle($infoIp['region']);	
+					if(!$region) {
+						$country = User_Model_CountryTable::getInstance()->findOneByTitle($infoIp['country']);	
+						if(!$country) {
+							//добавление страны, города, региона
+							$newLocation = $this->getRecord();
+							$newLocation->title = $infoIp['city'];
+							$newLocation->Region->title = $infoIp['region'];
+							$newLocation->Region->Country->title = $infoIp['country'];
+							$newLocation->save();
+							$newLocation->toArray();
+							
+							$user->city_id = $newLocation['city_id'];
+							$user->city = $infoIp['city'];
+							$user->region_id = $newLocation['region_id'];
+							$user->region = $infoIp['region'];
+							$user->country_id = $newLocation['Region']['country_id'];
+							$user->country = $infoIp['country'];
+						} else {
+							//добавление региона и города
+							$country->toArray();
+							$newLocation = $this->getRecord();
+							$newLocation->title = $infoIp['city'];
+							$newLocation->Region->title = $infoIp['region'];
+							$newLocation->save();
+							$newLocation->toArray();
+							
+							$user->city_id = $newLocation['city_id'];
+							$user->city = $infoIp['city'];
+							$user->region_id = $newLocation['region_id'];
+							$user->region = $infoIp['region'];
+							$user->country_id = $country['country_id'];
+							$user->country = $infoIp['country'];
+						}
+					} else {
+						//добавление города
+						$region->toArray();
+						
+						$newLocation = $this->getRecord();
+						$newLocation->title = $infoIp['city'];
+						$newLocation->region_id = $region['region_id'];
+						$newLocation->save();
+						$newLocation->toArray();
+						
+						$user->city_id = $newLocation['city_id'];
+						$user->city = $infoIp['city'];
+						$user->region_id = $region['region_id'];
+						$user->region = $region['title'];
+						$user->country_id = $region['country_id'];
+						$user->country = $region['Country']['title'];
+					}					
+				} else {
+					$user = $this->setDefaultLocationUser();
+				}
+			}	
+		} else {
+			$user = $this->setDefaultLocationUser();
+		}
+		return $user;
+	}
+	public function setDefaultLocationUser() {
+		$user->city_id = 283;
+		$user->city = 'Москва';			
+		$user->region_id = 42;
+		$user->region = 'Московская область';
+		$user->country_id = 1;
+		$user->country = 'Российская Федерация';
+		return $user;
+	}
 }

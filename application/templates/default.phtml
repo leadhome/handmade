@@ -1,0 +1,48 @@
+<?=$this->layout()->header?>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<?php $this->headTitle()->setSeparator(' / '); ?>
+		<?=$this->headTitle('HandMade'); ?>
+		<?	// stylesheets
+			$this->headLink()
+				 ->appendStylesheet('/css/main.css')
+				 ->appendStylesheet('/css/my_style.css');
+			// javascript files
+			$this->headScript()
+				 ->prependFile('/js/jquery.js')
+				 ->appendFile('/js/menu.js');
+		?>
+		<?=$this->headLink(); ?>
+		<?=$this->headScript(); ?>
+		<title></title>
+	</head>
+	<body>
+		<table width="100%" border="0">
+			<tr>
+				<td width="10%">&nbsp;</td>
+				<td width="80%">
+					<table width="100%" border="0">	
+						<tr>
+							<td>		
+								<!--Header-->
+								<?= $this->action('header', 'index','index');?>  
+							</td>
+						</tr>
+						<tr>
+							<td>							
+								<?= $this->action('menu', 'module','product');?>  
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?= $this->layout()->content ?>  
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="10%">&nbsp;</td>
+			</tr>
+		</table>
+	</body>
+</HTML>

@@ -219,6 +219,84 @@ a.not_active {
 .shadowTable .shadowTd {background:url(/components/com_trade/images/blur_black.png) 0 0 repeat;}
 .infoBox {position:relative;margin:0 auto; background: none repeat scroll 0 0 #F8FFF2;border: 1px solid #CEDEC3;padding: 10px; font: 12px/1.4 "Trebuchet MS";}
 
-.preloader { background: url("/components/com_user/images/41.gif") no-repeat scroll center left transparent;height: 16px;}
+.preloader { background: url("/images/41.gif") no-repeat scroll center left transparent;height: 16px; margin-top: 4px;}
 .preloader span {padding-left:20px;}
 .active_mess{font-weight:bold !important;}
+
+.required_field_mark{color:red;}
+.user_form_registration_description {display: block;}
+
+
+
+.user_form_registration_element input, .user_form_auth_element input {width:200px;}
+.user_form_registration_label,.user_form_registration_label{width:150px;vertical-align:top;}
+.registration,.auth {
+	color: #7A7162;
+    font: 12px/1.4 "Trebuchet MS";
+}
+.registration #user_form_registration_errors,.auth #user_form_auth_errors  {vertical-align:top;color:red;}
+#user_form_auth {margin:0;padding:0}
+.linkUser a {
+	color: #135CAE;
+    font: 12px/1.4 "Trebuchet MS";
+}
+.linkUser a:hover {
+	text-decoration:none;
+}
+.createShopButton {
+	background: none repeat scroll 0 0 #80DB11;
+    border: 1px solid #17BF11;
+    padding: 10px;
+    width: 100%;
+	text-align:center;
+}
+.createShopButton a{
+	text-decoration:none;
+	color: #F1F4ED;
+    font: 18px/1.4 "Trebuchet MS";	
+}
+.createShopButton a:hover{
+	text-decoration:underline;
+}
+.mainMenuLeft{
+	text-align:left;
+	margin-top:10px;
+}
+.mainMenuLeft ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.mainMenuLeft ul a{
+	text-decoration:none;
+	color: #191918;
+    font: 15px/1.4 "Trebuchet MS";	
+}
+.mainMenuLeft a:hover{
+	text-decoration:underline;
+}
+.marginTop {
+	margin-top:15px;
+}
+.guestBox, .locationUser{
+	text-align:left;
+	vertical-align:top;
+	float:left;
+	margin:0 0 0 10px;
+	color: #191918;
+    font: 13px/1.4 "Trebuchet MS";	
+}
+
+.searchBox {
+	font: 12px/1.4 "Trebuchet MS";
+	margin-top:20px;
+	margin-left:10px;
+}
+
+.searchBox  input{
+	width:450px;
+}
+.searchButton {
+	width:73px !important;
+	margin-left:5px;
+}

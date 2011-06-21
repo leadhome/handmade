@@ -1,13 +1,26 @@
 User_Model_User:
   User_Model_User_1:
-    email: oneleadone@gmail.com
-    password: sd
-    firstname: Евгений
-    lastname: Клёпов
-    midname: Александрович
-    group: User_Model_Group_1
-    tarif: User_Model_Tarif_1
-    city: User_Model_City_1
-    date_expire: '2011-06-04 19:01:21'
+    email: leadone@mail.ru
+    password: 48ab34e0c2b070bb50e9aad175790dfb
+    firstname: null
+    lastname: null
+    midname: null
+    about: null
+    Group: User_Model_Group_1
+    Tarif: User_Model_Tarif_1
+    City: User_Model_City_185
+    date_expire: null
     rating: '0.00'
-    summ: '10000.00'
+    summ: '0.00'
+  User_Model_User_2:
+    email: leadone1@mail.ru
+    password: 48ab34e0c2b070bb50e9aad175790dfb
+    firstname: null
+    lastname: null
+    midname: null
+    about: null
+    Group: User_Model_Group_1
+    Tarif: User_Model_Tarif_1
+    date_expire: null
+    rating: '0.00'
+    summ: '0.00'

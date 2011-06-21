@@ -1,0 +1,13 @@
+User_Model_Payment:
+  User_Model_Payment_1:
+    title: 'Яндекс деньги'
+    description: null
+  User_Model_Payment_2:
+    title: Webmoney
+    description: null
+  User_Model_Payment_3:
+    title: 'Банковский перевод'
+    description: null
+  User_Model_Payment_4:
+    title: 'Western Union'
+    description: null

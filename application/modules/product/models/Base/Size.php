@@ -8,7 +8,7 @@
  * @property integer $size_id
  * @property integer $category_id
  * @property string $title
- * @property Product_Model_Category $category
+ * @property Product_Model_Category $Category
  * @property Doctrine_Collection $Product__Model__SizeProducts
  * 
  * @package    ##PACKAGE##
@@ -51,7 +51,7 @@ abstract class Product_Model_Base_Size extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Product_Model_Category as category', array(
+        $this->hasOne('Product_Model_Category as Category', array(
              'local' => 'category_id',
              'foreign' => 'category_id'));
 

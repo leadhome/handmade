@@ -11,7 +11,7 @@
  * @property string $domain
  * @property clob $about
  * @property clob $return
- * @property User_Model_User $user
+ * @property User_Model_User $User
  * @property Doctrine_Collection $User__Model__DeliveryShops
  * @property Doctrine_Collection $User__Model__PaymentsShops
  * 
@@ -67,7 +67,7 @@ abstract class User_Model_Base_Shop extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User_Model_User as user', array(
+        $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
 
