@@ -63,4 +63,5 @@ class Cart_IndexController extends Zend_Controller_Action {
 		$this->view->confirm = $this->getRequest()->confirm ? 1 : 0;
 		$this->view->cart = new Zend_Session_Namespace('cart');
 	}
+	
 }
