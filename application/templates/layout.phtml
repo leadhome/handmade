@@ -11,7 +11,8 @@
 			// javascript files
 			$this->headScript()
 				 ->prependFile('/js/jquery.js')
-				 ->appendFile('/js/menu.js');
+				 ->appendFile('/js/menu.js')
+				 ->appendFile('/js/addproducttocart.js');
 		?>
 		<?=$this->headLink(); ?>
 		<?=$this->headScript(); ?>
@@ -61,6 +62,12 @@
 								</div>
 							</td>
 							<td>
+								<a name="addproducttocart" href="/cart/index/addproducttocart/?product_id[]=1&product_id[]=2&product_id[]=&return=<?=base64_encode($_SERVER['REQUEST_URI'])?>">
+									Добавить в корзину many
+								</a><br/>
+								<a name="addproducttocart" href="/cart/index/addproducttocart/?product_id=1" name="addproducttocart">
+									Добавить в корзину one
+								</a>
 								<!--Баннер-->
 								<?//= $this->action('main_page', 'module','banner');?>
 							</td>

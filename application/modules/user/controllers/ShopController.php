@@ -21,7 +21,12 @@ class User_ShopController extends Zend_Controller_Action {
 		$this->view->headTitle('Создание магазина');
 		$create_shop_form = new User_Form_CreateShop();
 		
-		
+		if($this->getRequest()->isPost()) {
+			$form_data = $this->getRequest()->getPost();
+			if($create_shop_form->isValid($form_data)) {  
+			
+			}
+		}
 		$this->view->form = $create_shop_form;
 		
 		

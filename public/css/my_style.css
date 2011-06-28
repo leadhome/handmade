@@ -221,6 +221,7 @@ a.not_active {
 
 .preloader { background: url("/images/41.gif") no-repeat scroll center left transparent;height: 16px; margin-top: 4px;}
 .preloader span {padding-left:20px;}
+
 .active_mess{font-weight:bold !important;}
 
 .required_field_mark{color:red;}
@@ -300,3 +301,17 @@ a.not_active {
 	width:73px !important;
 	margin-left:5px;
 }
+.module_cart {
+	background: none repeat scroll 0 0 #F8FFF2;
+    border: 1px solid #CEDEC3;
+    font: 12px/1.4 "Trebuchet MS";
+    margin-top: 30px;
+    padding: 5px;
+}
+.module_cart a {
+	color:#135CAE;
+	float:left;
+}
+
+.preloaderCart { background: url("/images/41.gif") no-repeat scroll center left transparent;height: 16px; width:16px;float:left;margin-left: 5px;}
+#cart_product{clear:both;}

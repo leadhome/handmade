@@ -16,4 +16,11 @@ class Product_Model_ProductTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Product_Model_Product');
     }
+	public function getProducts($product_ids) {
+		return $this->createQuery()
+					->whereIn('product_id',$product_ids)
+					->andWhere('published = ? ', 1)
+					->execute()
+					->toArray();
+	}
 }

@@ -1,0 +1,73 @@
+<?	
+	$this->headLink()->appendStylesheet('/css/cart.css');
+	echo '<h3>Корзина</h3>';
+	if(!$this->cart->products) {
+		echo '<div class="indentBox">';
+			echo '<strong>Ваша корзина пуста</strong>&nbsp;/&nbsp;<a href="/">Вернуться к выбору</a>';
+		echo '</div>';
+		return;
+	} 
+	
+	echo '<table cellspacing="0" cellpadding="0" class="cartTable">';
+		echo '<thead>';
+			echo '<tr>';
+				echo '<th width="120">Изображение</th>';
+				echo '<th>Наименование</th>';
+				echo '<th width="100">Цена</th>';
+				echo '<th width="60">Кол-во</th>';
+				echo '<th width="100">Удалить</th>';
+			echo '</tr>';
+		echo '</thead>';
+		echo '<tbody id="cartBody">';
+		$i = 0;
+		foreach($this->cart->products as $key=>$product) {
+			$image = '/images/products/';
+			$image .= $product->category_id.'/'.$product->author_id.'/'.$product->product_id.'/66x50/'.$product->photos['main'];
+			echo '<tr class="cartTableTr_'.($i%2).'" id="tr_'.$key.'">';
+				echo '<td>';
+					// echo '<a href="'.$path_f.$images[0].'" target="_blank" onclick="return hs.expand(this)" class="highslide">';
+						echo '<img src="'.$image.'" />';
+					// echo '</a>';
+				echo '</td>';
+				echo '<td style="text-align:left;">';
+					echo $product->title;
+				echo '</td>';
+				echo '<td id="cartTdPrice_'.$key.'">'.number_format($product->all_price, 2, '.', ' ').'&nbsp;руб</td>';
+				echo '<td>';
+					if($this->confirm==1) echo $product->counts;
+					else {					
+						echo '<div class="countPicker">';
+							$link = '/cart/index/updatecount/?key='.$key;
+							$class = 'class="'.($product->counts>1 ? 'left' : 'left notActive').'"';
+							$href_left = $product->counts==1 ? '#' : $link.'&type=left';
+							echo '<a name="update_count" '.$class.' href="'.$href_left.'" id="left_'.$key.'"></a>';
+								echo '<div class="countValue" id="countValue_'.$key.'">'.$product->counts.'</div>';
+							echo '<a class="right" name="update_count" href="'.$link.'&type=right" id="right_'.$key.'"></a>';  
+							echo '<div style="clear:both;"></div>';
+						echo '</div>';
+					}
+				echo '</td>';
+				echo '<td>';
+					echo '<a name="delete" id="delete_'.$key.'" href="/cart/index/delete/?&key='.$key.'">';
+						echo '<img src="/images/del.gif" title="Удалить товар">';
+					echo '</a>';
+				echo '</td>';
+			echo '</tr>';
+		$i++;
+		}
+		echo '</tbody>';
+	echo '</table>';
+	echo '<div class="priceBox">';
+		echo 'Общая стоимость:&nbsp;';
+		echo '<strong id="total">'.number_format($this->cart->total, 2, '.', ' ').'&nbsp;руб</strong>';
+	echo '</div>';
+	if($this->confirm==1) echo '<a href="/cart/index/showcart" class="editButton">Внести изменения</a>';
+	else {
+		echo '<div class="buttonBox">';
+			echo '<a href="/">Вернуться к выбору</a>';
+			echo '<a href="/cart/index/showcart/?confirm=1">Оформить заказ</a>';
+		echo '</div>';
+						
+	}
+	echo '<div style="clear:both;"></div>';
+?>

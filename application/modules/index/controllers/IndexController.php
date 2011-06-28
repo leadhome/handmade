@@ -11,6 +11,7 @@ class Index_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+		
     }
 	public function headerAction() {
 		
@@ -31,6 +32,7 @@ class Index_IndexController extends Zend_Controller_Action
 		} 
 		$this->view->user = $auth->getIdentity();
 		$this->view->locationUser = $locationUser;
+		$this->view->cart = new Zend_Session_Namespace('cart');
 	}
 }
 

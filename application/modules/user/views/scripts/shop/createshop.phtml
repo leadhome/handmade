@@ -1,5 +1,18 @@
 <? $this->headScript()->appendFile('/js/validator.js');?>
 <div class="styledform" style="margin-top:20px">
 	<h3>Создание магазина</h3>
-	<?=$this->form;?>
+	<?
+		// echo $this->form;
+		// echo $this->form->shopname->getView();
+		// print_r($this->form->shopname->getMessages());
+		// print_r($this->form->shopname->getView());
+		
+		
+		// echo '<pre>';
+			// print_r(get_class_methods($this->form->shopname));
+		// echo '</pre>';
+		// echo '<pre>';
+			// print_r($this->form->shopname);
+		// echo '</pre>';
+	?>
 </div>

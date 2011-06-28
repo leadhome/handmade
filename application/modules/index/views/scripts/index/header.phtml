@@ -31,6 +31,19 @@
 					<a align="right" href="/user/index/logout">Выйти</a>
 			<?	} ?>
 			</div>
+			<div class="module_cart">			
+				<div><a href="/cart/index/showcart">Корзина</a></div>
+				<div id="cart_product">
+					<div>
+						Товаров в корзине:&nbsp;
+						<span id="cart_product_counts"><?=($this->cart->counts ? $this->cart->counts : 0);?></span>&nbsp;шт
+					</div>
+					<div>
+						На сумму:&nbsp;
+						<span id="cart_product_total"><?=number_format($this->cart->total, 2, '.', ' ');?></span>&nbsp;руб.
+					</div>
+				</div>			
+			</div>
 		</td>
 	</tr>
 </table>
