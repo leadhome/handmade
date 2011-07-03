@@ -315,3 +315,17 @@ a.not_active {
 
 .preloaderCart { background: url("/images/41.gif") no-repeat scroll center left transparent;height: 16px; width:16px;float:left;margin-left: 5px;}
 #cart_product{clear:both;}
+
+.create_shop textarea{
+	width:400px;
+	height:200px;
+}
+.create_shop a{
+	color: #135CAE;
+}
+.create_shop td {
+	padding-bottom:5px;
+}
+.input_create_shop {
+	width:400px;
+}

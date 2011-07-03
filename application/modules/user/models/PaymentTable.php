@@ -16,12 +16,4 @@ class User_Model_PaymentTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('User_Model_Payment');
     }
-	public function fetchAll() {
-		$rows = $this->findAll()->toArray();
-		$payments = array();
-		foreach($rows as $row) {
-			$payments[$row['payment_id']] = $row['title'];
-		}
-		return $payments;
-	}
 }

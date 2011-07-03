@@ -281,6 +281,10 @@ User_Model_Shop:
       type: string(255)
     domain:
       type: string(45)
+    additional_payment_condition:
+      type: clob(65535)
+    additional_delivery_condition:
+      type: clob(65535)
     about:
       type: clob(65535)
     return:

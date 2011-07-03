@@ -1,0 +1,27 @@
+Product_Model_Product:
+  Product_Model_Product_1:
+    Category: Product_Model_Category_2
+    User: User_Model_User_1
+    title: asdasd
+    description: asdasd
+    production_time: '36 часов'
+    size: любые
+    price: '100'
+    photos: 'a:2:{s:4:"main";s:5:"1.jpg";s:5:"lists";a:2:{i:0;a:2:{s:4:"name";s:5:"1.jpg";s:11:"description";s:51:"на этой картинке изображено";}i:1;a:2:{s:4:"name";s:5:"2.jpg";s:11:"description";s:53:"на этой картинке изображено s";}}}'
+    Availlable: Product_Model_Availlable_2
+    quantity: '27'
+    published: true
+    view: '100'
+  Product_Model_Product_2:
+    Category: Product_Model_Category_2
+    User: User_Model_User_1
+    title: фывафывфы
+    description: фывафывф
+    production_time: '36 часов'
+    size: любые
+    price: '100'
+    photos: 'a:2:{s:4:"main";s:5:"1.jpg";s:5:"lists";a:2:{i:0;a:2:{s:4:"name";s:5:"1.jpg";s:11:"description";s:51:"на этой картинке изображено";}i:1;a:2:{s:4:"name";s:5:"2.jpg";s:11:"description";s:53:"на этой картинке изображено s";}}}'
+    Availlable: Product_Model_Availlable_1
+    quantity: '27'
+    published: true
+    view: '121'

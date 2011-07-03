@@ -27,6 +27,13 @@ class User_ShopController extends Zend_Controller_Action {
 			
 			}
 		}
+		// if($_POST) {
+			// echo '<pre>';
+				// print_r($_POST);
+			// echo '</pre>';
+			// die();
+			
+		// }
 		$this->view->form = $create_shop_form;
 		
 		

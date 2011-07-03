@@ -9,6 +9,8 @@
  * @property integer $user_id
  * @property string $title
  * @property string $domain
+ * @property clob $additional_payment_condition
+ * @property clob $additional_delivery_condition
  * @property clob $about
  * @property clob $return
  * @property User_Model_User $User
@@ -42,6 +44,14 @@ abstract class User_Model_Base_Shop extends Doctrine_Record
         $this->hasColumn('domain', 'string', 45, array(
              'type' => 'string',
              'length' => '45',
+             ));
+        $this->hasColumn('additional_payment_condition', 'clob', 65535, array(
+             'type' => 'clob',
+             'length' => '65535',
+             ));
+        $this->hasColumn('additional_delivery_condition', 'clob', 65535, array(
+             'type' => 'clob',
+             'length' => '65535',
              ));
         $this->hasColumn('about', 'clob', 65535, array(
              'type' => 'clob',
