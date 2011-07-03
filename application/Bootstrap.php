@@ -42,7 +42,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				));
 		}
 	}
-
+        
 	protected function _initView()
 	{
 		// Initialize view
@@ -67,31 +67,53 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				);
 	}
 
-	protected function _initZFDebug()
-	{
-		if(!isset($_SERVER['REMOTE_ADDR']) || $_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
-			if(!isset($_GET['debugbar']) || $_GET['debugbar'] != date('H'))
-				return;
-		}
-
+        /**
+         * Init ZendX_JQuery Helpers
+         * @return type 
+         */
+        public function _initJQuery(){
+            //загружаем лэйаут, получаем из него view
+            $this->bootstrap('layout');
+            $layout=$this->getResource('layout');
+            $view=$layout->getView();
+            //добавляем директорию, где лежат view-хелперы jquery
+            $view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
+            //включаем jquery, выбираем версию 1.4.2 и версию ui - 1.8 (последние версии)
+            //они будут загружаться с серверов гугла.
+            //CSS добавляем вручную
+            $view->jQuery()
+            ->setVersion("1.5.1")
+            ->setUiVersion("1.8.14")
+            ->addStylesheet("/css/jquery-ui/ui-lightness/jquery-ui-1.8.14.custom.css")
+            ->uiEnable();
+            return $view; 
+        }
+        
+//	protected function _initZFDebug()
+//	{
+//		if(!isset($_SERVER['REMOTE_ADDR']) || $_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
+//			if(!isset($_GET['debugbar']) || $_GET['debugbar'] != date('H'))
+//				return;
+//		}
+//
 //		if($_SERVER['REMOTE_ADDR'] != '87.226.228.26' && $_SERVER['REMOTE_ADDR'] != '127.0.0.1')
 //			return;
-
-		$autoloader = Zend_Loader_Autoloader::getInstance();
-		$autoloader->registerNamespace('ZFDebug');
-		$autoloader->registerNamespace('Danceric');
-		$options = array(
-				'plugins' => array(
-					'Variables',
-					'File' => array('base_path' => APPLICATION_PATH),
-					'Memory',
-					'Time',
+//
+//		$autoloader = Zend_Loader_Autoloader::getInstance();
+//		$autoloader->registerNamespace('ZFDebug');
+//		$autoloader->registerNamespace('Danceric');
+//		$options = array(
+//				'plugins' => array(
+//					'Variables',
+//					'File' => array('base_path' => APPLICATION_PATH),
+//					'Memory',
+//					'Time',
 //					'Registry',
-					'Exception',
-					'Html',
-					'ZFDebug_Controller_Plugin_Debug_Plugin_Doctrine'
-					)
-				);
+//					'Exception',
+//					'Html',
+//					'ZFDebug_Controller_Plugin_Debug_Plugin_Doctrine'
+//					)
+//				);
 //
 //		//Настройка плагина для адаптера базы данных
 //		if ($this->hasPluginResource('db')) {
@@ -107,11 +129,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 //			$options['plugins']['Cache']['backend'] = $cache->getBackend();
 //		}
 //
-		$debug = new ZFDebug_Controller_Plugin_Debug($options);
-
-		$frontController = $this->getResource('frontController');
-		$frontController->registerPlugin($debug);
-	}
+//		$debug = new ZFDebug_Controller_Plugin_Debug($options);
+//
+//		$frontController = $this->getResource('frontController');
+//		$frontController->registerPlugin($debug);
+//	}
 	protected function _initFormValidationTranslator() {
         $lang = 'ru';
         $translator = new Zend_Translate(array(
