@@ -3,8 +3,6 @@
 <script id="template-upload" type="text/x-jquery-tmpl">
     <tr class="template-upload{{if error}} ui-state-error{{/if}}">
         <td class="preview"></td>
-        <td class="name">${name}</td>
-        <td class="size">${sizef}</td>
         {{if error}}
             <td class="error" colspan="2">Error:
                 {{if error === 'maxFileSize'}}File is too big
@@ -25,8 +23,6 @@
     <tr class="template-download{{if error}} ui-state-error{{/if}}">
         {{if error}}
             <td></td>
-            <td class="name">${name}</td>
-            <td class="size">${sizef}</td>
             <td class="error" colspan="2">Error:
                 {{if error === 1}}File exceeds upload_max_filesize (php.ini directive)
                 {{else error === 2}}File exceeds MAX_FILE_SIZE (HTML form directive)
