@@ -8,7 +8,7 @@ class UploadHandler
         $this->options = array(
             'script_url' => $_SERVER['PHP_SELF'],
             'upload_dir' => dirname(__FILE__).'/files/',
-            'upload_url' => dirname($_SERVER['PHP_SELF']).'/files/',
+            'upload_url' => '/files/',
             'param_name' => 'files',
             // The php.ini settings upload_max_filesize and post_max_size
             // take precedence over the following max_file_size setting:
@@ -31,7 +31,7 @@ class UploadHandler
                 */
                 'thumbnail' => array(
                     'upload_dir' => dirname(__FILE__).'/thumbnails/',
-                    'upload_url' => dirname($_SERVER['PHP_SELF']).'/thumbnails/',
+                    'upload_url' => '/thumbnails/',
                     'max_width' => 80,
                     'max_height' => 80
                 )
