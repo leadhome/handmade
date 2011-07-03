@@ -16,7 +16,7 @@ class Product_IndexController
     
     public function ajaxmaterialAction()
     {
-        if ($term=$this->_request->getParam('term')) {
+        if ($term=trim($this->_request->getParam('term'))) {
         $res = Doctrine_Query::create()
                 ->from('Product_Model_Material')
                 ->where("title LIKE '$term%'")

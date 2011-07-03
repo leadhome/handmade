@@ -56,32 +56,35 @@
     </tr>
 </script>
 <script>
+var materials = new Array();
 jQuery(document).ready(function() {
 	jQuery('[name="submit_validator"]').bind('click',function(event) {
 		event.preventDefault();
 		var form =  jQuery('#mainform');
 		var form_id = jQuery(form).attr('id');
 		var action = jQuery(form).attr('action');
-		
-		jQuery(this).parent().next().html('<div class="preloader"><span>Идет проверка</span></div>');
-		
+		jQuery(this).after('<div class="preloader"><span>Идет проверка</span></div>');
+		// return;
 		jQuery.post(action, jQuery(form).serialize(),function(data){
-			if(data.error==0) jQuery(form).submit();
+			if(data.error==0) {
+				jQuery('#hidden_materials').val(materials.join(','));
+				jQuery(form).submit();
+			}
 			jQuery('#'+form_id+ ' .not_valid').removeClass('not_valid');
 			jQuery('#'+form_id+ ' .errors').remove();
 			jQuery.each(data.error,function(key,err){
-				var i = '';
-				var token = '<br/>';
-				var textErrors = '';
-				var Ttoken = '';
-				for (i in err) { 
-					textErrors += Ttoken + err[i];
-					Ttoken = token;
-				}
-				if(!jQuery('#'+key).hasClass('not_valid')) {
+				// var i = '';
+				// var token = '<br/>';
+				// var textErrors = '';
+				// var Ttoken = '';
+				// for (i in err) { 
+					// textErrors += Ttoken + err[i];
+					// Ttoken = token;
+				// }
+				// if(!jQuery('#'+key).hasClass('not_valid')) {
 					jQuery('#'+key).addClass('not_valid');
-					jQuery('#'+key).parent().next().html('<div class="errors">'+textErrors+'</div>');
-				}			
+					// jQuery('#'+key).parent().next().html('<div class="errors">'+textErrors+'</div>');
+				// }			
 			})
 			jQuery('#'+form_id+ ' .preloader').remove();
 		});		
@@ -90,12 +93,21 @@ jQuery(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
+	function trim( str ) {
+		return str.replace(/^[ \t]+|[ \t]+$/g, "");
+	}
     jQuery('#addmaterials').bind('click',function(event) {
         event.preventDefault();
-        var material = $('#materials').val();
-        if(($('.materials').html().replace(' ','').length) == 0) $('.materials').append(material);
-        else $('.materials').append(','+material);
-        $('#mainform').append('<input value="'+material+'" type="hidden">');
+		var error = 0;
+		var mat = trim($('#materials').val());
+		$.each(materials,function(i,material){
+			if(material==mat) error++;
+		})
+		if(error>0) return false;
+		
+        materials.push($('#materials').val());
+		if(materials.length==1) $('.materials').html(mat+'<a href="javascript:void(0)">Удалить</a>');
+		else $('.materials').append('<span>, '+mat+'<a href="javascript:void(0)">Удалить</a></span>');
     });
     $('#category_level1').change( function(){
         var category_level2 = $('select[name="category_level2"]');
@@ -113,29 +125,80 @@ $(document).ready(function() {
         else
             $("#quantity").attr("style", "display:none");
     });
-    $('#color1').change( function(){
-        $("#color2 > option[value='"+color1_val+"']").unwrap();
-        $("#color3 > option[value='"+color1_val+"']").unwrap();
-        var color1_val = $('#color1').val();
-        $("#color2 > option[value='"+color1_val+"']").wrap('span').parent().hide();
-        $("#color3 > option[value='"+color1_val+"']").wrap('span').parent().hide();
-    });
-    $('#color2').change( function(){
-        $("#color1 > option[value='"+color2_val+"']").unwrap();
-        $("#color3 > option[value='"+color2_val+"']").unwrap();
-        var color2_val = $('#color2').val();
-        $("#color1 > option[value='"+color2_val+"']").wrap('span').parent().hide();
-        $("#color3 > option[value='"+color2_val+"']").wrap('span').parent().hide();
-    });  
-    $('#color3').change( function(){
-        $("#color1 > option[value='"+color3_val+"']").unwrap();
-        $("#color2 > option[value='"+color3_val+"']").unwrap();
-        var color3_val = $('#color3').val();
-        $("#color1 > option[value='"+color3_val+"']").wrap('span').parent().hide();
-        $("#color2 > option[value='"+color3_val+"']").wrap('span').parent().hide();
-    });  
+	
+	// $('[name="color[]"]').change(function(){
+		// var last_val = $(this).data('last_val');
+		// var value = $(this).val();		
+		// var id = $(this).attr('id');	
+		// $(this).data('last_val',value);
+		// $.each($('[name="color[]"]'),function(i,child){
+			// if($(child).attr('id')!=id) {
+				// $("#"+$(child).attr('id')+" > option[value='"+value+"']").hide();
+			// } else {
+				// $.each($('[name="color[]"]'),function(f,ch){
+					// $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").attr('selected','');
+					// $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").show();
+				// });
+			// }
+		// });
+	// });
+    // $('#color1').change( function(){
+        // $("#color2 > option[value='"+color1_val+"']").unwrap();
+        // $("#color3 > option[value='"+color1_val+"']").unwrap();
+        // var color1_val = $('#color1').val();
+        // $("#color2 > option[value='"+color1_val+"']").wrap('span').parent().hide();
+        // $("#color3 > option[value='"+color1_val+"']").wrap('span').parent().hide();
+    // });
+    // $('#color2').change( function(){
+        // $("#color1 > option[value='"+color2_val+"']").unwrap();
+        // $("#color3 > option[value='"+color2_val+"']").unwrap();
+        // var color2_val = $('#color2').val();
+        // $("#color1 > option[value='"+color2_val+"']").wrap('span').parent().hide();
+        // $("#color3 > option[value='"+color2_val+"']").wrap('span').parent().hide();
+    // });  
+    // $('#color3').change( function(){
+        // $("#color1 > option[value='"+color3_val+"']").unwrap();
+        // $("#color2 > option[value='"+color3_val+"']").unwrap();
+        // var color3_val = $('#color3').val();
+        // $("#color1 > option[value='"+color3_val+"']").wrap('span').parent().hide();
+        // $("#color2 > option[value='"+color3_val+"']").wrap('span').parent().hide();
+    // });  
 });
 </script>
+
+<?/*
+<div>
+<select id="color1" name="color[]">
+	<option label="Красный" value="1">Красный</option>
+    <option label="Оранжевый" value="2">Оранжевый</option>
+    <option label="Желтый" value="3">Желтый</option>
+    <option label="Зеленый" value="4">Зеленый</option>
+    <option label="Голубой" value="5">Голубой</option>
+    <option label="Синий" value="6">Синий</option>
+    <option label="Фиолетовый" value="7">Фиолетовый</option>
+</select>
+<select id="color2" name="color[]">
+	<option label="Красный" value="1">Красный</option>
+    <option label="Оранжевый" value="2">Оранжевый</option>
+    <option label="Желтый" value="3">Желтый</option>
+    <option label="Зеленый" value="4">Зеленый</option>
+    <option label="Голубой" value="5">Голубой</option>
+    <option label="Синий" value="6">Синий</option>
+    <option label="Фиолетовый" value="7">Фиолетовый</option>
+</select>
+<select id="color3" name="color[]">
+	<option label="Красный" value="1">Красный</option>
+    <option label="Оранжевый" value="2">Оранжевый</option>
+    <option label="Желтый" value="3">Желтый</option>
+    <option label="Зеленый" value="4">Зеленый</option>
+    <option label="Голубой" value="5">Голубой</option>
+    <option label="Синий" value="6">Синий</option>
+    <option label="Фиолетовый" value="7">Фиолетовый</option>
+</select>
+</div>
+*/
+?>
+
 <div class="styledform" style="margin-top:20px; width: 50%;">
     <h3>Добавление товара</h3>
     <form  id="mainform" action="<?=$this->escape($this->form->getAction());?>" method="<?=$this->escape($this->form->getMethod());?>">
@@ -183,6 +246,7 @@ $(document).ready(function() {
                     <button id="addmaterials">Добавить</button>
                     <div class="materials">
                     </div>
+					<?=$this->form->materials?>
                 </td>
             </tr>
             <tr>

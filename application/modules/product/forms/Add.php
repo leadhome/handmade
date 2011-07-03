@@ -72,34 +72,33 @@ class Product_Form_Add
                             ->orderBy('color_id asc')
                             ->execute()
                             ->toKeyValueArray('color_id', 'title');
-        
+        // $colorsArray[0]='Выберите цвет';
         $color1 = new Zend_Form_Element_Select('color1');
         $color1->setMultiOptions($colorsArray)
                ->setLabel('Цвет Товара')
                ->setRequired(false)
                ->setDecorators(array('ViewHelper'));
-        
-        $color1->setValue($colorsArray[1]);
 
         $color2 = new Zend_Form_Element_Select('color2');
         $color2->setMultiOptions($colorsArray)
                ->setLabel('Цвет Товара')
                ->setRequired(false)
                ->setDecorators(array('ViewHelper'));
-        
-        $color2->setValue($colorsArray[2]);
                 
         $color3 = new Zend_Form_Element_Select('color3');
         $color3->setMultiOptions($colorsArray)
                ->setLabel('Цвет Товара')
                ->setRequired(false)
                ->setDecorators(array('ViewHelper'));
-        
-        $color3->setValue($colorsArray[3]);
              
         $submit = new Zend_Form_Element_Submit('submit_validator');
         $submit->setLabel('Отправить')
                ->setDecorators(array('ViewHelper'));
+			   
+			   
+		$materials = new Zend_Form_Element_Hidden('materials');
+        $materials->setAttrib('id','hidden_materials')
+			      ->setDecorators(array('ViewHelper'));
         $this->addElements(
             array(
                 $title,
@@ -114,7 +113,8 @@ class Product_Form_Add
                 $color1,
                 $color2,
                 $color3,
-                $submit
+                $submit,
+				$materials
             )
         );
     }
