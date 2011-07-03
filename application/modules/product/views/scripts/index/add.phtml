@@ -1,0 +1,245 @@
+<!--<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" id="theme">-->
+<link rel="stylesheet" href="/css/jquery.fileupload-ui.css">
+<script id="template-upload" type="text/x-jquery-tmpl">
+    <tr class="template-upload{{if error}} ui-state-error{{/if}}">
+        <td class="preview"></td>
+        <td class="name">${name}</td>
+        <td class="size">${sizef}</td>
+        {{if error}}
+            <td class="error" colspan="2">Error:
+                {{if error === 'maxFileSize'}}File is too big
+                {{else error === 'minFileSize'}}File is too small
+                {{else error === 'acceptFileTypes'}}Filetype not allowed
+                {{else error === 'maxNumberOfFiles'}}Max number of files exceeded
+                {{else}}${error}
+                {{/if}}
+            </td>
+        {{else}}
+            <td class="progress"><div></div></td>
+            <td class="start"><button>Start</button></td>
+        {{/if}}
+        <td class="cancel"><button>Cancel</button></td>
+    </tr>
+</script>
+<script id="template-download" type="text/x-jquery-tmpl">
+    <tr class="template-download{{if error}} ui-state-error{{/if}}">
+        {{if error}}
+            <td></td>
+            <td class="name">${name}</td>
+            <td class="size">${sizef}</td>
+            <td class="error" colspan="2">Error:
+                {{if error === 1}}File exceeds upload_max_filesize (php.ini directive)
+                {{else error === 2}}File exceeds MAX_FILE_SIZE (HTML form directive)
+                {{else error === 3}}File was only partially uploaded
+                {{else error === 4}}No File was uploaded
+                {{else error === 5}}Missing a temporary folder
+                {{else error === 6}}Failed to write file to disk
+                {{else error === 7}}File upload stopped by extension
+                {{else error === 'maxFileSize'}}File is too big
+                {{else error === 'minFileSize'}}File is too small
+                {{else error === 'acceptFileTypes'}}Filetype not allowed
+                {{else error === 'maxNumberOfFiles'}}Max number of files exceeded
+                {{else error === 'uploadedBytes'}}Uploaded bytes exceed file size
+                {{else error === 'emptyResult'}}Empty file upload result
+                {{else}}${error}
+                {{/if}}
+            </td>
+        {{else}}
+            <td class="preview">
+                {{if thumbnail_url}}
+                    <a href="${url}" target="_blank"><img src="${thumbnail_url}"></a>
+                {{/if}}
+            </td>
+        {{/if}}
+        <td class="delete">
+            <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+        </td>
+        <td class="setAvatar">
+            <button>Сделать основной</button>
+        </td>
+    </tr>
+</script>
+<script>
+jQuery(document).ready(function() {
+	jQuery('[name="submit_validator"]').bind('click',function(event) {
+		event.preventDefault();
+		var form =  jQuery('#mainform');
+		var form_id = jQuery(form).attr('id');
+		var action = jQuery(form).attr('action');
+		
+		jQuery(this).parent().next().html('<div class="preloader"><span>Идет проверка</span></div>');
+		
+		jQuery.post(action, jQuery(form).serialize(),function(data){
+			if(data.error==0) jQuery(form).submit();
+			jQuery('#'+form_id+ ' .not_valid').removeClass('not_valid');
+			jQuery('#'+form_id+ ' .errors').remove();
+			jQuery.each(data.error,function(key,err){
+				var i = '';
+				var token = '<br/>';
+				var textErrors = '';
+				var Ttoken = '';
+				for (i in err) { 
+					textErrors += Ttoken + err[i];
+					Ttoken = token;
+				}
+				if(!jQuery('#'+key).hasClass('not_valid')) {
+					jQuery('#'+key).addClass('not_valid');
+					jQuery('#'+key).parent().next().html('<div class="errors">'+textErrors+'</div>');
+				}			
+			})
+			jQuery('#'+form_id+ ' .preloader').remove();
+		});		
+	});		
+});
+</script>
+<script>
+$(document).ready(function() {
+    jQuery('#addmaterials').bind('click',function(event) {
+        event.preventDefault();
+        var material = $('#materials').val();
+        if(($('.materials').html().replace(' ','').length) == 0) $('.materials').append(material);
+        else $('.materials').append(','+material);
+        $('#mainform').append('<input value="'+material+'" type="hidden">');
+    });
+    $('#category_level1').change( function(){
+        var category_level2 = $('select[name="category_level2"]');
+        $.getJSON('/product/index/get2categorys/parent_id/'+$('#category_level1').val(), function(data) {
+            category_level2.html('');
+            $.each(data, function(i){
+                category_level2.append('<option value="' + i + '">' + this + '</option>');
+            });
+        });
+    });
+    $('#availlable').change( function(){
+        var availlable_val = $('#availlable').val();
+        if(availlable_val == 1)
+            $("#quantity").attr("style", "display:inline");
+        else
+            $("#quantity").attr("style", "display:none");
+    });
+    $('#color1').change( function(){
+        $("#color2 > option[value='"+color1_val+"']").unwrap();
+        $("#color3 > option[value='"+color1_val+"']").unwrap();
+        var color1_val = $('#color1').val();
+        $("#color2 > option[value='"+color1_val+"']").wrap('span').parent().hide();
+        $("#color3 > option[value='"+color1_val+"']").wrap('span').parent().hide();
+    });
+    $('#color2').change( function(){
+        $("#color1 > option[value='"+color2_val+"']").unwrap();
+        $("#color3 > option[value='"+color2_val+"']").unwrap();
+        var color2_val = $('#color2').val();
+        $("#color1 > option[value='"+color2_val+"']").wrap('span').parent().hide();
+        $("#color3 > option[value='"+color2_val+"']").wrap('span').parent().hide();
+    });  
+    $('#color3').change( function(){
+        $("#color1 > option[value='"+color3_val+"']").unwrap();
+        $("#color2 > option[value='"+color3_val+"']").unwrap();
+        var color3_val = $('#color3').val();
+        $("#color1 > option[value='"+color3_val+"']").wrap('span').parent().hide();
+        $("#color2 > option[value='"+color3_val+"']").wrap('span').parent().hide();
+    });  
+});
+</script>
+<div class="styledform" style="margin-top:20px; width: 50%;">
+    <h3>Добавление товара</h3>
+    <form  id="mainform" action="<?=$this->escape($this->form->getAction());?>" method="<?=$this->escape($this->form->getMethod());?>">
+        <table style="width: 50%;">
+            <tr>
+                <td class="label"><?=$this->form->title->getLabel(); ?></td>
+                <td class="data"><?=$this->form->title; ?></td>
+                <td id="mainform_errors"><div class="errors">Пользователь с данным email уже зарегистрирован.</div></td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->category_level1->getLabel(); ?></td>
+                <td class="data"><?=$this->form->category_level1; ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->category_level2->getLabel(); ?></td>
+                <td class="data"><?=$this->form->category_level2; ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->price->getLabel(); ?></td>
+                <td class="data"><?=$this->form->price; ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->description->getLabel(); ?></td>
+                <td class="data"><?=$this->form->description; ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->production_time->getLabel(); ?></td>
+                <td class="data"><?=$this->form->production_time; ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->size->getLabel(); ?></td>
+                <td class="data"><?=$this->form->size; ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->availlable->getLabel(); ?></td>
+                <td class="data">
+                    <?=$this->form->availlable; ?>
+                    <?=$this->form->quantity; ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">материал</td>
+                <td class="data">
+                    <? echo $this->autoComplete("materials", "", array("url"=>"/product/index/ajaxmaterial")); ?>
+                    <button id="addmaterials">Добавить</button>
+                    <div class="materials">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Теги
+                </td>
+                <td class="data">
+                    <?=  $this->autoComplete("tags", "", array("url"=>"/product/index/ajaxtags")); ?>
+                    <button id="addtags">Добавить</button>
+                    <div class="tags">
+                        
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><?=$this->form->color1->getLabel(); ?></td>
+                <td class="data">
+                    <?=$this->form->color1; ?>
+                    <?=$this->form->color2; ?>
+                    <?=$this->form->color3; ?>
+                </td>
+            </tr>
+            </form>
+            <tr>
+                <td>Загрузить фотографии товара</td>
+                <td>
+                    <div id="fileupload">
+                        <form action="/upload.php" method="POST" enctype="multipart/form-data" style="margin: 0;">
+                            <div class="fileupload-buttonbar">
+                                <label class="fileinput-button">
+                                    <span>Add files...</span>
+                                    <input type="file" name="files[]" multiple>
+                                </label>
+                                <button type="submit" class="start">Start upload</button>
+                            </div>
+                        </form>
+                        <div class="fileupload-content">
+                            <table class="files"></table>
+                            <div class="fileupload-progressbar" style="display: none;"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><?=$this->form->submit_validator; ?></td>
+            </tr>
+        </table>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script src="/js/jquery.iframe-transport.js"></script>
+<script src="/js/jquery.fileupload.js"></script>
+<script src="/js//jquery.fileupload-ui.js"></script>
+<script src="/application.js"></script>

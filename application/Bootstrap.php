@@ -42,24 +42,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				));
 		}
 	}
-
-        public function _initJQuery(){
-            //загружаем лэйаут, получаем из него view
-            $this->bootstrap('layout');
-            $layout=$this->getResource('layout');
-            $view=$layout->getView();
-            //добавляем директорию, где лежат view-хелперы jquery
-            $view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
-            //включаем jquery, выбираем версию 1.4.2 и версию ui - 1.8 (последние версии)
-            //они будут загружаться с серверов гугла.
-            //CSS добавляем вручную
-            $view->jQuery()
-            ->setVersion("1.5.1")
-            ->setUiVersion("1.8.14")
-            ->addStylesheet("/css/jquery-ui/ui-lightness/jquery-ui-1.8.14.custom.css")
-            ->uiEnable();
-            return $view; 
-        }
         
 	protected function _initView()
 	{
@@ -85,6 +67,28 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				);
 	}
 
+        /**
+         * Init ZendX_JQuery Helpers
+         * @return type 
+         */
+        public function _initJQuery(){
+            //загружаем лэйаут, получаем из него view
+            $this->bootstrap('layout');
+            $layout=$this->getResource('layout');
+            $view=$layout->getView();
+            //добавляем директорию, где лежат view-хелперы jquery
+            $view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
+            //включаем jquery, выбираем версию 1.4.2 и версию ui - 1.8 (последние версии)
+            //они будут загружаться с серверов гугла.
+            //CSS добавляем вручную
+            $view->jQuery()
+            ->setVersion("1.5.1")
+            ->setUiVersion("1.8.14")
+            ->addStylesheet("/css/jquery-ui/ui-lightness/jquery-ui-1.8.14.custom.css")
+            ->uiEnable();
+            return $view; 
+        }
+        
 //	protected function _initZFDebug()
 //	{
 //		if(!isset($_SERVER['REMOTE_ADDR']) || $_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
