@@ -1,14 +1,54 @@
 <?php
-error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors', 1);
+defined('APPLICATION_PATH')
+    || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
+set_include_path(implode(PATH_SEPARATOR, array(
+    realpath(APPLICATION_PATH . '/../library/'),
+        realpath(APPLICATION_PATH),
+        '../',
+            realpath(APPLICATION_PATH.'/modules/'),
+    get_include_path(),
+)));
+require_once 'Zend/Loader/Autoloader.php';
+$loader = Zend_Loader_Autoloader::getInstance();
+$loader->registerNamespace('App_');
+$loader->setFallbackAutoloader(true);
+
+$fc = Zend_Controller_Front::getInstance();
+$fc->addModuleDirectory(APPLICATION_PATH . '/modules/');
+$modules = $fc->getControllerDirectory();
+#Zend_Debug::dump($modules);
+foreach ($modules AS $module => $dir) {
+        $moduleName = strtolower($module);
+        $moduleName = str_replace(array('-', '.'), ' ', $moduleName);
+        $moduleName = ucwords($moduleName);
+        $moduleName = str_replace(' ', '', $moduleName);
+
+        $loader = new Zend_Application_Module_Autoloader(array(
+                'namespace' => $moduleName,
+                'basePath' => realpath($dir . "/../"),
+                ));
+}
+//if (!$user = Zend_Auth::getInstance()->getIdentity())
+//            throw new Zend_Controller_Action_Exception('Блять залогинся сука нехуй выдумавать');
 class UploadHandler
 {
     private $options;
     
     function __construct($options=null) {
+        $userId = 2;
+        $userUploadDir = __DIR__ . '/images/products/'.$userId.'_cachefiles';
+        $url = '/images/products/'.$userId.'_cachefiles';
+        if(!is_dir($userUploadDir)) {
+            mkdir($userUploadDir);
+        }
+        if(!is_dir($userUploadDir . '/original/')) {
+            mkdir($userUploadDir . '/original/');
+        }
         $this->options = array(
             'script_url' => $_SERVER['PHP_SELF'],
-            'upload_dir' => dirname(__FILE__).'/files/',
-            'upload_url' => '/files/',
+            'upload_dir' => $userUploadDir . '/original/',
+            'upload_url' => $url . '/original/',
             'param_name' => 'files',
             // The php.ini settings upload_max_filesize and post_max_size
             // take precedence over the following max_file_size setting:
@@ -18,25 +58,26 @@ class UploadHandler
             'max_number_of_files' => null,
             'discard_aborted_uploads' => true,
             'image_versions' => array(
-                // Uncomment the following version to restrict the size of
-                // uploaded images. You can also add additional versions with
-                // their own upload directories:
-                /*
-                'large' => array(
-                    'upload_dir' => dirname(__FILE__).'/files/',
-                    'upload_url' => dirname($_SERVER['PHP_SELF']).'/files/',
-                    'max_width' => 1920,
-                    'max_height' => 1200
+                '300x300' => array(
+                    'upload_dir' => $userUploadDir . '/300x300/',
+                    'upload_url' => $url . '/300x300/',
+                    'max_width' => 300,
+                    'max_height' => 300
                 ),
-                */
                 'thumbnail' => array(
-                    'upload_dir' => dirname(__FILE__).'/thumbnails/',
-                    'upload_url' => '/thumbnails/',
+                    'upload_dir' => $userUploadDir . '/thumbnail/',
+                    'upload_url' => $url . '/thumbnail/',
                     'max_width' => 80,
                     'max_height' => 80
                 )
             )
         );
+        foreach($this->options['image_versions'] as $version){
+            $uploadDir = $version['upload_dir'];
+            if(!is_dir($uploadDir)) {
+                mkdir($uploadDir);
+            }
+        }
         if ($options) {
             $this->options = array_merge_recursive($this->options, $options);
         }
@@ -50,6 +91,9 @@ class UploadHandler
             $file->size = filesize($file_path);
             $file->url = $this->options['upload_url'].rawurlencode($file->name);
             foreach($this->options['image_versions'] as $version => $options) {
+                if(!is_dir($options['upload_dir'])) {
+                    mkdir($options['upload_dir']);
+                }
                 if (is_file($options['upload_dir'].$file_name)) {
                     $file->{$version.'_url'} = $options['upload_url']
                         .rawurlencode($file->name);
@@ -299,4 +343,3 @@ switch ($_SERVER['REQUEST_METHOD']) {
     default:
         header('HTTP/1.0 405 Method Not Allowed');
 }
-?>

@@ -51,7 +51,10 @@
             <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
         </td>
         <td class="setAvatar">
-            <button>Сделать основной</button>
+            <button >Сделать основной</button>
+        </td>
+        <td>
+            <input type="text" name="">
         </td>
     </tr>
 </script>
@@ -93,9 +96,13 @@ jQuery(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
-	function trim( str ) {
-		return str.replace(/^[ \t]+|[ \t]+$/g, "");
-	}
+    function trim( str ) {
+            return str.replace(/^[ \t]+|[ \t]+$/g, "");
+    }
+    $(".deltag").click(function(){
+        $(this).parent().remove();
+    })
+
     jQuery('#addmaterials').bind('click',function(event) {
         event.preventDefault();
 		var error = 0;
@@ -105,9 +112,9 @@ $(document).ready(function() {
 		})
 		if(error>0) return false;
 		
-        materials.push($('#materials').val());
-		if(materials.length==1) $('.materials').html(mat+'<a href="javascript:void(0)">Удалить</a>');
-		else $('.materials').append('<span>, '+mat+'<a href="javascript:void(0)">Удалить</a></span>');
+                materials.push($('#materials').val());
+		if(materials.length==1) $('.materials').html('<span>'+mat+'<a href="javascript:void(0)" onclick="$(this).parent().remove(); alert(\' fsdf\');">Удалить</a></span>');
+		else $('.materials').append('<span>, '+mat+'<a href="#" class="deltag">Удалить</a></span>');
     });
     $('#category_level1').change( function(){
         var category_level2 = $('select[name="category_level2"]');
@@ -126,79 +133,26 @@ $(document).ready(function() {
             $("#quantity").attr("style", "display:none");
     });
 	
-	// $('[name="color[]"]').change(function(){
-		// var last_val = $(this).data('last_val');
-		// var value = $(this).val();		
-		// var id = $(this).attr('id');	
-		// $(this).data('last_val',value);
-		// $.each($('[name="color[]"]'),function(i,child){
-			// if($(child).attr('id')!=id) {
-				// $("#"+$(child).attr('id')+" > option[value='"+value+"']").hide();
-			// } else {
-				// $.each($('[name="color[]"]'),function(f,ch){
-					// $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").attr('selected','');
-					// $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").show();
-				// });
-			// }
-		// });
-	// });
-    // $('#color1').change( function(){
-        // $("#color2 > option[value='"+color1_val+"']").unwrap();
-        // $("#color3 > option[value='"+color1_val+"']").unwrap();
-        // var color1_val = $('#color1').val();
-        // $("#color2 > option[value='"+color1_val+"']").wrap('span').parent().hide();
-        // $("#color3 > option[value='"+color1_val+"']").wrap('span').parent().hide();
-    // });
-    // $('#color2').change( function(){
-        // $("#color1 > option[value='"+color2_val+"']").unwrap();
-        // $("#color3 > option[value='"+color2_val+"']").unwrap();
-        // var color2_val = $('#color2').val();
-        // $("#color1 > option[value='"+color2_val+"']").wrap('span').parent().hide();
-        // $("#color3 > option[value='"+color2_val+"']").wrap('span').parent().hide();
-    // });  
-    // $('#color3').change( function(){
-        // $("#color1 > option[value='"+color3_val+"']").unwrap();
-        // $("#color2 > option[value='"+color3_val+"']").unwrap();
-        // var color3_val = $('#color3').val();
-        // $("#color1 > option[value='"+color3_val+"']").wrap('span').parent().hide();
-        // $("#color2 > option[value='"+color3_val+"']").wrap('span').parent().hide();
-    // });  
+     $('[name="color[]"]').change(function(){
+             var last_val = $(this).data('last_val');
+             var value = $(this).val();	
+             if(value != 0) {
+             var id = $(this).attr('id');	
+             $(this).data('last_val',value);
+                 $.each($('[name="color[]"]'),function(i,child){
+                         if($(child).attr('id')!=id) {
+                            $("#"+$(child).attr('id')+" > option[value='"+value+"']").hide();
+                         } else {
+                                 $.each($('[name="color[]"]'),function(f,ch){
+                                         $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").attr('selected','');
+                                         $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").show();
+                                 });
+                         }
+                 });
+             }
+     }); 
 });
 </script>
-
-<?/*
-<div>
-<select id="color1" name="color[]">
-	<option label="Красный" value="1">Красный</option>
-    <option label="Оранжевый" value="2">Оранжевый</option>
-    <option label="Желтый" value="3">Желтый</option>
-    <option label="Зеленый" value="4">Зеленый</option>
-    <option label="Голубой" value="5">Голубой</option>
-    <option label="Синий" value="6">Синий</option>
-    <option label="Фиолетовый" value="7">Фиолетовый</option>
-</select>
-<select id="color2" name="color[]">
-	<option label="Красный" value="1">Красный</option>
-    <option label="Оранжевый" value="2">Оранжевый</option>
-    <option label="Желтый" value="3">Желтый</option>
-    <option label="Зеленый" value="4">Зеленый</option>
-    <option label="Голубой" value="5">Голубой</option>
-    <option label="Синий" value="6">Синий</option>
-    <option label="Фиолетовый" value="7">Фиолетовый</option>
-</select>
-<select id="color3" name="color[]">
-	<option label="Красный" value="1">Красный</option>
-    <option label="Оранжевый" value="2">Оранжевый</option>
-    <option label="Желтый" value="3">Желтый</option>
-    <option label="Зеленый" value="4">Зеленый</option>
-    <option label="Голубой" value="5">Голубой</option>
-    <option label="Синий" value="6">Синий</option>
-    <option label="Фиолетовый" value="7">Фиолетовый</option>
-</select>
-</div>
-*/
-?>
-
 <div class="styledform" style="margin-top:20px; width: 50%;">
     <h3>Добавление товара</h3>
     <form  id="mainform" action="<?=$this->escape($this->form->getAction());?>" method="<?=$this->escape($this->form->getMethod());?>">
@@ -262,11 +216,26 @@ $(document).ready(function() {
                 </td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->color1->getLabel(); ?></td>
+                <td class="label">Цвета</td>
                 <td class="data">
-                    <?=$this->form->color1; ?>
-                    <?=$this->form->color2; ?>
-                    <?=$this->form->color3; ?>
+                <select id="color1" name="color[]">
+                    <option value="0" SELECTED>Выбирите</option>
+                    <? foreach($this->colors as $key => $color): ?>
+                        <option value="<?= $key; ?>"><?= $color; ?></option>
+                    <? endforeach; ?>
+                </select>
+                <select id="color2" name="color[]">
+                    <option value="0" SELECTED>Выбирите</option>
+                    <? foreach($this->colors as $key => $color): ?>
+                        <option value="<?= $key; ?>"><?= $color; ?></option>
+                    <? endforeach; ?>
+                </select>
+                <select id="color3" name="color[]">
+                    <option value="0" SELECTED>Выбирите</option>
+                    <? foreach($this->colors as $key => $color): ?>
+                        <option value="<?= $key; ?>"><?= $color; ?></option>
+                    <? endforeach; ?>
+                </select>
                 </td>
             </tr>
             </form>

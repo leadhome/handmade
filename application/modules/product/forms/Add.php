@@ -66,39 +66,15 @@ class Product_Form_Add
         $quantity = new Zend_Form_Element_Text('quantity');
         $quantity->setLabel('количество')
                  ->setDecorators(array('ViewHelper'));
-        
-        $colorsArray = Doctrine_Query::create()
-                            ->from('Product_Model_Color')
-                            ->orderBy('color_id asc')
-                            ->execute()
-                            ->toKeyValueArray('color_id', 'title');
-        // $colorsArray[0]='Выберите цвет';
-        $color1 = new Zend_Form_Element_Select('color1');
-        $color1->setMultiOptions($colorsArray)
-               ->setLabel('Цвет Товара')
-               ->setRequired(false)
-               ->setDecorators(array('ViewHelper'));
-
-        $color2 = new Zend_Form_Element_Select('color2');
-        $color2->setMultiOptions($colorsArray)
-               ->setLabel('Цвет Товара')
-               ->setRequired(false)
-               ->setDecorators(array('ViewHelper'));
-                
-        $color3 = new Zend_Form_Element_Select('color3');
-        $color3->setMultiOptions($colorsArray)
-               ->setLabel('Цвет Товара')
-               ->setRequired(false)
-               ->setDecorators(array('ViewHelper'));
-             
+               
         $submit = new Zend_Form_Element_Submit('submit_validator');
         $submit->setLabel('Отправить')
                ->setDecorators(array('ViewHelper'));
 			   
 			   
-		$materials = new Zend_Form_Element_Hidden('materials');
+        $materials = new Zend_Form_Element_Hidden('materials');
         $materials->setAttrib('id','hidden_materials')
-			      ->setDecorators(array('ViewHelper'));
+                  ->setDecorators(array('ViewHelper'));
         $this->addElements(
             array(
                 $title,
@@ -110,11 +86,8 @@ class Product_Form_Add
                 $size,
                 $availlable,
                 $quantity,
-                $color1,
-                $color2,
-                $color3,
                 $submit,
-				$materials
+                $materials
             )
         );
     }

@@ -80,6 +80,7 @@ class Product_IndexController
                 
         $form = new Product_Form_Add();
         $form->setAction('/product/index/add')->setMethod('post');
+        $this->view->colors = Product_Model_Color::getMultiOptions();
         
         if ( $this->getRequest()->isPost() ) {
             $values = $form->getValues();
