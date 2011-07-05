@@ -52,12 +52,17 @@ class UploadHandler
     private $options;
     
     function __construct($options=null) {
-        $UserProductPhotos = new Zend_Session_Namespace('UserProductPhotos');
-        if(!$UserProductPhotos->PhotosDir){
-           $UserProductPhotos->PhotosDir = md5(rand(1, 1000)+time()); 
+        $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
+        if($userProductPhotos->type == 'edit') {
+            $productName = $userProductPhotos->productId;
+        } else {
+            if(!$userProductPhotos->PhotosDir){
+               $userProductPhotos->PhotosDir = md5(rand(1, 1000)+time()); 
+            }
+            $productName = $userProductPhotos->PhotosDir;
         }
-        $userUploadDir = __DIR__ . '/images/products/'.$UserProductPhotos->PhotosDir;
-        $url = '/images/products/'.$UserProductPhotos->PhotosDir;
+        $userUploadDir = __DIR__ . '/images/products/'. $productName;
+        $url = '/images/products/'. $productName;
         if(!is_dir($userUploadDir)) {
             mkdir($userUploadDir);
         }
