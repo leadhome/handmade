@@ -152,6 +152,16 @@ $(document).ready(function() {
              }
      }); 
 });
+function showTags(href){
+    var element = jQuery('#mytags');
+    if (element.is(':hidden')) {
+        href.html('Cкрыть');
+        element.show('slow');
+    } else {
+        href.html('Показать все мои теги');
+        element.slideUp();
+    }
+}
 </script>
 <div class="styledform" style="margin-top:20px; width: 50%;">
     <h3>Добавление товара</h3>
@@ -211,6 +221,16 @@ $(document).ready(function() {
                     <button id="addtags">Добавить</button>
                     <div class="tags">
                         
+                    </div>
+                    <a href="javascript:void(0)" onclick="showTags($(this));">Показать все мои теги</a>
+                    <div id="mytags" class="hide" style="display: none;">
+                        <? $fT = false; ?>
+                        <? foreach($this->tags as &$tags): ?>
+                        <span><? if ($fT) echo ', '; ?>
+                            <a href="javascript:void()" onclick="alert('sdfsd');"><?= $tags['Tag']['title']; ?></a>
+                        </span>
+                        <? $fT = true; ?>
+                        <? endforeach; ?>
                     </div>
                 </td>
             </tr>

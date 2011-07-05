@@ -76,12 +76,13 @@ class Product_IndexController
     
     public function addAction()
     {
-        #if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/");
-                
+        if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/");
+        $user = Zend_Auth::getInstance()->getIdentity();
+        
         $form = new Product_Form_Add();
         $form->setAction('/product/index/add')->setMethod('post');
         $this->view->colors = Product_Model_Color::getMultiOptions();
-        
+        $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);
         if ( $this->getRequest()->isPost() ) {
             $values = $form->getValues();
             

@@ -1,5 +1,8 @@
 <?php
 ini_set('display_errors', 1);
+// Define application environment
+defined('APPLICATION_ENV')
+    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
 set_include_path(implode(PATH_SEPARATOR, array(
@@ -9,36 +12,52 @@ set_include_path(implode(PATH_SEPARATOR, array(
             realpath(APPLICATION_PATH.'/modules/'),
     get_include_path(),
 )));
+include_once 'Zend/Config/Ini.php';
+$config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV);
+
 require_once 'Zend/Loader/Autoloader.php';
-$loader = Zend_Loader_Autoloader::getInstance();
-$loader->registerNamespace('App_');
-$loader->setFallbackAutoloader(true);
-
-$fc = Zend_Controller_Front::getInstance();
-$fc->addModuleDirectory(APPLICATION_PATH . '/modules/');
-$modules = $fc->getControllerDirectory();
-#Zend_Debug::dump($modules);
+$autoloader = Zend_Loader_Autoloader::getInstance();
+$autoloader->setFallbackAutoloader(true);
+foreach ($config->autoloadernamespaces as $namespace) {
+    $autoloader->registerNamespace($namespace);
+}
+$frontController = Zend_Controller_Front::getInstance();
+$frontController->addModuleDirectory(APPLICATION_PATH . "/modules");
+$modules = $frontController->getControllerDirectory();
 foreach ($modules AS $module => $dir) {
-        $moduleName = strtolower($module);
-        $moduleName = str_replace(array('-', '.'), ' ', $moduleName);
-        $moduleName = ucwords($moduleName);
-        $moduleName = str_replace(' ', '', $moduleName);
+    $moduleName = strtolower($module);
+    $moduleName = str_replace(array('-', '.'), ' ', $moduleName);
+    $moduleName = ucwords($moduleName);
+    $moduleName = str_replace(' ', '', $moduleName);
 
-        $loader = new Zend_Application_Module_Autoloader(array(
+    new Zend_Application_Module_Autoloader(
+            array(
                 'namespace' => $moduleName,
                 'basePath' => realpath($dir . "/../"),
-                ));
+                )
+            );
 }
-//if (!$user = Zend_Auth::getInstance()->getIdentity())
-//            throw new Zend_Controller_Action_Exception('Блять залогинся сука нехуй выдумавать');
+
+/** Init Doctrine Manager **/
+spl_autoload_register(array('Doctrine_Core', 'autoload'));
+Doctrine_Manager::connection($config->resources->doctrine->connections->default->dsn, 'default');
+$manager = Doctrine_Manager::getInstance();
+$manager->setAttribute(Doctrine_Core::ATTR_MODEL_LOADING, ZFDoctrine_Core::MODEL_LOADING_ZEND);
+foreach ($config->resources->doctrine->manager as $attribute => $value) {
+    $manager->setAttribute($attribute, $value);
+}
+Doctrine_Manager::connection()->setCharset('utf8');
 class UploadHandler
 {
     private $options;
     
     function __construct($options=null) {
-        $userId = 2;
-        $userUploadDir = __DIR__ . '/images/products/'.$userId.'_cachefiles';
-        $url = '/images/products/'.$userId.'_cachefiles';
+        $UserProductPhotos = new Zend_Session_Namespace('UserProductPhotos');
+        if(!$UserProductPhotos->PhotosDir){
+           $UserProductPhotos->PhotosDir = md5(rand(1, 1000)+time()); 
+        }
+        $userUploadDir = __DIR__ . '/images/products/'.$UserProductPhotos->PhotosDir;
+        $url = '/images/products/'.$UserProductPhotos->PhotosDir;
         if(!is_dir($userUploadDir)) {
             mkdir($userUploadDir);
         }
