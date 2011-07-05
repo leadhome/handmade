@@ -79,8 +79,10 @@ class Product_IndexController
         if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/");
         $user = Zend_Auth::getInstance()->getIdentity();
         
-        $form = new Product_Form_Add();
-        $form->setAction('/product/index/add')->setMethod('post');
+        $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
+        $userProductPhotos->type = 'add';
+        
+        $form = new Product_Form_Product();
         $this->view->colors = Product_Model_Color::getMultiOptions();
         $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);
         if ( $this->getRequest()->isPost() ) {
@@ -101,6 +103,54 @@ class Product_IndexController
        } else $this->view->form = $form;
     }
     
+    public function editAction()
+    {    
+        if (!Zend_Auth::getInstance()->hasIdentity())
+                throw new Exception('Вы не авторизорованый пользователь');
+        $user = Zend_Auth::getInstance()->getIdentity();
+        
+        if( ($productId = $this->_getParam('productId', 0)) == 0)
+                throw new Exception('Не указан индификатор продукта');
+        $productId = (int) $productId;
+        
+        $product = Product_Model_ProductTable::getInstance()->findoneByproduct_id($productId);
+        if(!$product)
+                throw new Exception('По данному индефекатору не найдено не одного продукта');
+        
+        if($product->user_id != $user->user_id)
+                throw new Exception('Вы не имеете прав на редактирование данного товара');
+        
+        $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
+        $userProductPhotos->type = 'edit';
+        $userProductPhotos->productId = $product;
+        $this->view->product = $product;
+        
+        if ( $this->getRequest()->isPost() ) {
+            $values = $form->getValues();
+            
+            if ($form->isValid($values)) {   
+                $this->view->error = 0;
+                if (!$this->getRequest()->isXmlHttpRequest()) {
+
+                }
+            } else {
+                    if ($this->getRequest()->isXmlHttpRequest()) {
+                            $this->view->error = $form->getMessages();
+                    } else {
+                            $form = new Product_Form_Product($this->getRequest()->getPost());
+                            $this->view->form = $form;
+                            $this->view->colors = Product_Model_Color::getMultiOptions();
+                            $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);
+                    }
+            }
+       } else {
+            $form = new Product_Form_Product($product->toArray());
+            $this->view->colors = Product_Model_Color::getMultiOptions();
+            $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);  
+            $this->view->form = $form;
+       }
+    }
+    
     public function publishAction()
     {
         $user = Zend_Auth::getInstance()->getIdentity();
@@ -113,7 +163,7 @@ class Product_IndexController
         if($product->published == 0) $product->published = 1;
         else $product->published = 0;
         $product->save();
-        $this->_redirect('');
+        $this->_redirect($_SERVER['HTTP_REFERER']);
     }
 }
 
