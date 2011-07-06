@@ -16,6 +16,6 @@ class Product_Model_CategoryTable extends Doctrine_Table
         return Doctrine_Core::getTable('Product_Model_Category');
     }
 	public function getCategories() {
-		return self::getInstance()->createQuery()->orderBy('parent_id ASC')->execute();
+		return $this->createQuery()->orderBy('parent_id ASC')->execute();
 	}
 }

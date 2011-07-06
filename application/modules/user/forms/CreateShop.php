@@ -1,7 +1,6 @@
 <?php
 class User_Form_CreateShop extends Zend_Form {
 	public function init() {
-		$helper = new Inc_Helper_ConvertArray();
 		$this->setAction('/user/shop/createshop')
 	         ->setMethod('post')
              ->setAttrib('id', 'user_form_createshop');
@@ -31,14 +30,13 @@ class User_Form_CreateShop extends Zend_Form {
 				 ->setDecorators(array('ViewHelper'));
 		
 		//Способы оплаты
-		$payment_lists = User_Model_PaymentTable::getInstance()->findAll()->toArray();
+		$payment_lists = User_Model_PaymentTable::getInstance()->findAll();
 		$payments = new Zend_Form_Element_MultiCheckbox('payments');
-
-		$payments->setMultiOptions($helper->getArray($payment_lists,array('fields'=>array('title'),'key'=>'payment_id')))
+		$payments->setMultiOptions($payment_lists->toKeyValueArray('payment_id', 'title'))
 				 ->setLabel('Выберите способ оплаты для вашего магазина:')
 				 ->setRequired(true)
 				 ->setAttrib('id', $this->getAttrib('id').'_payments')
-				 ->setValue($helper->getArray($payment_lists,array('fields'=>array('payment_id'))))
+				 ->setValue($payment_lists->toKeyValueArray('title', 'payment_id'))
 				 ->addFilter('StripTags')
 			     ->addFilter('StringTrim')
 				 ->setDecorators(array('ViewHelper'));
@@ -54,14 +52,14 @@ class User_Form_CreateShop extends Zend_Form {
 									 ->setDecorators(array('ViewHelper'));
 		
 		//Способы доставки
-		$delivery_lists = User_Model_DeliveryTable::getInstance()->findAll()->toArray();
+		$delivery_lists = User_Model_DeliveryTable::getInstance()->findAll();
 		$delivery = new Zend_Form_Element_MultiCheckbox('delivery');
 
-		$delivery->setMultiOptions($helper->getArray($delivery_lists,array('fields'=>array('title'),'key'=>'delivery_id')))
+		$delivery->setMultiOptions($delivery_lists->toKeyValueArray('delivery_id', 'title'))
 				 ->setLabel('Выберите способ доставки для вашего магазина:')
 				 ->setRequired(true)
 				 ->setAttrib('id', $this->getAttrib('id').'_delivery')
-				 ->setValue($helper->getArray($delivery_lists,array('fields'=>array('delivery_id'))))
+				 ->setValue($delivery_lists->toKeyValueArray('title', 'delivery_id'))
 				 ->addFilter('StripTags')
 			     ->addFilter('StringTrim')
 				 ->setDecorators(array('ViewHelper'));
@@ -79,6 +77,7 @@ class User_Form_CreateShop extends Zend_Form {
 		//Информация о магазине
 		$about = new Zend_Form_Element_Textarea('about');
 		$about->setLabel('Информация о магазине')
+			  ->setRequired(true)
 			  ->setAttrib('id',$this->getAttrib('id').'_about')
 			  ->setAttrib('cols','2')
 			  ->setAttrib('rows','3')
@@ -89,6 +88,7 @@ class User_Form_CreateShop extends Zend_Form {
 		//Информация об условиях возврата
 		$return = new Zend_Form_Element_Textarea('return');
 		$return->setLabel('Укажите условия возврата')
+		       ->setRequired(true)
 			   ->setAttrib('id',$this->getAttrib('id').'_return')
 			   ->setAttrib('cols','2')
 			   ->setAttrib('rows','3')
