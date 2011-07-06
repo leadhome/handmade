@@ -12,5 +12,12 @@
  */
 class Product_Model_TagProduct extends Product_Model_Base_TagProduct
 {
-
+    public static function getTagsArray($userId)
+    {
+        return Doctrine_Query::create()
+                    ->from('Product_Model_TagProduct rel')
+                    ->leftJoin('rel.Tag')
+                    ->where('rel.user_id = ?', $userId)
+                    ->fetchArray();
+    }
 }

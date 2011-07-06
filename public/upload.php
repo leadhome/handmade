@@ -1,14 +1,78 @@
 <?php
-error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors', 1);
+// Define application environment
+defined('APPLICATION_ENV')
+    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
+defined('APPLICATION_PATH')
+    || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
+set_include_path(implode(PATH_SEPARATOR, array(
+    realpath(APPLICATION_PATH . '/../library/'),
+        realpath(APPLICATION_PATH),
+        '../',
+            realpath(APPLICATION_PATH.'/modules/'),
+    get_include_path(),
+)));
+include_once 'Zend/Config/Ini.php';
+$config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV);
+
+require_once 'Zend/Loader/Autoloader.php';
+$autoloader = Zend_Loader_Autoloader::getInstance();
+$autoloader->setFallbackAutoloader(true);
+foreach ($config->autoloadernamespaces as $namespace) {
+    $autoloader->registerNamespace($namespace);
+}
+$frontController = Zend_Controller_Front::getInstance();
+$frontController->addModuleDirectory(APPLICATION_PATH . "/modules");
+$modules = $frontController->getControllerDirectory();
+foreach ($modules AS $module => $dir) {
+    $moduleName = strtolower($module);
+    $moduleName = str_replace(array('-', '.'), ' ', $moduleName);
+    $moduleName = ucwords($moduleName);
+    $moduleName = str_replace(' ', '', $moduleName);
+
+    new Zend_Application_Module_Autoloader(
+            array(
+                'namespace' => $moduleName,
+                'basePath' => realpath($dir . "/../"),
+                )
+            );
+}
+
+/** Init Doctrine Manager **/
+spl_autoload_register(array('Doctrine_Core', 'autoload'));
+Doctrine_Manager::connection($config->resources->doctrine->connections->default->dsn, 'default');
+$manager = Doctrine_Manager::getInstance();
+$manager->setAttribute(Doctrine_Core::ATTR_MODEL_LOADING, ZFDoctrine_Core::MODEL_LOADING_ZEND);
+foreach ($config->resources->doctrine->manager as $attribute => $value) {
+    $manager->setAttribute($attribute, $value);
+}
+Doctrine_Manager::connection()->setCharset('utf8');
 class UploadHandler
 {
     private $options;
     
     function __construct($options=null) {
+        $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
+        if($userProductPhotos->type == 'edit') {
+            $productName = $userProductPhotos->productId;
+        } else {
+            if(!$userProductPhotos->PhotosDir){
+               $userProductPhotos->PhotosDir = md5(rand(1, 1000)+time()); 
+            }
+            $productName = $userProductPhotos->PhotosDir;
+        }
+        $userUploadDir = __DIR__ . '/images/products/'. $productName;
+        $url = '/images/products/'. $productName;
+        if(!is_dir($userUploadDir)) {
+            mkdir($userUploadDir);
+        }
+        if(!is_dir($userUploadDir . '/original/')) {
+            mkdir($userUploadDir . '/original/');
+        }
         $this->options = array(
             'script_url' => $_SERVER['PHP_SELF'],
-            'upload_dir' => dirname(__FILE__).'/files/',
-            'upload_url' => '/files/',
+            'upload_dir' => $userUploadDir . '/original/',
+            'upload_url' => $url . '/original/',
             'param_name' => 'files',
             // The php.ini settings upload_max_filesize and post_max_size
             // take precedence over the following max_file_size setting:
@@ -18,25 +82,26 @@ class UploadHandler
             'max_number_of_files' => null,
             'discard_aborted_uploads' => true,
             'image_versions' => array(
-                // Uncomment the following version to restrict the size of
-                // uploaded images. You can also add additional versions with
-                // their own upload directories:
-                /*
-                'large' => array(
-                    'upload_dir' => dirname(__FILE__).'/files/',
-                    'upload_url' => dirname($_SERVER['PHP_SELF']).'/files/',
-                    'max_width' => 1920,
-                    'max_height' => 1200
+                '300x300' => array(
+                    'upload_dir' => $userUploadDir . '/300x300/',
+                    'upload_url' => $url . '/300x300/',
+                    'max_width' => 300,
+                    'max_height' => 300
                 ),
-                */
                 'thumbnail' => array(
-                    'upload_dir' => dirname(__FILE__).'/thumbnails/',
-                    'upload_url' => '/thumbnails/',
+                    'upload_dir' => $userUploadDir . '/thumbnail/',
+                    'upload_url' => $url . '/thumbnail/',
                     'max_width' => 80,
                     'max_height' => 80
                 )
             )
         );
+        foreach($this->options['image_versions'] as $version){
+            $uploadDir = $version['upload_dir'];
+            if(!is_dir($uploadDir)) {
+                mkdir($uploadDir);
+            }
+        }
         if ($options) {
             $this->options = array_merge_recursive($this->options, $options);
         }
@@ -50,6 +115,9 @@ class UploadHandler
             $file->size = filesize($file_path);
             $file->url = $this->options['upload_url'].rawurlencode($file->name);
             foreach($this->options['image_versions'] as $version => $options) {
+                if(!is_dir($options['upload_dir'])) {
+                    mkdir($options['upload_dir']);
+                }
                 if (is_file($options['upload_dir'].$file_name)) {
                     $file->{$version.'_url'} = $options['upload_url']
                         .rawurlencode($file->name);
@@ -299,4 +367,3 @@ switch ($_SERVER['REQUEST_METHOD']) {
     default:
         header('HTTP/1.0 405 Method Not Allowed');
 }
-?>

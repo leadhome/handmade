@@ -12,5 +12,12 @@
  */
 class Product_Model_Color extends Product_Model_Base_Color
 {
-
+    public static function getMultiOptions()
+    {
+        return Doctrine_Query::create()
+               ->from('Product_Model_Color')
+               ->orderBy('color_id asc')
+               ->execute()
+               ->toKeyValueArray('color_id', 'title');
+    }
 }

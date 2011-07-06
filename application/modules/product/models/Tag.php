@@ -12,5 +12,4 @@
  */
 class Product_Model_Tag extends Product_Model_Base_Tag
 {
-
 }

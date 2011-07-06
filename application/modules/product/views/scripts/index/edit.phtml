@@ -163,8 +163,14 @@ function showTags(href){
     }
 }
 </script>
+<a href="<?= $this->url(array(
+                            'module'=>'product',
+                            'controller'=>'index',
+                            'action'=>'publish',
+                            'productId'=>$this->product->product_id
+                        )); ?>"><?= $this->product->published ? 'Снять товар с публикации' : 'Публиковать товар'; ?></a>
 <div class="styledform" style="margin-top:20px; width: 50%;">
-    <h3>Добавление товара</h3>
+    <h3>Редактирование товара</h3>
     <form  id="mainform" action="<?=$this->escape($this->form->getAction());?>" method="<?=$this->escape($this->form->getMethod());?>">
         <table style="width: 50%;">
             <tr>

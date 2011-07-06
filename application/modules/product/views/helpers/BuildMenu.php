@@ -12,6 +12,6 @@ class Product_View_Helper_BuildMenu extends Zend_View_Helper_Abstract {
 								);
 			}
 		}
-		return $menu;
+		return @$menu;
 	}
 }
