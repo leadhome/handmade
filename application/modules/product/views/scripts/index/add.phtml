@@ -97,12 +97,17 @@ jQuery(document).ready(function() {
 <script>
 $(document).ready(function() {
     function trim( str ) {
-            return str.replace(/^[ \t]+|[ \t]+$/g, "");
+        return str.replace(/^[ \t]+|[ \t]+$/g, "");
     }
-    $(".deltag").click(function(){
-        $(this).parent().remove();
-    })
-
+    $('.deltag').live('click',function() {
+		var key = this.name;
+			key = key.replace(/[^>]*_/i,"");
+			key = parseInt(key);
+			key = (isNaN(key)) ? 0 : key;
+			materials[key]='';
+			$(this).parent().remove();
+    });
+	var count_material = 0;
     jQuery('#addmaterials').bind('click',function(event) {
         event.preventDefault();
 		var error = 0;
@@ -112,9 +117,14 @@ $(document).ready(function() {
 		})
 		if(error>0) return false;
 		
-                materials.push($('#materials').val());
-		if(materials.length==1) $('.materials').html('<span>'+mat+'<a href="javascript:void(0)" onclick="$(this).parent().remove(); alert(\' fsdf\');">Удалить</a></span>');
-		else $('.materials').append('<span>, '+mat+'<a href="#" class="deltag">Удалить</a></span>');
+		console.log(count_material);
+		
+		materials[count_material] = $('#materials').val();		
+		
+		// $('.materials').html('<span>'+mat+'<a href="javascript:void(0)" name="material_'+count_material+'" class="deltag">Удалить</a></span>');
+		// if(materials.length==1) $('.materials').html('<span>'+mat+'<a href="javascript:void(0)" name="material_'+count_material+'" class="deltag">Удалить</a></span>');
+		// else $('.materials').append('<span>, '+mat+'<a name="material_'+count_material+'" href="javascript:void(0)" class="deltag">Удалить</a></span>');
+		count_material++;
     });
     $('#category_level1').change( function(){
         var category_level2 = $('select[name="category_level2"]');
@@ -133,24 +143,44 @@ $(document).ready(function() {
             $("#quantity").attr("style", "display:none");
     });
 	
-     $('[name="color[]"]').change(function(){
-             var last_val = $(this).data('last_val');
-             var value = $(this).val();	
-             if(value != 0) {
-             var id = $(this).attr('id');	
-             $(this).data('last_val',value);
-                 $.each($('[name="color[]"]'),function(i,child){
-                         if($(child).attr('id')!=id) {
-                            $("#"+$(child).attr('id')+" > option[value='"+value+"']").hide();
-                         } else {
-                                 $.each($('[name="color[]"]'),function(f,ch){
-                                         $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").attr('selected','');
-                                         $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").show();
-                                 });
-                         }
-                 });
-             }
-     }); 
+	$('[name="color[]"]').change(function(){
+		if(this.value == 0) return false;
+		var last_val = $(this).data('last_val');
+		var value = $(this).val();    
+		var id = $(this).attr('id');  
+		$(this).data('last_val',value);
+		$.each($('[name="color[]"]'),function(i,child){
+			if($(child).attr('id')!=id) {
+				$("#"+$(child).attr('id')+" > option[value='"+value+"']").hide();
+			} else {
+				$.each($('[name="color[]"]'),function(f,ch){
+				$("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").attr('selected','');
+				$("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").show();
+				});
+			}
+		});
+	});
+	
+	
+	
+     // $('[name="color[]"]').change(function(){
+             // var last_val = $(this).data('last_val');
+             // var value = $(this).val();	
+             // if(value != 0) {
+             // var id = $(this).attr('id');	
+             // $(this).data('last_val',value);
+                 // $.each($('[name="color[]"]'),function(i,child){
+                         // if($(child).attr('id')!=id) {
+                            // $("#"+$(child).attr('id')+" > option[value='"+value+"']").hide();
+                         // } else {
+                                 // $.each($('[name="color[]"]'),function(f,ch){
+                                         // $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").attr('selected','');
+                                         // $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").show();
+                                 // });
+                         // }
+                 // });
+             // }
+     // }); 
 });
 function showTags(href){
     var element = jQuery('#mytags');
@@ -238,19 +268,21 @@ function showTags(href){
                 <td class="label">Цвета</td>
                 <td class="data">
                 <select id="color1" name="color[]">
-                    <option value="0" SELECTED>Выбирите</option>
+                   <?
+					 // <option value="0" SELECTED>Выбирите</option>
+				   ?>
                     <? foreach($this->colors as $key => $color): ?>
                         <option value="<?= $key; ?>"><?= $color; ?></option>
                     <? endforeach; ?>
                 </select>
                 <select id="color2" name="color[]">
-                    <option value="0" SELECTED>Выбирите</option>
+                   
                     <? foreach($this->colors as $key => $color): ?>
                         <option value="<?= $key; ?>"><?= $color; ?></option>
                     <? endforeach; ?>
                 </select>
                 <select id="color3" name="color[]">
-                    <option value="0" SELECTED>Выбирите</option>
+                   
                     <? foreach($this->colors as $key => $color): ?>
                         <option value="<?= $key; ?>"><?= $color; ?></option>
                     <? endforeach; ?>
