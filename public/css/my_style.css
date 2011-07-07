@@ -329,3 +329,9 @@ a.not_active {
 .input_create_shop {
 	width:400px;
 }
+.create_shop .data {
+	width:400px;
+}
+.create_shop .errors {
+	margin-left:10px;
+}

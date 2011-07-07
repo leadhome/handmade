@@ -20,10 +20,13 @@ jQuery(document).ready(function() {
 					textErrors += Ttoken + err[i];
 					Ttoken = token;
 				}
-				if(!jQuery('#'+form_id+'_'+key).hasClass('not_valid')) {
+				if(jQuery('#'+form_id+'_'+key).length) {
 					jQuery('#'+form_id+'_'+key).addClass('not_valid');
-					jQuery('#'+form_id+'_'+key).parent().next().html('<div class="errors">'+textErrors+'</div>');
-				}			
+					jQuery('#'+form_id+'_'+key).parent().next().html('<div class="errors">'+textErrors+'</div>');							
+				} else {
+					jQuery(jQuery('#'+form_id+' [name="'+key+'[]"]').parents('td')[0]).addClass('not_valid');
+					jQuery(jQuery('#'+form_id+' [name="'+key+'[]"]').parents('td')[0]).next().html('<div class="errors">'+textErrors+'</div>');	
+				}
 			})
 			jQuery('#'+form_id+ ' .preloader').remove();
 		});		

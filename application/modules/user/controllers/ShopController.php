@@ -4,6 +4,7 @@ class User_ShopController extends Zend_Controller_Action {
         /* Initialize action controller here */
 		$this->_helper->layout->setLayout('default');
 		$this->_helper->AjaxContext()->addActionContext('ajaxuniquefield', 'json')->initContext('json');
+		$this->_helper->AjaxContext()->addActionContext('editshop', 'json')->initContext('json');
     }
 
     public function indexAction() {		
@@ -24,32 +25,41 @@ class User_ShopController extends Zend_Controller_Action {
 	}
 	
 
-    public function createshopAction() {
+    public function editshopAction() {
 		$auth = Zend_Auth::getInstance();
 		if(!$auth->hasIdentity()) {
 			//редирект на авторизацию
 			$this->_redirect("/user/index/login");
 		}
 		$this->view->headTitle('Создание магазина');
-		$create_shop_form = new User_Form_CreateShop();
+		$edit_shop_form = new User_Form_EditShop();
 		
 		if($this->getRequest()->isPost()) {
 			$form_data = $this->getRequest()->getPost();
-			if($create_shop_form->isValid($form_data)) {  
-			
+			if($edit_shop_form->isValid($form_data)) {        
+				$this->view->error = 0;
+				if (!$this->getRequest()->isXmlHttpRequest()) {
+					// запись в БД
+					// $user = User_Model_UserTable::getInstance()->getRecord();
+					// $user->email = $form_data["email"];
+					// $user->password = md5($form_data["password"]);
+					// $user->group_id = 1;
+					// $user->tarif_id = 1;
+					// $user->rating = 0;
+					// $user->summ = 0;
+					// $user->save();
+					
+                }
+			} else {
+				if ($this->getRequest()->isXmlHttpRequest()) {
+					$this->view->error = $edit_shop_form->getMessages();
+				} else {
+					$this->view->form = $edit_shop_form;
+				}
 			}
+		} else {
+			$this->view->form = $edit_shop_form;
 		}
-		// if($_POST) {
-			// echo '<pre>';
-				// print_r($_POST);
-			// echo '</pre>';
-			// die();
-			
-		// }
-		$this->view->form = $create_shop_form;
-		
-		
-		
     }
 }
 
