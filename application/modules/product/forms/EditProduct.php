@@ -8,7 +8,7 @@
  * @author Patsura Dmitiry <zaets28rus@gmail.com>
  * @data 2011.06.28
  */
-class Product_Form_Product
+class Product_Form_EditProduct
     extends ZendX_JQuery_Form
 {
     public function init()
@@ -18,19 +18,12 @@ class Product_Form_Product
               ->addFilter('StripTags')
               ->setLabel('Наименование')
               ->setDecorators(array('ViewHelper'));
-        $title->addValidators(array(
-                array('NotEmpty', true),
-                array('stringLength', false, array(6, 255)),
-        ));
-            
-        $categories = Doctrine_Query::create()
+                
+        $category1Array = Doctrine_Query::create()
                             ->from('Product_Model_Category')
                             ->where('parent_id IS NULL')
-                            ->fetchArray();
-        $category1Array[0] = 'Выберите категорию';
-        foreach($categories as $category){
-            $category1Array[$category['category_id']] = $category['title'];
-        }
+                            ->execute()
+                            ->toKeyValueArray('category_id', 'title');
         
         $category1 = new Zend_Form_Element_Select('category_level1');
         $category1->setMultiOptions($category1Array)
@@ -40,8 +33,7 @@ class Product_Form_Product
         $category2 = new Zend_Form_Element_Select('category_level2');
         $category2->setMultiOptions(array('Выбирите категорию'))
                   ->setLabel('Выберите подкатегорию')
-                  ->setDecorators(array('ViewHelper'))
-                  ->setRequired(false);
+                  ->setDecorators(array('ViewHelper'));
         
         $price = new Zend_Form_Element_Text('price');
         $price->setRequired(TRUE)

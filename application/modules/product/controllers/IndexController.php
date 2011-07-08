@@ -28,7 +28,6 @@ class Product_IndexController
         foreach ($res as $re) {
         $result[]=$re;
         }
-        #Zend_Debug::dump($result);
         echo $this->_helper->json($result);
         } else $this->_redirect('/');
     }
@@ -76,22 +75,67 @@ class Product_IndexController
     
     public function addAction()
     {
-        if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/");
+        if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
         $user = Zend_Auth::getInstance()->getIdentity();
         
         $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
         $userProductPhotos->type = 'add';
+        #Zend_Debug::dump($userProductPhotos->photos);
         
         $form = new Product_Form_Product();
+        
+        if (!$this->getRequest()->isXmlHttpRequest()) {
         $this->view->colors = Product_Model_Color::getMultiOptions();
         $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);
+        }
         if ( $this->getRequest()->isPost() ) {
             $values = $form->getValues();
-            
-            if ($form->isValid($values)) {   
+            $post = $this->getRequest()->getPost();
+            $form->populate($this->getRequest()->getPost());
+            if($post['category_level1']) {
+                $categories = Doctrine_Query::create()
+                                    ->from('Product_Model_Category')
+                                    ->where('parent_id = ?', $post['category_level1'])
+                                    ->fetchArray();
+                foreach($categories as $category){
+                    $category2Array[$category['category_id']] = $category['title'];
+                }
+                $form->getElement('category_level2')->setMultiOptions($category2Array);
+            }
+            if ($form->isValid($post)) {   
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
-
+                    $product = new Product_Model_Product();
+                    $product->category_id = $post['category_level2'];
+                    $product->title = $post['title'];
+                    $product->user_id = $user->user_id;
+                    $product->description = $post['description'];
+                    $product->production_time = $post['production_time'];
+                    $product->size = $post['size'];
+                    $product->price = $post['price'];
+                    
+                    $photos = array();
+                    $photos = $userProductPhotos->photos;
+                    $product->photos = serialize($photos); 
+                            
+                    $product->availlable_id = $post['availlable'];
+                    $product->quantity = $post['quantity'];
+                    $product->published = 1;
+                    $product->save();
+                    
+                    $productId = $product->get('product_id');
+                    $pathtoimages = APPLICATION_PATH . '/../public/images/products/' . $product->category_id . '/' . $user->user_id . '/' . $productId;
+                    if(!is_dir($pathtoimages)) {
+                        mkdir($pathtoimages, 0777, true);
+                    }
+                    $userUploadDir = APPLICATION_PATH . '/../public/images/products/' . $userProductPhotos->PhotosDir;
+                    $output = shell_exec('mv '.$userUploadDir.' '.$userUploadDir.' '); 
+                    echo $output;
+                    $userProductPhotos->photos == array();
+                    unset($userProductPhotos->PhotosDir);
+                    #rmdir($userUploadDir);
+                    die($userUploadDir);
+                    $this->_redirect('/');
                 }
             } else {
                     if ($this->getRequest()->isXmlHttpRequest()) {
@@ -112,17 +156,23 @@ class Product_IndexController
         if( ($productId = $this->_getParam('productId', 0)) == 0)
                 throw new Exception('Не указан индификатор продукта');
         $productId = (int) $productId;
-        
-        $product = Product_Model_ProductTable::getInstance()->findoneByproduct_id($productId);
-        if(!$product)
-                throw new Exception('По данному индефекатору не найдено не одного продукта');
-        
-        if($product->user_id != $user->user_id)
-                throw new Exception('Вы не имеете прав на редактирование данного товара');
-        
+              
         $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
         $userProductPhotos->type = 'edit';
+
+        $product = Product_Model_ProductTable::getInstance()->findoneByproduct_id($productId);
+        if(!$product)
+            throw new Exception('По данному индефекатору не найдено не одного продукта');
+
+        if($product->user_id != $user->user_id)
+            throw new Exception('Вы не имеете прав на редактирование данного товара');
+
+        $form = new Product_Form_EditProduct();
+        $form->populate($product->toArray());
         $userProductPhotos->productId = $product;
+        $this->view->colors = Product_Model_Color::getMultiOptions();
+        $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);  
+        $this->view->form = $form;
         $this->view->product = $product;
         
         if ( $this->getRequest()->isPost() ) {
@@ -131,23 +181,13 @@ class Product_IndexController
             if ($form->isValid($values)) {   
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
-
+                    
                 }
             } else {
                     if ($this->getRequest()->isXmlHttpRequest()) {
-                            $this->view->error = $form->getMessages();
-                    } else {
-                            $form = new Product_Form_Product($this->getRequest()->getPost());
-                            $this->view->form = $form;
-                            $this->view->colors = Product_Model_Color::getMultiOptions();
-                            $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);
+                            $this->view->error = $form->getMessages();       
                     }
             }
-       } else {
-            $form = new Product_Form_Product($product->toArray());
-            $this->view->colors = Product_Model_Color::getMultiOptions();
-            $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);  
-            $this->view->form = $form;
        }
     }
     
@@ -167,3 +207,21 @@ class Product_IndexController
     }
 }
 
+function rec_copy ($from_path, $to_path) {
+mkdir($to_path, 0777);
+$this_path = getcwd();
+if (is_dir($from_path)) {
+chdir($from_path);
+$handle=opendir('.');
+while (($file = readdir($handle))!==false) {
+if (($file != ".") && ($file != "..")) {
+if (is_dir($file)) {
+rec_copy ($from_path.$file."/", $to_path.$file."/");
+chdir($from_path);
+}
+if (is_file($file)) copy($from_path.$file, $to_path.$file);
+}
+}
+closedir($handle);
+}
+}

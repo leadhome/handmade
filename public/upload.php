@@ -50,21 +50,28 @@ Doctrine_Manager::connection()->setCharset('utf8');
 class UploadHandler
 {
     private $options;
-    
+    protected $_session;
+
+
     function __construct($options=null) {
         $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
+        $this->_session = $userProductPhotos;
+        $user = Zend_Auth::getInstance()->getIdentity();
+        if(!$user)
+            throw new Zend_Exception('Вы не авторитизованы');
+        
         if($userProductPhotos->type == 'edit') {
-            $productName = $userProductPhotos->productId;
+            $productName = $userProductPhotos->productId.'/_cached';
         } else {
             if(!$userProductPhotos->PhotosDir){
-               $userProductPhotos->PhotosDir = md5(rand(1, 1000)+time()); 
+               $userProductPhotos->PhotosDir = md5(rand(1, 100000000)+time()); 
             }
             $productName = $userProductPhotos->PhotosDir;
         }
-        $userUploadDir = __DIR__ . '/images/products/'. $productName;
-        $url = '/images/products/'. $productName;
+        $userUploadDir = __DIR__ . '/images/products/' . $productName;
+        $url = '/images/products/' . $productName;
         if(!is_dir($userUploadDir)) {
-            mkdir($userUploadDir);
+            mkdir($userUploadDir, 0777, true);
         }
         if(!is_dir($userUploadDir . '/original/')) {
             mkdir($userUploadDir . '/original/');
@@ -132,10 +139,16 @@ class UploadHandler
     }
     
     private function get_file_objects() {
-        return array_values(array_filter(array_map(
+        $photos = array_values(array_filter(array_map(
             array($this, 'get_file_object'),
             scandir($this->options['upload_dir'])
         )));
+        if(count($this->_session->photos) == 0 && count($photos) > 0) {
+            foreach($photos as $photo){
+                $this->_session->photos[] = $photo->name;
+            }
+        }
+        return $photos;
     }
 
     private function create_scaled_image($file_name, $options) {
@@ -266,6 +279,8 @@ class UploadHandler
             $file->delete_url = $this->options['script_url']
                 .'?file='.rawurlencode($file->name);
             $file->delete_type = 'DELETE';
+            $this->_session->photos[] = $file->name;
+            
         } else {
             $file->error = $error;
         }
@@ -340,6 +355,12 @@ class UploadHandler
                 if (is_file($file)) {
                     unlink($file);
                 }
+            }
+        }
+        if(count($this->_session->photos) > 0 ) {
+            foreach($this->_session->photos as $key => $photo){
+                if($photo == $_REQUEST['file'])
+                    unset($this->_session->photos[$key]);
             }
         }
         header('Content-type: application/json');
