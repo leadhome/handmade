@@ -47,6 +47,27 @@ class Product_IndexController
     
     public function addAction()
     {
+		// eb7007dd03fc847cb028d6279cf73318
+		// $category_id = 75;
+		// $user_id = 1;
+		// $productId = 8;
+
+		// $pathtoimages = '/home/lime/public_html/handmade/public/images/products/' . $category_id . '/' . $user_id . '/' . $productId;
+		// if(!is_dir($pathtoimages)) {
+			// mkdir($pathtoimages, 0777, true);
+			// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/',0777);
+			// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/',0777);
+			// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/'. $productId,0777);
+		// }
+		
+		// $userUploadDir = '/home/lime/public_html/handmade/public/images/products/eb7007dd03fc847cb028d6279cf73318/*';
+		// $output = exec('mv '.$userUploadDir.' '.$pathtoimages); 
+		
+		// die();
+	
+	
+	
+	
 		// chmod('/home/lime/public_html/handmade/public/images/products/29/*',0777);
 		// echo $output = exec('mv /home/lime/public_html/handmade/public/images/products/8d90edf85af2558ebe767e594ea337ef /home/lime/public_html/handmade/public/images/products/71/1/13'); 
 		// echo '<pre>';
@@ -106,16 +127,16 @@ class Product_IndexController
                     $pathtoimages = '/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/' . $user->user_id . '/' . $productId;
                     if(!is_dir($pathtoimages)) {
                         mkdir($pathtoimages, 0777, true);
-						chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/',0777);
-						chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/',0777);
-						chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/'. $productId,0777);
-						// exec('chmod 0777 -R /home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/');
+						// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/',0777);
+						// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/',0777);
+						// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/'. $productId,0777);
+						exec('chmod 0777 -R /home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/');
                     }
 					
                     // $userUploadDir = APPLICATION_PATH . '/../public/images/products/' . $userProductPhotos->PhotosDir;
-                    $userUploadDir = '/home/lime/public_html/handmade/public/images/products/' . $userProductPhotos->PhotosDir;
-                    $output = exec('mv '.$userUploadDir.' '.$userUploadDir); 
-					exec('mv mv /home/lime/public_html/handmade/public/images/products/5743b172150f9319097f664f14c4cbc8 /home/lime/public_html/handmade/public/images/products/107/1/17'); 
+                    $userUploadDir = '/home/lime/public_html/handmade/public/images/products/' . $userProductPhotos->PhotosDir.'/*';
+                    $output = exec('mv '.$userUploadDir.' '.$pathtoimages); 
+				
                     echo 'mv '.$userUploadDir.' '.$pathtoimages;
                     $userProductPhotos->photos == array();
                     unset($userProductPhotos->PhotosDir);
