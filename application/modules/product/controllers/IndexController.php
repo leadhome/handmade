@@ -10,71 +10,49 @@ class Product_IndexController
     {
         $this->_helper->layout->setLayout('my');
         $this->_helper->AjaxContext()->addActionContext('add', 'json')->initContext('json');
-        $this->_helper->AjaxContext()->addActionContext('ajaxmaterial', 'json')->initContext('json');
-        $this->_helper->AjaxContext()->addActionContext('ajaxtags', 'json')->initContext('json');
+        $this->_helper->AjaxContext()->addActionContext('ajaxeditproductautocomplete', 'json')->initContext('json');
+        $this->_helper->AjaxContext()->addActionContext('getcategories', 'json')->initContext('json');
     }
-    
-    public function ajaxmaterialAction()
-    {
-        if ($term=trim($this->_request->getParam('term'))) {
-        $res = Doctrine_Query::create()
-                ->from('Product_Model_Material')
-                ->where("title LIKE '$term%'")
-                ->limit(10)
-                ->execute()
-                ->toKeyValueArray('material_id', 'title');
-        $result=array();
-        
-        foreach ($res as $re) {
-        $result[]=$re;
-        }
-        echo $this->_helper->json($result);
-        } else $this->_redirect('/');
-    }
-    
-    public function ajaxtagsAction()
-    {
-        if ($term=$this->_request->getParam('term')) 
-        {
-            $res = Doctrine_Query::create()
-                            ->from('Product_Model_Tag')
-                            ->where("title LIKE '$term%'")
-                            ->limit(10)
-                            ->execute()
-                            ->toKeyValueArray('tag_id', 'title');
-            $result=array();
-            foreach ($res as $re) {
-            $result[]=$re;
-            }
-            echo $this->_helper->json($result);
-        } else $this->_redirect('/');
-    }
-    
     public function indexAction()
     {
 
     }
+	
+	public function ajaxeditproductautocompleteAction() {
+		$term=trim($this->_request->getParam('term'));
+		if(!$term) return false;
+		$type = $this->getRequest()->getParam('type');
+		if($type=='material') {
+			$rows = Product_Model_MaterialTable::getInstance()->getCompareMaterials($term);
+		} else if($type=='tag') {
+			$rows = Product_Model_TagTable::getInstance()->getCompareTags($term);
+		} else {
+			return false;
+		}
+		foreach ($rows as &$row) $result[]=$row['title'];
+        echo $this->_helper->json($result);
+		
+	}
+	
+	
     
-    public function get2categorysAction()
-    {
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            $this->_helper->viewRenderer->setNoRender();
-            $this->_helper->layout->disableLayout();
-            $parentId = (int) $this->_getParam('parent_id');
-            if ($parentId <= 0)
-                throw new Zend_Controller_Action_Exception('parent_id must > 0');
-            $subCategories = Doctrine_Query::create()
-                                ->from('Product_Model_Category')
-                                ->where('parent_id = ?', $parentId)
-                                ->execute()
-                                ->toKeyValueArray('category_id', 'title');
-            $json = Zend_Json::encode($subCategories);
-            $this->getResponse()->appendBody($json);
-        } else $this->_redirect('/');
+  
+    
+    public function getcategoriesAction() {
+		$parent_id = (int) $this->_getParam('parent_id');
+		if ($parent_id <= 0)
+			throw new Zend_Controller_Action_Exception('parent_id must > 0');
+		$this->view->categories = Product_Model_CategoryTable::getInstance()->getCategories($parent_id);;
     }
     
     public function addAction()
     {
+		// chmod('/home/lime/public_html/handmade/public/images/products/29/*',0777);
+		// echo $output = exec('mv /home/lime/public_html/handmade/public/images/products/8d90edf85af2558ebe767e594ea337ef /home/lime/public_html/handmade/public/images/products/71/1/13'); 
+		// echo '<pre>';
+			// print_r($output);
+		// echo '</pre>';
+		// die();
         if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
         $user = Zend_Auth::getInstance()->getIdentity();
         
@@ -86,51 +64,59 @@ class Product_IndexController
         
         if (!$this->getRequest()->isXmlHttpRequest()) {
         $this->view->colors = Product_Model_Color::getMultiOptions();
-        $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);
+        $this->view->tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);
         }
         if ( $this->getRequest()->isPost() ) {
             $values = $form->getValues();
             $post = $this->getRequest()->getPost();
             $form->populate($this->getRequest()->getPost());
-            if($post['category_level1']) {
+            if($post['categories']) {
                 $categories = Doctrine_Query::create()
                                     ->from('Product_Model_Category')
-                                    ->where('parent_id = ?', $post['category_level1'])
+                                    ->where('parent_id = ?', $post['categories'])
                                     ->fetchArray();
                 foreach($categories as $category){
                     $category2Array[$category['category_id']] = $category['title'];
                 }
-                $form->getElement('category_level2')->setMultiOptions($category2Array);
+                $form->getElement('subCategories')->setMultiOptions($category2Array);
             }
             if ($form->isValid($post)) {   
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
                     $product = new Product_Model_Product();
-                    $product->category_id = $post['category_level2'];
-                    $product->title = $post['title'];
-                    $product->user_id = $user->user_id;
-                    $product->description = $post['description'];
-                    $product->production_time = $post['production_time'];
-                    $product->size = $post['size'];
-                    $product->price = $post['price'];
+                    $product->category_id = $post['subCategories'];
+                    // $product->title = $post['title'];
+                    // $product->user_id = $user->user_id;
+                    // $product->description = $post['description'];
+                    // $product->production_time = $post['production_time'];
+                    // $product->size = $post['size'];
+                    // $product->price = $post['price'];
                     
-                    $photos = array();
-                    $photos = $userProductPhotos->photos;
-                    $product->photos = serialize($photos); 
+                    // $photos = array();
+                    // $photos = $userProductPhotos->photos;
+                    // $product->photos = serialize($photos); 
                             
-                    $product->availlable_id = $post['availlable'];
-                    $product->quantity = $post['quantity'];
-                    $product->published = 1;
+                    // $product->availlable_id = $post['availlable'];
+                    // $product->quantity = $post['quantity'];
+                    // $product->published = 1;
                     $product->save();
                     
                     $productId = $product->get('product_id');
-                    $pathtoimages = APPLICATION_PATH . '/../public/images/products/' . $product->category_id . '/' . $user->user_id . '/' . $productId;
+                    // $pathtoimages = APPLICATION_PATH . '/../public/images/products/' . $product->category_id . '/' . $user->user_id . '/' . $productId;
+                    $pathtoimages = '/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/' . $user->user_id . '/' . $productId;
                     if(!is_dir($pathtoimages)) {
                         mkdir($pathtoimages, 0777, true);
+						chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/',0777);
+						chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/',0777);
+						chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/'. $productId,0777);
+						// exec('chmod 0777 -R /home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/');
                     }
-                    $userUploadDir = APPLICATION_PATH . '/../public/images/products/' . $userProductPhotos->PhotosDir;
-                    $output = shell_exec('mv '.$userUploadDir.' '.$userUploadDir.' '); 
-                    echo $output;
+					
+                    // $userUploadDir = APPLICATION_PATH . '/../public/images/products/' . $userProductPhotos->PhotosDir;
+                    $userUploadDir = '/home/lime/public_html/handmade/public/images/products/' . $userProductPhotos->PhotosDir;
+                    $output = exec('mv '.$userUploadDir.' '.$userUploadDir); 
+					exec('mv mv /home/lime/public_html/handmade/public/images/products/5743b172150f9319097f664f14c4cbc8 /home/lime/public_html/handmade/public/images/products/107/1/17'); 
+                    echo 'mv '.$userUploadDir.' '.$pathtoimages;
                     $userProductPhotos->photos == array();
                     unset($userProductPhotos->PhotosDir);
                     #rmdir($userUploadDir);
@@ -171,7 +157,7 @@ class Product_IndexController
         $form->populate($product->toArray());
         $userProductPhotos->productId = $product;
         $this->view->colors = Product_Model_Color::getMultiOptions();
-        $this->view->tags = Product_Model_TagProduct::getTagsArray($user->user_id);  
+        $this->view->tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);  
         $this->view->form = $form;
         $this->view->product = $product;
         

@@ -16,4 +16,15 @@ class Product_Model_TagTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Product_Model_Tag');
     }
+	public function getCompareTags($term) {
+		return $this->createQuery()
+					->where("title LIKE '%$term%'")
+					->limit(10)
+					->fetchArray();
+	}
+	public function getMyTagsArray($userId) {
+		return $this->createQuery('tag')
+					->where('tag.tag_id IN (SELECT tagProduct.tag_id FROM Product_Model_TagProduct tagProduct WHERE tagProduct.user_id = ?)', $userId)
+					->fetchArray();
+    }
 }

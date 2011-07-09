@@ -22,26 +22,18 @@ class Product_Form_Product
                 array('NotEmpty', true),
                 array('stringLength', false, array(6, 255)),
         ));
-            
-        $categories = Doctrine_Query::create()
-                            ->from('Product_Model_Category')
-                            ->where('parent_id IS NULL')
-                            ->fetchArray();
-        $category1Array[0] = 'Выберите категорию';
-        foreach($categories as $category){
-            $category1Array[$category['category_id']] = $category['title'];
-        }
+         $categoriesArray = Product_Model_CategoryTable::getInstance()->getCategories(0);
         
-        $category1 = new Zend_Form_Element_Select('category_level1');
-        $category1->setMultiOptions($category1Array)
-                  ->setLabel('Выберите категорию')
-                  ->setDecorators(array('ViewHelper'));
+        $categories = new Zend_Form_Element_Select('categories');
+        $categories->setMultiOptions($categoriesArray)
+                   ->setLabel('Выберите категорию')
+                   ->setDecorators(array('ViewHelper'));
+        #isset($attrs['category_id']) ? $category1->setValue($attrs['category_id']) : null;
         
-        $category2 = new Zend_Form_Element_Select('category_level2');
-        $category2->setMultiOptions(array('Выбирите категорию'))
-                  ->setLabel('Выберите подкатегорию')
-                  ->setDecorators(array('ViewHelper'))
-                  ->setRequired(false);
+        $subCategories = new Zend_Form_Element_Select('subCategories');
+        $subCategories->setMultiOptions(array('Выберите категорию'))
+					  ->setLabel('Выберите подкатегорию')
+					  ->setDecorators(array('ViewHelper'));
         
         $price = new Zend_Form_Element_Text('price');
         $price->setRequired(TRUE)
@@ -81,13 +73,18 @@ class Product_Form_Product
 			   
 			   
         $materials = new Zend_Form_Element_Hidden('materials');
-        $materials->setAttrib('id','hidden_materials')
+        $materials->setAttrib('id','materials')
                   ->setDecorators(array('ViewHelper'));
+				  
+		$tags = new Zend_Form_Element_Hidden('tags');
+        $tags->setAttrib('id','tags')
+			 ->setDecorators(array('ViewHelper'));
+			 
         $this->addElements(
             array(
                 $title,
-                $category1,
-                $category2,
+                $categories,
+                $subCategories,
                 $price,
                 $description,
                 $production_time,
@@ -95,7 +92,8 @@ class Product_Form_Product
                 $availlable,
                 $quantity,
                 $submit,
-                $materials
+                $materials,
+				$tags
             )
         );
     }

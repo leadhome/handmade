@@ -16,4 +16,10 @@ class Product_Model_MaterialTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Product_Model_Material');
     }
+	public function getCompareMaterials($term) {
+		return $this->createQuery()
+					->where("title LIKE '%$term%'")
+					->limit(10)
+					->fetchArray();
+	}
 }
