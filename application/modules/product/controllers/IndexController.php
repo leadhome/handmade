@@ -47,40 +47,16 @@ class Product_IndexController
     
     public function addAction()
     {
-		// eb7007dd03fc847cb028d6279cf73318
-		// $category_id = 75;
-		// $user_id = 1;
-		// $productId = 8;
-
-		// $pathtoimages = '/home/lime/public_html/handmade/public/images/products/' . $category_id . '/' . $user_id . '/' . $productId;
-		// if(!is_dir($pathtoimages)) {
-			// mkdir($pathtoimages, 0777, true);
-			// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/',0777);
-			// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/',0777);
-			// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/'. $productId,0777);
-		// }
-		
-		// $userUploadDir = '/home/lime/public_html/handmade/public/images/products/eb7007dd03fc847cb028d6279cf73318/*';
-		// $output = exec('mv '.$userUploadDir.' '.$pathtoimages); 
-		
-		// die();
-	
-	
-	
-	
-		// chmod('/home/lime/public_html/handmade/public/images/products/29/*',0777);
-		// echo $output = exec('mv /home/lime/public_html/handmade/public/images/products/8d90edf85af2558ebe767e594ea337ef /home/lime/public_html/handmade/public/images/products/71/1/13'); 
-		// echo '<pre>';
-			// print_r($output);
-		// echo '</pre>';
-		// die();
         if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
         $user = Zend_Auth::getInstance()->getIdentity();
         
         $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
+        if($this->getRequest()->getPost())
         $userProductPhotos->type = 'add';
-        #Zend_Debug::dump($userProductPhotos->photos);
-        
+        if(!$this->getRequest()->isXmlHttpRequest() && !$this->getRequest()->isPost()){
+                    $userProductPhotos->photos = array();
+                    unset($userProductPhotos->PhotosDir);
+        }
         $form = new Product_Form_Product();
         
         if (!$this->getRequest()->isXmlHttpRequest()) {
@@ -88,7 +64,6 @@ class Product_IndexController
         $this->view->tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);
         }
         if ( $this->getRequest()->isPost() ) {
-            $values = $form->getValues();
             $post = $this->getRequest()->getPost();
             $form->populate($this->getRequest()->getPost());
             if($post['categories']) {
@@ -101,48 +76,48 @@ class Product_IndexController
                 }
                 $form->getElement('subCategories')->setMultiOptions($category2Array);
             }
-            if ($form->isValid($post)) {   
+            if ($form->isValid($post)) { 
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
+                    $values = $form->getValues();
                     $product = new Product_Model_Product();
-                    $product->category_id = $post['subCategories'];
-                    // $product->title = $post['title'];
-                    // $product->user_id = $user->user_id;
-                    // $product->description = $post['description'];
-                    // $product->production_time = $post['production_time'];
-                    // $product->size = $post['size'];
-                    // $product->price = $post['price'];
+                    $product->category_id = $values['subCategories'];
+                    $product->title = $values['title'];
+                    $product->user_id = $user->user_id;
+                    $product->description = $values['description'];
+                    $product->production_time = $values['production_time'];
+                    $product->size = $values['size'];
+                    $product->price = $values['price'];
+               
+                    $photos = array();
+                    $photos = $userProductPhotos->photos;
+                    $product->photos = serialize($photos); 
                     
-                    // $photos = array();
-                    // $photos = $userProductPhotos->photos;
-                    // $product->photos = serialize($photos); 
-                            
-                    // $product->availlable_id = $post['availlable'];
-                    // $product->quantity = $post['quantity'];
-                    // $product->published = 1;
+                    //tags
+                    $product->Product__Model__TagProducts->Tag->title = unserialize($values['materials']);
+                    //materials
+                    $product->Product_Model_MaterialProduct->Material->title = 'dsfsd';
+                    
+                    $product->availlable_id = $values['availlable'];
+                    $product->quantity = $values['quantity'];
+                    $product->published = 1;
                     $product->save();
-                    
                     $productId = $product->get('product_id');
-                    // $pathtoimages = APPLICATION_PATH . '/../public/images/products/' . $product->category_id . '/' . $user->user_id . '/' . $productId;
-                    $pathtoimages = '/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/' . $user->user_id . '/' . $productId;
-                    if(!is_dir($pathtoimages)) {
-                        mkdir($pathtoimages, 0777, true);
-						// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/',0777);
-						// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/',0777);
-						// chmod('/home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/'. $user->user_id . '/'. $productId,0777);
-						exec('chmod 0777 -R /home/lime/public_html/handmade/public/images/products/' . $product->category_id . '/');
+                    
+                    // public/images/products/categoryId/user->user_id
+                    $path = APPLICATION_PATH . '/../public/images/products/' . $product->category_id . '/' . $user->user_id;
+                    // public/images/products/user_upload_dir
+                    $userUploadDir = APPLICATION_PATH . '/../public/images/products/' . $userProductPhotos->PhotosDir;
+                    if(!is_dir($path)) {
+                        mkdir($path, 0777, true);
                     }
-					
-                    // $userUploadDir = APPLICATION_PATH . '/../public/images/products/' . $userProductPhotos->PhotosDir;
-                    $userUploadDir = '/home/lime/public_html/handmade/public/images/products/' . $userProductPhotos->PhotosDir.'/*';
-                    $output = exec('mv '.$userUploadDir.' '.$pathtoimages); 
-				
-                    echo 'mv '.$userUploadDir.' '.$pathtoimages;
-                    $userProductPhotos->photos == array();
+                    #chmod($path .'/*',0777);
+                    exec('mv '.$userUploadDir.' '.$path);
+                    $userProductPhotos->photos = array();
                     unset($userProductPhotos->PhotosDir);
-                    #rmdir($userUploadDir);
-                    die($userUploadDir);
+                    die();
                     $this->_redirect('/');
+                    
                 }
             } else {
                     if ($this->getRequest()->isXmlHttpRequest()) {
