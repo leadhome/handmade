@@ -53,9 +53,10 @@ class Product_IndexController
         $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
         if($this->getRequest()->getPost())
         $userProductPhotos->type = 'add';
+        
         if(!$this->getRequest()->isXmlHttpRequest() && !$this->getRequest()->isPost()){
-                    $userProductPhotos->photos = array();
-                    unset($userProductPhotos->PhotosDir);
+            $userProductPhotos->photos = array();
+            unset($userProductPhotos->PhotosDir);
         }
         $form = new Product_Form_Product();
         
@@ -93,17 +94,66 @@ class Product_IndexController
                     $photos = $userProductPhotos->photos;
                     $product->photos = serialize($photos); 
                     
-                    //tags
-                    $product->Product__Model__TagProducts->Tag->title = unserialize($values['materials']);
-                    //materials
-                    $product->Product_Model_MaterialProduct->Material->title = 'dsfsd';
-                    
                     $product->availlable_id = $values['availlable'];
                     $product->quantity = $values['quantity'];
                     $product->published = 1;
                     $product->save();
                     $productId = $product->get('product_id');
                     
+                    foreach($post['color'] as $color){
+                        if($post['color'] != 0){
+                            
+                        }
+                    }
+                    
+                    Zend_Debug::dump($post['color']);            
+                    die();
+                    //save materials
+                    $materials = unserialize($values['materials']);
+                    foreach($materials as $material){
+                        $material_exmp = Product_Model_MaterialTable::getInstance()->findoneby('title', $material);
+                        if($material_exmp) {
+                            $productMaterial = new Product_Model_MaterialProduct;
+                            $productMaterial->product_id = $productId;
+                            $productMaterial->material_id = $material_exmp->material_id;
+                            $productMaterial->save();
+                        } else {
+                            $materials_m = new Product_Model_Material();
+                            $materials_m->title = $material;
+                            $materials_m->save();
+                            $materialId = $materials_m->get('material_id');
+                            
+                            $productMaterial = new Product_Model_MaterialProduct;
+                            $productMaterial->product_id = $productId;
+                            $productMaterial->material_id = $materialId;
+                            $productMaterial->save();
+                        }
+                    }
+                    
+                    //tags
+                    $tags = unserialize($values['tags']);                
+                    foreach ($tags as &$value) {
+                        $tag_exmp = Product_Model_TagTable::getInstance()->findOneBy('title', $value);
+                        if($tag_exmp) {
+                            $model = new Product_Model_TagProduct();
+                            $model->tag_id = $tag_exmp->tag_id;
+                            $model->user_id = $user->user_id;
+                            $model->product_id = $productId;
+                            $model->save();
+                        } else {
+                            $tag = new Product_Model_Tag();
+                            $tag->title = $value;
+                            $tag->save();
+                            $tagId = $tag->get('tag_id');
+                            
+                            $model = new Product_Model_TagProduct();
+                            $model->tag_id = $tagId;
+                            $model->user_id = $user->user_id;
+                            $model->product_id = $productId;
+                            $model->save();
+                        }
+                    }
+
                     // public/images/products/categoryId/user->user_id
                     $path = APPLICATION_PATH . '/../public/images/products/' . $product->category_id . '/' . $user->user_id;
                     // public/images/products/user_upload_dir
@@ -111,11 +161,10 @@ class Product_IndexController
                     if(!is_dir($path)) {
                         mkdir($path, 0777, true);
                     }
-                    #chmod($path .'/*',0777);
                     exec('mv '.$userUploadDir.' '.$path);
+                    exec('mv '.$path.'/'.$userProductPhotos->PhotosDir.' '.$path.'/'.$productId); 
                     $userProductPhotos->photos = array();
                     unset($userProductPhotos->PhotosDir);
-                    die();
                     $this->_redirect('/');
                     
                 }
