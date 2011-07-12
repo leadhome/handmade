@@ -36,11 +36,8 @@ class Product_Model_MaterialTable extends Doctrine_Table
      */
     public function getMaterialsByProductId($productId)
     {
-        $rows = $this->createQuery('tag')
+        return $this->createQuery('tag')
             ->where('tag.material_id IN (SELECT materialProduct.material_id FROM Product_Model_MaterialProduct materialProduct WHERE materialProduct.product_id = ?)', $productId)
             ->fetchArray();
-        $result = array();
-        foreach ($rows as &$row) $result[]=$row['title'];
-        return $result;
     }
 }

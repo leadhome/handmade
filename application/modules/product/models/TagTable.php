@@ -47,11 +47,8 @@ class Product_Model_TagTable extends Doctrine_Table
      */
     public function getTagsByProductId($productId)
     {
-        $rows = $this->createQuery('tag')
+        return $this->createQuery('tag')
             ->where('tag.tag_id IN (SELECT tagProduct.tag_id FROM Product_Model_TagProduct tagProduct WHERE tagProduct.product_id = ?)', $productId)
             ->fetchArray();
-        $result = array();
-        foreach ($rows as &$row) $result[]=$row['title'];
-        return $result;
     }
 }
