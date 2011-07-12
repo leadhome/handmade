@@ -61,10 +61,10 @@
 <?$this->headScript()->captureStart() ?>
 	var materials = <?php echo json_encode($this->materialsJSON); ?>;
 	var tags = <?php echo json_encode($this->tagsJSON); ?>;
+	var photos = new Array();
 <? $this->headScript()->captureEnd(); ?>
 <script>
 jQuery(document).ready(function() {
-	var photos = new Array();
 	jQuery('#categories').prepend('<option value="0" selected="selected">Выберите категорию</option>')
 	
 	//выбор цвета
@@ -91,16 +91,19 @@ jQuery(document).ready(function() {
 			return false;
 		}
         jQuery.getJSON('/product/index/getcategories/?parent_id='+jQuery('#categories').val(), function(data) {
-            subCategories.html('');
-            jQuery.each(data.categories, function(i){
-                subCategories.append('<option value="' + i + '">' + this + '</option>');
+                subCategories.html('');
+                jQuery.each(data.categories, function(i){
+                    subCategories.append('<option value="' + i + '">' + this + '</option>');
+                });
             });
         });
-    });
+        
+        //выбор главной картинки
 	jQuery('[name="isMainPhoto"]').live('click',function(event) {
 		photos['main'] = 'sdsdsd';	
 		console.log(photos);
 	});
+        
 	//валидация формы
 	jQuery('[name="submit_validator"]').bind('click',function(event) {
 		event.preventDefault();
@@ -123,12 +126,13 @@ jQuery(document).ready(function() {
 			jQuery('#'+form_id+ ' .preloader').remove();
 		});		
 	});
+        
 	//наличие товара
 	jQuery('#availlable_id').change( function(){
         var availlable_val = jQuery('#availlable_id').val();
         if(availlable_val == 1) jQuery("#quantity").attr("style", "display:inline");
         else jQuery("#quantity").attr("style", "display:none");
-    });
+        });
 	//показ своих тэгов
 	jQuery('[name="showTags"]').click(function() {
 		jQuery(this).next().stop(true, true).toggle('500');
@@ -140,11 +144,13 @@ jQuery(document).ready(function() {
 			jQuery(this).data('status','up');
 		}
 	});
+        
 	//добавление материалов и тэгов
 	jQuery('[name="add_mark"]').click(function(event) {
 		event.preventDefault();
 		addMark(this.id,jQuery(this).next().attr('id'),jQuery(this).prev().val());
 	}); 
+        
 	//удаление материалов и тэгов
 	jQuery('[name="delete_mark"]').live('click',function() {
 		var value = jQuery(this).prev().text();
@@ -157,10 +163,13 @@ jQuery(document).ready(function() {
 		data.splice(i,1);
 		jQuery(this).parent().remove();
 	});
+        
+        //добавление тега
 	jQuery('[name="add_tag"]').click(function(event){
 		event.preventDefault();
 		addMark('add_tag','selected_tags',jQuery(this).text(),true);
 	});
+        
 	//фукнция добавления
 	function addMark(id,id_marks,value,simple_tag) {
 		var value = jQuery.trim(value);
@@ -246,7 +255,11 @@ jQuery(document).ready(function() {
                            $end_materail_id = $end_material_id['material_id'];
                         ?>
                         <?php foreach($this->materials as &$material): ?>
-                            <a href="javascript:void(0)" name="delete_mark"><?php echo $material['title']; ?></a><?php (($material['material_id']!=$end_material_id) ? ',&nbsp;' : ''); ?>
+                        <span>
+                            <span><?php echo $material['title']; ?></span>
+                            <a href="javascript:void(0)" name="delete_mark">Удалить</a>
+                            <?php (($material['material_id']!=$end_material_id) ? ',&nbsp;' : ''); ?>
+                        </span>
                         <?php endforeach; ?>
                     <?php endif; ?>
                     </div>
@@ -260,7 +273,21 @@ jQuery(document).ready(function() {
                 <td class="data">
                     <?php echo  $this->autoComplete("select_tag", "", array("url"=>"/product/index/ajaxeditproductautocomplete/?type=tag")); ?>
                     <button id="add_tag" name="add_mark">Добавить</button>
-                    <div id="selected_tags"></div>
+                    <div id="selected_tags">
+                    <?php if (count($this->tags)): ?>
+                        <?
+                           $end_tag_id = end($this->tags);
+                           $end_tag_id = $end_tag_id['tag_id'];
+                        ?>
+                        <?php foreach($this->tags as &$tag): ?>
+                        <span>
+                            <span><?php echo $tag['title']; ?></span>
+                            <a href="javascript:void(0)" name="delete_mark">Удалить</a>
+                            <?php (($tag['tag_id']!=$end_tag_id) ? ',&nbsp;' : ''); ?>
+                        </span>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    </div>
                     <?php if (count($this->user_tags)): ?>
                         <a href="javascript:void(0)" name="showTags">Показать все мои теги</a>
                         <?
