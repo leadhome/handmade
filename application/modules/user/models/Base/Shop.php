@@ -14,8 +14,8 @@
  * @property clob $about
  * @property clob $return
  * @property User_Model_User $User
- * @property Doctrine_Collection $User__Model__DeliveryShops
- * @property Doctrine_Collection $User__Model__PaymentsShops
+ * @property Doctrine_Collection $DeliveryShop
+ * @property Doctrine_Collection $PaymentShop
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -81,11 +81,11 @@ abstract class User_Model_Base_Shop extends Doctrine_Record
              'local' => 'user_id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('User_Model_DeliveryShop as User__Model__DeliveryShops', array(
+        $this->hasMany('User_Model_DeliveryShop as DeliveryShop', array(
              'local' => 'shop_id',
              'foreign' => 'shop_id'));
 
-        $this->hasMany('User_Model_PaymentsShop as User__Model__PaymentsShops', array(
+        $this->hasMany('User_Model_PaymentsShop as PaymentShop', array(
              'local' => 'shop_id',
              'foreign' => 'shop_id'));
     }

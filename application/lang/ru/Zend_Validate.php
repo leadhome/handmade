@@ -239,7 +239,8 @@ return array(
 
     // Zend_Validate_Regex
     "Invalid type given, value should be string, integer or float" => "Недопустимый тип данных, значение должно быть числом с плавающей точкой, строкой, или целым числом",
-    "'%value%' does not match against pattern '%pattern%'" => "'%value%' не соответствует шаблону '%pattern%'",
+    // "'%value%' does not match against pattern '%pattern%'" => "'%value%' не соответствует шаблону '%pattern%'",
+    "'%value%' does not match against pattern '%pattern%'" => "Неверный формат ввода",
 
     // Zend_Validate_Sitemap_Changefreq
     "'%value%' is no valid sitemap changefreq" => "'%value%' недопустимое значение для sitemap changefreq",

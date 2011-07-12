@@ -16,4 +16,7 @@ class User_Model_ShopTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('User_Model_Shop');
     }
+	public function getShop($user_id) {
+		return $this->findOneByUser_id($user_id);
+	}
 }

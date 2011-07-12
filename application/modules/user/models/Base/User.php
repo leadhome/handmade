@@ -21,10 +21,10 @@
  * @property User_Model_Group $Group
  * @property User_Model_Tarif $Tarif
  * @property User_Model_City $City
+ * @property User_Model_Shop $Shop
  * @property Doctrine_Collection $User__Model__Messages
  * @property Doctrine_Collection $User__Model__Comments
  * @property Doctrine_Collection $User__Model__ShippAddresses
- * @property Doctrine_Collection $User__Model__Shops
  * @property Doctrine_Collection $Product__Model__Products
  * @property Doctrine_Collection $Product__Model__TagProducts
  * @property Doctrine_Collection $User__model__FavoriteAuthors
@@ -134,6 +134,10 @@ abstract class User_Model_Base_User extends Doctrine_Record
              'local' => 'city_id',
              'foreign' => 'city_id'));
 
+        $this->hasOne('User_Model_Shop as Shop', array(
+             'local' => 'user_id',
+             'foreign' => 'user_id'));
+
         $this->hasMany('User_Model_Message as User__Model__Messages', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
@@ -143,10 +147,6 @@ abstract class User_Model_Base_User extends Doctrine_Record
              'foreign' => 'user_id'));
 
         $this->hasMany('User_Model_ShippAddress as User__Model__ShippAddresses', array(
-             'local' => 'user_id',
-             'foreign' => 'user_id'));
-
-        $this->hasMany('User_Model_Shop as User__Model__Shops', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
 

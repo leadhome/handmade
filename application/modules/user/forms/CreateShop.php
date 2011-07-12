@@ -1,9 +1,9 @@
 <?php
-class User_Form_EditShop extends Zend_Form {
+class User_Form_CreateShop extends Zend_Form {
 	public function init() {
-		$this->setAction('/user/shop/edit')
+		$this->setAction('/user/shop/create')
 	         ->setMethod('post')
-             ->setAttrib('id', 'user_form_shop_edit');
+             ->setAttrib('id', 'user_form_shop_create');
 		
 		//Название магазина
         $title = new Zend_Form_Element_Text('title');
@@ -17,6 +17,20 @@ class User_Form_EditShop extends Zend_Form {
 			  ->addFilter('StringTrim')
 			  ->setDecorators(array('ViewHelper'));
 				 
+		//Домен
+        $domain = new Zend_Form_Element_Text('domain');
+		$domain->setLabel('Введите ваш домен вашего магазина:')
+			   ->setRequired(true)
+	           ->setAttrib('id', $this->getAttrib('id').'_domain')
+			   ->setDescription('Домен может состоять только из букв латинского алфавита, цифр и знаков тире и не превышать 10 символов')
+			   ->setAttrib('class', 'input_create_shop')
+			   ->addValidator(new Zend_Validate_NotEmpty(),array('breakChainOnFailure' => true))
+			   ->addValidator(new Zend_Validate_Regex(array('pattern' => '/^[a-z0-9-]{1,10}$/i')),array('breakChainOnFailure' => true))
+			   ->addValidator(new Inc_Validator_CheckUnique(array('table'=>'User_Model_ShopTable','field'=>'domain','error'=>'Магазин с таким доменом уже существует')))			 
+			   ->addFilter('StripTags')
+			   ->addFilter('StringTrim')
+			   ->setDecorators(array('ViewHelper'));
+		
 		//Способы оплаты
 		$payment_lists = User_Model_PaymentTable::getInstance()->findAll();
 		$payments = new Zend_Form_Element_MultiCheckbox('payments');
@@ -24,6 +38,7 @@ class User_Form_EditShop extends Zend_Form {
 				 ->setLabel('Выберите способ оплаты для вашего магазина:')
 				 ->setRequired(true)
 				 ->setAttrib('id', $this->getAttrib('id').'_payments')
+				 // ->setValue($payment_lists->toKeyValueArray('title', 'payment_id'))
 				 ->addFilter('StripTags')
 			     ->addFilter('StringTrim')
 				 ->setDecorators(array('ViewHelper'));
@@ -84,13 +99,14 @@ class User_Form_EditShop extends Zend_Form {
 			  
 			  
 		$submit = new Zend_Form_Element_Submit('submit_validator');
-		$submit->setLabel('Сохранить')
+		$submit->setLabel('Создать')
 			   ->setAttrib('id', $this->getAttrib('id').'_submit')
 			   ->setDecorators(array('ViewHelper'));
 		
 		
 		$this->addElements(array(
-									$title,
+									$title, 
+									$domain,
 									$payments,
 									$delivery,
 									$additional_payment_condition,

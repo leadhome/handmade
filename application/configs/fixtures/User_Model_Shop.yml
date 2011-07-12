@@ -1,0 +1,9 @@
+User_Model_Shop:
+  User_Model_Shop_1:
+    User: User_Model_User_1
+    title: sadfsadasd
+    domain: 'NULL'
+    additional_payment_condition: 'NULL'
+    additional_delivery_condition: 'NULL'
+    about: 'NULL'
+    return: 'NULL'

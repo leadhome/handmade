@@ -1,0 +1,9 @@
+Product_Model_TagProduct:
+  Product_Model_TagProduct_1:
+    Product: Product_Model_Product_1
+    Tag: Product_Model_Tag_1
+    User: User_Model_User_1
+  Product_Model_TagProduct_2:
+    Product: Product_Model_Product_1
+    Tag: Product_Model_Tag_2
+    User: User_Model_User_1

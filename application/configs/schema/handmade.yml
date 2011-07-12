@@ -193,7 +193,14 @@ User_Model_User:
       class: User_Model_City
       local: city_id
       foreign: city_id
+      type: one
       foreignAlias: User__Model__Users
+    Shop:
+      class: User_Model_Shop
+      local: user_id
+      foreign: user_id
+      foreignAlias: User__Model__Shops
+      type: one
   indexes:
     U_Group:
       fields: [group_id]
@@ -295,6 +302,18 @@ User_Model_Shop:
       local: user_id
       foreign: user_id
       foreignAlias: User__Model__Shops
+    DeliveryShop:
+      class: User_Model_DeliveryShop
+      local: shop_id
+      foreign: shop_id
+      foreignAlias: User__Model__Shops
+      type: many
+    PaymentShop:
+      class: User_Model_PaymentsShop
+      local: shop_id
+      foreign: shop_id
+      foreignAlias: User__Model__Shops
+      type: many
   indexes:
     S_User:
       fields: [user_id]

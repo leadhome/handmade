@@ -19,8 +19,8 @@ class User_Model_UserTable extends Doctrine_Table {
     public function getUser($email, $password) {
 		$user = $this->findOneByEmail($email);
 		if($user && ($user->password == md5($password))) {
-			return $user;
-			
+			return $user;			
 		} else return false;
+		// return $this->createQuery()->where('email = ?',$email)->andWhere('password = ?' ,md5($password))->execute();
 	}	
 }

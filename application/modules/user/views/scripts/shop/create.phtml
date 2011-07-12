@@ -1,0 +1,122 @@
+<? $this->headScript()->appendFile('/js/user/shop/edit.js');?>
+<? $this->headScript()->appendFile('/js/validator.js');?>
+<?$this->headScript()->captureStart() ?>
+	var prefix = '<?=$this->form->getAttrib('id');?>';
+<? $this->headScript()->captureEnd(); ?>
+<div class="styledform" style="margin-top:20px">
+	<h3>Создание магазина</h3>
+	<form action="<?=$this->escape($this->form->getAction());?>" method="<?=$this->escape($this->form->getMethod());?>" id="<?=$this->form->getAttrib('id');?>">
+		<table cellpadding="0" cellspacing="0" class="create_shop">
+			<tr>
+				<td class="label"><?=$this->form->title->getLabel();?></td>
+				<td class="data"><?=$this->form->title;?></td>
+				<td>
+				<?	if($this->form->title->getMessages()) { ?>
+						<ul class="errors">
+					<?	foreach($this->form->title->getMessages() as $message) {?>
+							<li><?=$message;?></li>
+					<?	} ?>
+						</ul>
+				<?	} ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="label"><?=$this->form->domain->getLabel();?></td>
+				<td class="data">
+					<?=$this->form->domain;?>
+					<small><?=$this->form->domain->getDescription()?></small>
+				</td>
+				<td>
+				<?	if($this->form->domain->getMessages()) { ?>
+						<ul class="errors">
+					<?	foreach($this->form->domain->getMessages() as $message) {?>
+							<li><?=$message;?></li>
+					<?	} ?>
+						</ul>
+				<?	} ?>
+				</td>
+			</tr>			
+			<tr>
+				<td class="label"><?=$this->form->about->getLabel();?></td>
+				<td class="data"><?=$this->form->about;?></td>
+				<td>
+				<?	if($this->form->about->getMessages()) { ?>
+						<ul class="errors">
+					<?	foreach($this->form->about->getMessages() as $message) {?>
+							<li><?=$message;?></li>
+					<?	} ?>
+						</ul>
+				<?	} ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="label"><?=$this->form->payments->getLabel();?></td>
+				<td class="data"><?=$this->form->payments;?></td>
+				<td>
+				<?	if($this->form->payments->getMessages()) { ?>
+						<ul class="errors">
+					<?	foreach($this->form->payments->getMessages() as $message) {?>
+							<li><?=$message;?></li>
+					<?	} ?>
+						</ul>
+				<?	} ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">&nbsp;</td>
+				<td class="data">
+					<a href="javascript:void(0)" id="additional_payment_condition" name="additional">
+						<?=$this->form->additional_payment_condition->getLabel();?>
+					</a>
+					<div style="display:none;">
+						<?=$this->form->additional_payment_condition;?>
+					</div>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label"><?=$this->form->delivery->getLabel();?></td>
+				<td class="data"><?=$this->form->delivery;?></td>
+				<td>
+				<?	if($this->form->delivery->getMessages()) { ?>
+						<ul class="errors">
+					<?	foreach($this->form->delivery->getMessages() as $message) {?>
+							<li><?=$message;?></li>
+					<?	} ?>
+						</ul>
+				<?	} ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">&nbsp;</td>
+				<td class="data">
+					<a href="javascript:void(0)" id="additional_delivery_condition" name="additional">
+						<?=$this->form->additional_delivery_condition->getLabel();?>
+					</a>
+					<div style="display:none;">
+						<?=$this->form->additional_delivery_condition;?>
+					</div>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label"><?=$this->form->return->getLabel();?></td>
+				<td class="data"><?=$this->form->return;?></td>
+				<td>
+				<?	if($this->form->return->getMessages()) { ?>
+						<ul class="errors">
+					<?	foreach($this->form->return->getMessages() as $message) {?>
+							<li><?=$message;?></li>
+					<?	} ?>
+						</ul>
+				<?	} ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">&nbsp;</td>
+				<td class="data"><?=$this->form->submit_validator;?></td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</form>
+</div>
