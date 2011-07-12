@@ -54,22 +54,24 @@ class UploadHandler
 	
 
     function __construct($options=null) {
-        $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
-        $this->_session = $userProductPhotos;
+        $this->_session = new Zend_Session_Namespace('userProductPhotos');
         $user = Zend_Auth::getInstance()->getIdentity();
         if(!$user)
             throw new Zend_Exception('Вы не авторитизованы');
-        
-        if($userProductPhotos->type == 'edit') {
-            $productName = $userProductPhotos->productId.'/_cached';
+        if($this->_session->type == 'edit') {
+            $timestamp = strtotime($this->_session->date_created);
+            $date_year = date("Y", $timestamp);
+            $date_month = date("m", $timestamp);
+            $date_day = date("d", $timestamp);
+            $userUploadDir = __DIR__ . '/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id;
+            $url = '/public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id;
         } else {
-            if(!$userProductPhotos->PhotosDir){
-               $userProductPhotos->PhotosDir = md5(rand(1, 100000000)+time()); 
+            if(!$this->_session->PhotosDir){
+               $this->_session->PhotosDir = md5(rand(1, 100000000)+time()); 
             }
-            $productName = $userProductPhotos->PhotosDir;
+            $userUploadDir = __DIR__ . '/cache/' . $this->_session->PhotosDir;
+            $url = '/cache/' . $this->_session->PhotosDir;
         }
-        $userUploadDir = __DIR__ . '/cache/' . $productName;
-        $url = '/cache/' . $productName;
         if(!is_dir($userUploadDir)) {
             mkdir($userUploadDir, 0777, true);
         }

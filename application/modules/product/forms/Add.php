@@ -8,7 +8,7 @@
  * @author Patsura Dmitiry <zaets28rus@gmail.com>
  * @data 2011.06.28
  */
-class Product_Form_Product
+class Product_Form_Add
     extends ZendX_JQuery_Form
 {
     public function init()
@@ -58,8 +58,8 @@ class Product_Form_Product
                             ->execute()
                             ->toKeyValueArray('availlable_id', 'title');
         
-        $availlable = new Zend_Form_Element_Select('availlable');
-        $availlable->setMultiOptions($availlableArray)
+        $availlable_id = new Zend_Form_Element_Select('availlable_id');
+        $availlable_id->setMultiOptions($availlableArray)
                   ->setLabel('Укажите наличие товара')
                   ->setDecorators(array('ViewHelper'));
 
@@ -89,11 +89,11 @@ class Product_Form_Product
                 $description,
                 $production_time,
                 $size,
-                $availlable,
+                $availlable_id,
                 $quantity,
                 $submit,
                 $materials,
-				$tags
+                $tags
             )
         );
     }

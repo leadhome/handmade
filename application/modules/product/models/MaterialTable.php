@@ -16,10 +16,31 @@ class Product_Model_MaterialTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Product_Model_Material');
     }
-	public function getCompareMaterials($term) {
-		return $this->createQuery()
-					->where("title LIKE '%$term%'")
-					->limit(10)
-					->fetchArray();
-	}
+    
+    /**
+     * Get Compare Material by like $term
+     * @param string $term
+     * @return type 
+     */
+    public function getCompareMaterials($term) {
+            return $this->createQuery()
+                                    ->where("title LIKE '%$term%'")
+                                    ->limit(10)
+                                    ->fetchArray();
+    }
+    
+    /**
+     * Get materials by $productId
+     * @param int $productId
+     * @return array 
+     */
+    public function getMaterialsByProductId($productId)
+    {
+        $rows = $this->createQuery('tag')
+            ->where('tag.material_id IN (SELECT materialProduct.material_id FROM Product_Model_MaterialProduct materialProduct WHERE materialProduct.product_id = ?)', $productId)
+            ->fetchArray();
+        $result = array();
+        foreach ($rows as &$row) $result[]=$row['title'];
+        return $result;
+    }
 }

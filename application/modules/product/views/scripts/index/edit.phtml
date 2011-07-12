@@ -51,171 +51,206 @@
             <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
         </td>
         <td class="setAvatar">
-            <button >Сделать основной</button>
+            <a href="javascript:void(0)" name="isMainPhoto" id="${name}">Сделать основной</a>
         </td>
         <td>
-            <input type="text" name="">
+            <input type="text" name="desc" value="">
         </td>
     </tr>
 </script>
+<?$this->headScript()->captureStart() ?>
+	var materials = <?php echo json_encode($this->materials); ?>;
+	var tags = <?php echo json_encode($this->tags); ?>;
+<? $this->headScript()->captureEnd(); ?>
 <script>
-var materials = new Array();
 jQuery(document).ready(function() {
+	var photos = new Array();
+	jQuery('#categories').prepend('<option value="0" selected="selected">Выберите категорию</option>')
+	
+	//выбор цвета
+	jQuery('[name="color[]"]').change(function(){
+		if(this.value == 0) return false;
+		var last_val = jQuery(this).data('last_val');
+		var value = jQuery(this).val();    
+		var id = jQuery(this).attr('id');  
+		jQuery(this).data('last_val',value);
+		
+		jQuery.each(jQuery('[name="color[]"]'),function(i,child){
+			if(jQuery(child).attr('id')!=id) {
+				jQuery("#"+jQuery(child).attr('id')+" > option[value='"+value+"']").hide();
+				jQuery("#"+jQuery(child).attr('id')+" > option[value='"+last_val+"']").show();
+			}
+		});
+	});
+	
+	//выбор категории
+	jQuery('#categories').change( function(){
+        var subCategories = $('select[name="subCategories"]');
+		if(jQuery('#categories').val()==0){
+			subCategories.html('<option value="0" selected="selected">Выберите категорию</option>');
+			return false;
+		}
+        jQuery.getJSON('/product/index/getcategories/?parent_id='+jQuery('#categories').val(), function(data) {
+            subCategories.html('');
+            jQuery.each(data.categories, function(i){
+                subCategories.append('<option value="' + i + '">' + this + '</option>');
+            });
+        });
+    });
+	jQuery('[name="isMainPhoto"]').live('click',function(event) {
+		photos['main'] = 'sdsdsd';	
+		console.log(photos);
+	});
+	//валидация формы
 	jQuery('[name="submit_validator"]').bind('click',function(event) {
 		event.preventDefault();
 		var form =  jQuery('#mainform');
 		var form_id = jQuery(form).attr('id');
 		var action = jQuery(form).attr('action');
 		jQuery(this).after('<div class="preloader"><span>Идет проверка</span></div>');
-		// return;
+		
 		jQuery.post(action, jQuery(form).serialize(),function(data){
 			if(data.error==0) {
-				jQuery('#hidden_materials').val(materials.join(','));
+				jQuery('#materials').val(serialize(materials));
+				jQuery('#tags').val(serialize(tags));
 				jQuery(form).submit();
 			}
 			jQuery('#'+form_id+ ' .not_valid').removeClass('not_valid');
 			jQuery('#'+form_id+ ' .errors').remove();
 			jQuery.each(data.error,function(key,err){
-				// var i = '';
-				// var token = '<br/>';
-				// var textErrors = '';
-				// var Ttoken = '';
-				// for (i in err) { 
-					// textErrors += Ttoken + err[i];
-					// Ttoken = token;
-				// }
-				// if(!jQuery('#'+key).hasClass('not_valid')) {
-					jQuery('#'+key).addClass('not_valid');
-					// jQuery('#'+key).parent().next().html('<div class="errors">'+textErrors+'</div>');
-				// }			
+				jQuery('#'+key).addClass('not_valid');
 			})
 			jQuery('#'+form_id+ ' .preloader').remove();
 		});		
-	});		
-});
-</script>
-<script>
-$(document).ready(function() {
-    function trim( str ) {
-            return str.replace(/^[ \t]+|[ \t]+$/g, "");
-    }
-    $(".deltag").click(function(){
-        $(this).parent().remove();
-    })
-
-    jQuery('#addmaterials').bind('click',function(event) {
-        event.preventDefault();
-		var error = 0;
-		var mat = trim($('#materials').val());
-		$.each(materials,function(i,material){
-			if(material==mat) error++;
-		})
-		if(error>0) return false;
+	});
+	//наличие товара
+	jQuery('#availlable_id').change( function(){
+        var availlable_val = jQuery('#availlable_id').val();
+        if(availlable_val == 1) jQuery("#quantity").attr("style", "display:inline");
+        else jQuery("#quantity").attr("style", "display:none");
+    });
+	//показ своих тэгов
+	jQuery('[name="showTags"]').click(function() {
+		jQuery(this).next().stop(true, true).toggle('500');
+		if(jQuery(this).data('status')=='up') {
+			jQuery(this).text('Показать все мои теги');
+			jQuery(this).data('status','down');
+		} else {
+			jQuery(this).text('Скрыть');
+			jQuery(this).data('status','up');
+		}
+	});
+	//добавление материалов и тэгов
+	jQuery('[name="add_mark"]').click(function(event) {
+		event.preventDefault();
+		addMark(this.id,jQuery(this).next().attr('id'),jQuery(this).prev().val());
+	}); 
+	//удаление материалов и тэгов
+	jQuery('[name="delete_mark"]').live('click',function() {
+		var value = jQuery(this).prev().text();
+		if(jQuery(this).parent().parent().attr('id')=='selected_materials') var data = materials;
+		else var data = tags;	
 		
-                materials.push($('#materials').val());
-		if(materials.length==1) $('.materials').html('<span>'+mat+'<a href="javascript:void(0)" onclick="$(this).parent().remove(); alert(\' fsdf\');">Удалить</a></span>');
-		else $('.materials').append('<span>, '+mat+'<a href="#" class="deltag">Удалить</a></span>');
-    });
-    $('#category_level1').change( function(){
-        var category_level2 = $('select[name="category_level2"]');
-        $.getJSON('/product/index/get2categorys/parent_id/'+$('#category_level1').val(), function(data) {
-            category_level2.html('');
-            $.each(data, function(i){
-                category_level2.append('<option value="' + i + '">' + this + '</option>');
-            });
-        });
-    });
-    $('#availlable').change( function(){
-        var availlable_val = $('#availlable').val();
-        if(availlable_val == 1)
-            $("#quantity").attr("style", "display:inline");
-        else
-            $("#quantity").attr("style", "display:none");
-    });
-	
-     $('[name="color[]"]').change(function(){
-             var last_val = $(this).data('last_val');
-             var value = $(this).val();	
-             if(value != 0) {
-             var id = $(this).attr('id');	
-             $(this).data('last_val',value);
-                 $.each($('[name="color[]"]'),function(i,child){
-                         if($(child).attr('id')!=id) {
-                            $("#"+$(child).attr('id')+" > option[value='"+value+"']").hide();
-                         } else {
-                                 $.each($('[name="color[]"]'),function(f,ch){
-                                         $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").attr('selected','');
-                                         $("#"+$(ch).attr('id')+" > option[value='"+last_val+"']").show();
-                                 });
-                         }
-                 });
-             }
-     }); 
+		for (var i=0; i<=data.length-1; i++){
+			if(data[i]==value) break;
+		}
+		data.splice(i,1);
+		jQuery(this).parent().remove();
+	});
+	jQuery('[name="add_tag"]').click(function(event){
+		event.preventDefault();
+		addMark('add_tag','selected_tags',jQuery(this).text(),true);
+	});
+	//фукнция добавления
+	function addMark(id,id_marks,value,simple_tag) {
+		var value = jQuery.trim(value);
+		if(value=='') {			
+			if(!jQuery('#'+id).prev().hasClass('not_valid')) {
+				jQuery('#'+id).prev().addClass('not_valid')
+			}			
+			return false;
+		}
+		var error = 0;			
+		if(id=='add_material') var data = materials;
+		else var data = tags;			
+		jQuery.each(data,function(i,result){
+			if(value==result) error++;
+		});
+		if(error>0) {
+			if(simple_tag!=true) {
+				if(!jQuery('#'+id).prev().hasClass('not_valid')) {
+					jQuery('#'+id).prev().addClass('not_valid')
+				}
+			}
+			return false;
+		}
+		jQuery('#'+id).prev().removeClass('not_valid');
+		data.push(value);
+		if(jQuery('#'+id_marks).children('span').length!=0) {
+			jQuery(jQuery('#'+id_marks).children('span')[((jQuery('#'+id_marks).children('span').length)-1)]).append(', ')
+		}
+		jQuery('#'+id_marks).append('<span><span>'+value+'</span><a href="javascript:void(0)" name="delete_mark">Удалить</a></span>');
+		jQuery('#'+id).prev().val('');
+	}
 });
-function showTags(href){
-    var element = jQuery('#mytags');
-    if (element.is(':hidden')) {
-        href.html('Cкрыть');
-        element.show('slow');
-    } else {
-        href.html('Показать все мои теги');
-        element.slideUp();
-    }
-}
 </script>
-<a href="<?= $this->url(array(
-                            'module'=>'product',
-                            'controller'=>'index',
-                            'action'=>'publish',
-                            'productId'=>$this->product->product_id
-                        )); ?>"><?= $this->product->published ? 'Снять товар с публикации' : 'Публиковать товар'; ?></a>
 <div class="styledform" style="margin-top:20px; width: 50%;">
-    <h3>Редактирование товара</h3>
-    <form  id="mainform" action="<?=$this->escape($this->form->getAction());?>" method="<?=$this->escape($this->form->getMethod());?>">
+    <h3>Добавление товара</h3>
+    <form  id="mainform" action="<?php echo $this->escape($this->form->getAction());?>" method="<?php echo $this->escape($this->form->getMethod());?>">
         <table style="width: 50%;">
             <tr>
-                <td class="label"><?=$this->form->title->getLabel(); ?></td>
-                <td class="data"><?=$this->form->title; ?></td>
+                <td class="label"><?php echo $this->form->title->getLabel(); ?></td>
+                <td class="data"><?php echo $this->form->title; ?></td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->category_level1->getLabel(); ?></td>
-                <td class="data"><?=$this->form->category_level1; ?></td>
+                <td class="label"><?php echo $this->form->categories->getLabel(); ?></td>
+                <td class="data"><?php echo $this->form->categories; ?></td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->category_level2->getLabel(); ?></td>
-                <td class="data"><?=$this->form->category_level2; ?></td>
+                <td class="label"><?php echo $this->form->subCategories->getLabel(); ?></td>
+                <td class="data"><?php echo $this->form->subCategories; ?></td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->price->getLabel(); ?></td>
-                <td class="data"><?=$this->form->price; ?></td>
+                <td class="label"><?php echo $this->form->price->getLabel(); ?></td>
+                <td class="data"><?php echo $this->form->price; ?></td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->description->getLabel(); ?></td>
-                <td class="data"><?=$this->form->description; ?></td>
+                <td class="label"><?php echo $this->form->description->getLabel(); ?></td>
+                <td class="data"><?php echo $this->form->description; ?></td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->production_time->getLabel(); ?></td>
-                <td class="data"><?=$this->form->production_time; ?></td>
+                <td class="label"><?php echo $this->form->production_time->getLabel(); ?></td>
+                <td class="data"><?php echo $this->form->production_time; ?></td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->size->getLabel(); ?></td>
-                <td class="data"><?=$this->form->size; ?></td>
+                <td class="label"><?php echo $this->form->size->getLabel(); ?></td>
+                <td class="data"><?php echo $this->form->size; ?></td>
             </tr>
             <tr>
-                <td class="label"><?=$this->form->availlable->getLabel(); ?></td>
+                <td class="label"><?php echo $this->form->availlable_id->getLabel(); ?></td>
                 <td class="data">
-                    <?=$this->form->availlable; ?>
-                    <?=$this->form->quantity; ?>
+                    <?php echo $this->form->availlable_id; ?>
+                    <?php if ($this->form->availlable_id->getValue() != 1) $this->form->getElement('quantity')->setAttrib('style', 'display:none;'); ?>
+                    <?php echo $this->form->quantity; ?>
                 </td>
             </tr>
             <tr>
                 <td class="label">материал</td>
                 <td class="data">
-                    <? echo $this->autoComplete("materials", "", array("url"=>"/product/index/ajaxmaterial")); ?>
-                    <button id="addmaterials">Добавить</button>
-                    <div class="materials">
+                    <?php echo $this->autoComplete("select_material", "", array("url"=>"/product/index/ajaxeditproductautocomplete/?type=material")); ?>
+                    <button id="add_material" name="add_mark">Добавить</button>
+                    <div id="selected_materials">
+                    <?php if (count($this->materials)): ?>
+                        <?
+                           $end_material_id = end($this->materials);
+                           $end_materail_id = $end_tag_id['material_id'];
+                        ?>
+                        <?php foreach($this->materials as &$material): ?>
+                            <a href="javascript:void(0)" name="delete_mark"><?php echo $material['title']; ?></a><?php (($material['material_id']!=$end_material_id) ? ',&nbsp;' : ''); ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     </div>
-					<?=$this->form->materials?>
+                    <?php echo $this->form->materials;?>
                 </td>
             </tr>
             <tr>
@@ -223,42 +258,43 @@ function showTags(href){
                     Теги
                 </td>
                 <td class="data">
-                    <?=  $this->autoComplete("tags", "", array("url"=>"/product/index/ajaxtags")); ?>
-                    <button id="addtags">Добавить</button>
-                    <div class="tags">
-                        
-                    </div>
-                    <a href="javascript:void(0)" onclick="showTags($(this));">Показать все мои теги</a>
-                    <div id="mytags" class="hide" style="display: none;">
-                        <? $fT = false; ?>
-                        <? foreach($this->tags as &$tags): ?>
-                        <span><? if ($fT) echo ', '; ?>
-                            <a href="javascript:void()" onclick="alert('sdfsd');"><?= $tags['Tag']['title']; ?></a>
-                        </span>
-                        <? $fT = true; ?>
-                        <? endforeach; ?>
-                    </div>
+                    <?php echo  $this->autoComplete("select_tag", "", array("url"=>"/product/index/ajaxeditproductautocomplete/?type=tag")); ?>
+                    <button id="add_tag" name="add_mark">Добавить</button>
+                    <div id="selected_tags"></div>
+                    <?php if (count($this->user_tags)): ?>
+                        <a href="javascript:void(0)" name="showTags">Показать все мои теги</a>
+                        <?
+                           $end_tag_id = end($this->user_tags);
+                           $end_tag_id = $end_tag_id['tag_id'];
+                        ?>
+                        <div style="display: none;">
+                        <?php foreach($this->user_tags as &$tag): ?>
+                            <a href="javascript:void(0)" name="add_tag"><?php echo $tag['title']; ?></a><?php (($tag['tag_id']!=$end_tag_id) ? ',&nbsp;' : ''); ?>
+                        <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php echo $this->form->user_tags; ?>
                 </td>
             </tr>
             <tr>
                 <td class="label">Цвета</td>
                 <td class="data">
                 <select id="color1" name="color[]">
-                    <option value="0" SELECTED>Выбирите</option>
+                   <option value="0" SELECTED>Выберите цвет</option>
                     <? foreach($this->colors as $key => $color): ?>
-                        <option value="<?= $key; ?>"><?= $color; ?></option>
+                        <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
                     <? endforeach; ?>
                 </select>
                 <select id="color2" name="color[]">
-                    <option value="0" SELECTED>Выбирите</option>
+                    <option value="0" SELECTED>Выберите цвет</option>
                     <? foreach($this->colors as $key => $color): ?>
-                        <option value="<?= $key; ?>"><?= $color; ?></option>
+                        <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
                     <? endforeach; ?>
                 </select>
                 <select id="color3" name="color[]">
-                    <option value="0" SELECTED>Выбирите</option>
+                   <option value="0" SELECTED>Выберите цвет</option>
                     <? foreach($this->colors as $key => $color): ?>
-                        <option value="<?= $key; ?>"><?= $color; ?></option>
+                        <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
                     <? endforeach; ?>
                 </select>
                 </td>
@@ -274,7 +310,6 @@ function showTags(href){
                                     <span>Add files...</span>
                                     <input type="file" name="files[]" multiple>
                                 </label>
-                                <button type="submit" class="start">Start upload</button>
                             </div>
                         </form>
                         <div class="fileupload-content">
@@ -286,7 +321,7 @@ function showTags(href){
             </tr>
             <tr>
                 <td></td>
-                <td><?=$this->form->submit_validator; ?></td>
+                <td><?php echo $this->form->submit_validator; ?></td>
             </tr>
         </table>
 </div>

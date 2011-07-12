@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Product_Model_TagTable
  * 
@@ -16,15 +15,43 @@ class Product_Model_TagTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Product_Model_Tag');
     }
-	public function getCompareTags($term) {
-		return $this->createQuery()
-					->where("title LIKE '%$term%'")
-					->limit(10)
-					->fetchArray();
-	}
-	public function getMyTagsArray($userId) {
-		return $this->createQuery('tag')
-					->where('tag.tag_id IN (SELECT tagProduct.tag_id FROM Product_Model_TagProduct tagProduct WHERE tagProduct.user_id = ?)', $userId)
-					->fetchArray();
+    
+    /**
+     *
+     * @param type $term
+     * @return type 
+     */
+    public function getCompareTags($term) {
+        return $this->createQuery()
+            ->where("title LIKE '%$term%'")
+            ->limit(10)
+            ->fetchArray();
+    }
+    
+    /**
+     *
+     * @param type $userId
+     * @return type 
+     */
+    public function getMyTagsArray($userId)
+    {
+        return $this->createQuery('tag')
+            ->where('tag.tag_id IN (SELECT tagProduct.tag_id FROM Product_Model_TagProduct tagProduct WHERE tagProduct.user_id = ?)', $userId)
+            ->fetchArray();
+    }
+    
+    /**
+     * Get tags by $productId
+     * @param int $productId
+     * @return array 
+     */
+    public function getTagsByProductId($productId)
+    {
+        $rows = $this->createQuery('tag')
+            ->where('tag.tag_id IN (SELECT tagProduct.tag_id FROM Product_Model_TagProduct tagProduct WHERE tagProduct.product_id = ?)', $productId)
+            ->fetchArray();
+        $result = array();
+        foreach ($rows as &$row) $result[]=$row['title'];
+        return $result;
     }
 }

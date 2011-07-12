@@ -8,7 +8,7 @@
  * @author Patsura Dmitiry <zaets28rus@gmail.com>
  * @data 2011.06.28
  */
-class Product_Form_EditProduct
+class Product_Form_Edit
     extends ZendX_JQuery_Form
 {
     public function init()
@@ -18,22 +18,22 @@ class Product_Form_EditProduct
               ->addFilter('StripTags')
               ->setLabel('Наименование')
               ->setDecorators(array('ViewHelper'));
-                
-        $category1Array = Doctrine_Query::create()
-                            ->from('Product_Model_Category')
-                            ->where('parent_id IS NULL')
-                            ->execute()
-                            ->toKeyValueArray('category_id', 'title');
+        $title->addValidators(array(
+                array('NotEmpty', true),
+                array('stringLength', false, array(6, 255)),
+        ));
+         $categoriesArray = Product_Model_CategoryTable::getInstance()->getCategories(0);
         
-        $category1 = new Zend_Form_Element_Select('category_level1');
-        $category1->setMultiOptions($category1Array)
-                  ->setLabel('Выберите категорию')
-                  ->setDecorators(array('ViewHelper'));
+        $categories = new Zend_Form_Element_Select('categories');
+        $categories->setMultiOptions($categoriesArray)
+                   ->setLabel('Выберите категорию')
+                   ->setDecorators(array('ViewHelper'));
+        #isset($attrs['category_id']) ? $category1->setValue($attrs['category_id']) : null;
         
-        $category2 = new Zend_Form_Element_Select('category_level2');
-        $category2->setMultiOptions(array('Выбирите категорию'))
-                  ->setLabel('Выберите подкатегорию')
-                  ->setDecorators(array('ViewHelper'));
+        $subCategories = new Zend_Form_Element_Select('subCategories');
+        $subCategories->setMultiOptions(array('Выберите категорию'))
+					  ->setLabel('Выберите подкатегорию')
+					  ->setDecorators(array('ViewHelper'));
         
         $price = new Zend_Form_Element_Text('price');
         $price->setRequired(TRUE)
@@ -58,8 +58,8 @@ class Product_Form_EditProduct
                             ->execute()
                             ->toKeyValueArray('availlable_id', 'title');
         
-        $availlable = new Zend_Form_Element_Select('availlable');
-        $availlable->setMultiOptions($availlableArray)
+        $availlable_id = new Zend_Form_Element_Select('availlable_id');
+        $availlable_id->setMultiOptions($availlableArray)
                   ->setLabel('Укажите наличие товара')
                   ->setDecorators(array('ViewHelper'));
 
@@ -73,21 +73,27 @@ class Product_Form_EditProduct
 			   
 			   
         $materials = new Zend_Form_Element_Hidden('materials');
-        $materials->setAttrib('id','hidden_materials')
+        $materials->setAttrib('id','materials')
                   ->setDecorators(array('ViewHelper'));
+				  
+		$tags = new Zend_Form_Element_Hidden('tags');
+        $tags->setAttrib('id','tags')
+			 ->setDecorators(array('ViewHelper'));
+			 
         $this->addElements(
             array(
                 $title,
-                $category1,
-                $category2,
+                $categories,
+                $subCategories,
                 $price,
                 $description,
                 $production_time,
                 $size,
-                $availlable,
+                $availlable_id,
                 $quantity,
                 $submit,
-                $materials
+                $materials,
+				$tags
             )
         );
     }
