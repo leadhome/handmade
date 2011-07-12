@@ -80,9 +80,13 @@ class Product_IndexController
             if ($form->isValid($post)) { 
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
+					$date_year = date('Y');
+					$date_month = date('m');
+					$date_day = date('d');
                     $values = $form->getValues();
                     $product = new Product_Model_Product();
                     $product->category_id = $values['subCategories'];
+					$product->date_created = $date_year.'-'.$date_month.'-'.$date_day.' '.date('H:s:i');
                     $product->title = $values['title'];
                     $product->user_id = $user->user_id;
                     $product->description = $values['description'];
@@ -95,23 +99,26 @@ class Product_IndexController
                     $product->photos = serialize($photos); 
                     
                     $product->availlable_id = $values['availlable'];
-                    $product->quantity = $values['quantity'];
+					if($product->availlable_id==1) $product->quantity = $values['quantity'];
                     $product->published = 1;
                     $product->save();
                     $productId = $product->get('product_id');
                     
-                    foreach($post['color'] as $color){
-                        if($post['color'] != 0){
-                            
-                        }
+					//save colors
+					$colors = array_unique($post['color']);
+					$colors = array_intersect(array_keys($this->view->colors),$colors);
+					array_splice($colors,3);
+                    foreach($colors as $color){
+						$model = new Product_Model_ColorProduct();
+						$model->product_id = $productId;
+						$model->color_id = $color;
+						$model->save();
                     }
-                    
-                    Zend_Debug::dump($post['color']);            
-                    die();
+					
                     //save materials
                     $materials = unserialize($values['materials']);
                     foreach($materials as $material){
-                        $material_exmp = Product_Model_MaterialTable::getInstance()->findoneby('title', $material);
+                        $material_exmp = Product_Model_MaterialTable::getInstance()->findOneBy('title', $material);
                         if($material_exmp) {
                             $productMaterial = new Product_Model_MaterialProduct;
                             $productMaterial->product_id = $productId;
@@ -130,7 +137,7 @@ class Product_IndexController
                         }
                     }
                     
-                    //tags
+                    //save tags
                     $tags = unserialize($values['tags']);                
                     foreach ($tags as &$value) {
                         $tag_exmp = Product_Model_TagTable::getInstance()->findOneBy('title', $value);
@@ -155,14 +162,19 @@ class Product_IndexController
                     }
 
                     // public/images/products/categoryId/user->user_id
-                    $path = APPLICATION_PATH . '/../public/images/products/' . $product->category_id . '/' . $user->user_id;
+                    $path = APPLICATION_PATH . '/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id;
                     // public/images/products/user_upload_dir
-                    $userUploadDir = APPLICATION_PATH . '/../public/images/products/' . $userProductPhotos->PhotosDir;
+                    $userUploadDir = APPLICATION_PATH . '/../public/cache/' . $userProductPhotos->PhotosDir;
                     if(!is_dir($path)) {
                         mkdir($path, 0777, true);
                     }
-                    exec('mv '.$userUploadDir.' '.$path);
-                    exec('mv '.$path.'/'.$userProductPhotos->PhotosDir.' '.$path.'/'.$productId); 
+					echo 'mv '.$userUploadDir.' '.$path.'/';
+					// echo 'rm -rf '.mb_substr($userUploadDir,0,-2);
+                    exec('mv '.$userUploadDir.'/* '.$path.'/');
+                    exec('rm -rf '.$userUploadDir);
+					die();
+					// die('rm -rf '.mb_substr($userUploadDir,0,-2));
+                    // exec('mv '.$path.'/'.$userProductPhotos->PhotosDir.' '.$path.'/'.$user->user_id); 
                     $userProductPhotos->photos = array();
                     unset($userProductPhotos->PhotosDir);
                     $this->_redirect('/');

@@ -441,6 +441,8 @@ Product_Model_Product:
       primary: true
       notnull: true
       autoincrement: true
+    date_created:
+      type: timestamp
     category_id:
       type: integer(4)
     user_id:

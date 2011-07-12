@@ -51,7 +51,7 @@ class UploadHandler
 {
     private $options;
     protected $_session;
-
+	
 
     function __construct($options=null) {
         $userProductPhotos = new Zend_Session_Namespace('userProductPhotos');
@@ -68,8 +68,8 @@ class UploadHandler
             }
             $productName = $userProductPhotos->PhotosDir;
         }
-        $userUploadDir = __DIR__ . '/images/products/' . $productName;
-        $url = '/images/products/' . $productName;
+        $userUploadDir = __DIR__ . '/cache/' . $productName;
+        $url = '/cache/' . $productName;
         if(!is_dir($userUploadDir)) {
             mkdir($userUploadDir, 0777, true);
         }
