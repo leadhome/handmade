@@ -59,8 +59,8 @@
     </tr>
 </script>
 <?$this->headScript()->captureStart() ?>
-	var materials = <?php echo json_encode($this->materials); ?>;
-	var tags = <?php echo json_encode($this->tags); ?>;
+	var materials = <?php echo json_encode($this->materialsJSON); ?>;
+	var tags = <?php echo json_encode($this->tagsJSON); ?>;
 <? $this->headScript()->captureEnd(); ?>
 <script>
 jQuery(document).ready(function() {
@@ -243,7 +243,7 @@ jQuery(document).ready(function() {
                     <?php if (count($this->materials)): ?>
                         <?
                            $end_material_id = end($this->materials);
-                           $end_materail_id = $end_tag_id['material_id'];
+                           $end_materail_id = $end_material_id['material_id'];
                         ?>
                         <?php foreach($this->materials as &$material): ?>
                             <a href="javascript:void(0)" name="delete_mark"><?php echo $material['title']; ?></a><?php (($material['material_id']!=$end_material_id) ? ',&nbsp;' : ''); ?>

@@ -92,9 +92,9 @@ class Product_IndexController
             if ($form->isValid($post)) { 
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
-					$date_year = date('Y');
-					$date_month = date('m');
-					$date_day = date('d');
+                    $date_year = date('Y');
+                    $date_month = date('m');
+                    $date_day = date('d');
                     $values = $form->getValues();
                     $product = new Product_Model_Product();
                     $product->category_id = $values['subCategories'];
@@ -116,15 +116,15 @@ class Product_IndexController
                     $product->save();
                     $productId = $product->get('product_id');
                     
-					//save colors
-					$colors = array_unique($post['color']);
-					$colors = array_intersect(array_keys($this->view->colors),$colors);
-					array_splice($colors,3);
+                    //save colors
+                    $colors = array_unique($post['color']);
+                    $colors = array_intersect(array_keys($this->view->colors),$colors);
+                    array_splice($colors,3);
                     foreach($colors as $color){
-						$model = new Product_Model_ColorProduct();
-						$model->product_id = $productId;
-						$model->color_id = $color;
-						$model->save();
+                        $model = new Product_Model_ColorProduct();
+                        $model->product_id = $productId;
+                        $model->color_id = $color;
+                        $model->save();
                     }
 					
                     //save materials
@@ -355,6 +355,14 @@ class Product_IndexController
         $this->view->materials = Product_Model_MaterialTable::getInstance()->getMaterialsByProductId($product->product_id);
         $this->view->user_tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);
             
+        $result = array();
+        foreach ($this->view->materials as &$row) $result[] = $row['title'];
+        $this->view->materialsJSON = $result;
+        
+        $result = array();
+        foreach ($this->view->tags as &$row) $result[] = $row['title'];
+        $this->view->tagsJSON = $result;
+        
         $subCategories = $form->getElement('subCategories');
         $category_parent_id = Product_Model_CategoryTable::getInstance()->findOneBy('category_id', $product->category_id)->parent_id;
         $categoriesArray = Product_Model_CategoryTable::getInstance()->getCategories($category_parent_id);
