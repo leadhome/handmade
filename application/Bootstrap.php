@@ -72,20 +72,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
          * @return type 
          */
         public function _initJQuery(){
-            //загружаем лэйаут, получаем из него view
             $this->bootstrap('layout');
             $layout=$this->getResource('layout');
             $view=$layout->getView();
-            //добавляем директорию, где лежат view-хелперы jquery
+            
             $view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
-            //включаем jquery, выбираем версию 1.4.2 и версию ui - 1.8 (последние версии)
-            //они будут загружаться с серверов гугла.
-            //CSS добавляем вручную
             $view->jQuery()
-            ->setVersion("1.5.1")
-            ->setUiVersion("1.8.14")
-            ->addStylesheet("/css/jquery-ui/ui-lightness/jquery-ui-1.8.14.custom.css")
-            ->uiEnable();
+                ->setVersion("1.6.1")
+                ->setUiVersion("1.8.14")
+                ->addStylesheet("/stylesheets/jquery-ui/ui-lightness/jquery-ui-1.8.14.custom.css")
+                ->setLocalPath('/javascripts/jquery/jquery-1.6.1.min.js')
+                ->setUiLocalPath('/javascripts/jquery/jquery-ui-1.8.14.min.js') 
+                ->uiEnable();
+            
             return $view; 
         }
         
@@ -145,4 +144,3 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Validate_Abstract::setDefaultTranslator($translator);
     }
 }
-

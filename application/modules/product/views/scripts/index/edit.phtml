@@ -1,5 +1,9 @@
-<!--<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" id="theme">-->
-<link rel="stylesheet" href="/css/jquery.fileupload-ui.css">
+<?php $this->headLink()->appendStylesheet('/stylesheets/jquery/jquery.fileupload-ui.css'); ?>
+<?php $this->headScript()->appendFile('/javascripts/jquery/jquery.tmpl.min.js'); ?>
+<?php $this->headScript()->appendFile('/javascripts/jquery/jquery.iframe-transport.js'); ?>
+<?php $this->headScript()->appendFile('/javascripts/jquery/jquery.fileupload.js'); ?>
+<?php $this->headScript()->appendFile('/javascripts/jquery/jquery.fileupload-ui.js'); ?>
+<?php $this->headScript()->appendFile('/javascripts/upload.js'); ?>
 <script id="template-upload" type="text/x-jquery-tmpl">
     <tr class="template-upload{{if error}} ui-state-error{{/if}}">
         <td class="preview"></td>
@@ -352,10 +356,3 @@ jQuery(document).ready(function() {
             </tr>
         </table>
 </div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
-<script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
-<script src="/js/jquery.iframe-transport.js"></script>
-<script src="/js/jquery.fileupload.js"></script>
-<script src="/js/jquery.fileupload-ui.js"></script>
-<script src="/js/application.js"></script>

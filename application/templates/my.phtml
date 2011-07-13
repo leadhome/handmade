@@ -1,20 +1,20 @@
 <?=$this->layout()->header?>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<?php echo $this->headTitle('HandMade')->setSeparator(' / '); ?>
-		<?php echo $this->headLink()
-                                ->appendStylesheet('/css/main.css')
-                                ->appendStylesheet('/css/my_style.css');
-                ?>
-                <?php echo $this->JQuery(); ?>
-		<?php echo $this->headScript()
-                                ->appendFile('/js/menu.js')
-								->appendFile('/js/jquery.serialize.js')
-                                ->appendFile('/js/addproducttocart.js'); 
-                ?>
-	</head>
-	<body>
-                <?= $this->layout()->content ?>  
-	</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <?php echo $this->headTitle('HandMade')->setSeparator(' / '); ?>
+        <?php echo $this->headLink()
+                        ->appendStylesheet('/css/main.css')
+                        ->appendStylesheet('/css/my_style.css');
+        ?>
+        <?php echo $this->JQuery(); ?>
+        <?php echo $this->headScript()
+                        ->appendFile('/js/menu.js')
+                        ->appendFile('/js/jquery.serialize.js')
+                        ->appendFile('/js/addproducttocart.js'); 
+        ?>
+    </head>
+    <body>
+        <?= $this->layout()->content ?>  
+    </body>
 </html>
