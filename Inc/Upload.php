@@ -7,7 +7,7 @@ class Inc_Upload {
     function __construct($options=null) {
        $this->_session = new Zend_Session_Namespace('userProductPhotos');
         if(!$user = Zend_Auth::getInstance()->getIdentity())
-            throw new Zend_Exception('Вы не авторитизованы');
+            throw new Zend_Exception('Р’С‹ РЅРµ Р°РІС‚РѕСЂРёС‚РёР·РѕРІР°РЅС‹');
         
         if($this->_session->type == 'edit') {
             $timestamp = strtotime($this->_session->date_created);
@@ -185,8 +185,9 @@ class Inc_Upload {
     }
     
     private function handle_file_upload($uploaded_file, $name, $size, $type, $error) {
-        $file = new stdClass();
-        $file->name = basename(stripslashes($name));
+		$file = new stdClass();
+		 $file->name =  md5(rand(1, 100000000)+time()).'.'.(substr(strrchr($name, '.'), 1));
+        // $file->name = basename(stripslashes($name));
         $file->size = intval($size);
         $file->type = $type;
         $error = $this->has_error($uploaded_file, $file, $error);
