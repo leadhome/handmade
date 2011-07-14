@@ -15,6 +15,7 @@ class Product_IndexController
         $this->_helper->AjaxContext()->addActionContext('add', 'json')->initContext('json');
         $this->_helper->AjaxContext()->addActionContext('ajaxeditproductautocomplete', 'json')->initContext('json');
         $this->_helper->AjaxContext()->addActionContext('getcategories', 'json')->initContext('json');
+        $this->_helper->AjaxContext()->addActionContext('edit', 'json')->initContext('json');
     }
     
     /**
@@ -66,6 +67,10 @@ class Product_IndexController
              
         $session = new Zend_Session_Namespace('userProductPhotos');
         if(!$this->getRequest()->isXmlHttpRequest() && !$this->getRequest()->isPost()){
+            if($session->PhotosDir) {
+                $userUploadDir = APPLICATION_PATH . '/../public/cache/' . $session->PhotosDir;
+                exec('rm -rf '.$userUploadDir);
+            }
             $session->type = 'add';
             $session->photos = array();
             unset($session->PhotosDir);
@@ -92,31 +97,30 @@ class Product_IndexController
             if ($form->isValid($post)) { 
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
-				
                     $date_year = date('Y');
                     $date_month = date('m');
                     $date_day = date('d');
                     $values = $form->getValues();
-					
-					$new_photos = array();
-					$photos = unserialize(stripslashes($values['photos']));
-					if(count($session->photos)>0 && count($photos)>0) {
-						$i = 0;
-						foreach($session->photos as $photo) {
-							foreach($photos['lists'] as $value) {
-								if($value['name']==$photo) {
-									if($photos['main']==$photo) {
-										$new_photos['main'] = $photo;
-									}
-									$new_photos['lists'][$i]['name'] = $value['name'];
-									$new_photos['lists'][$i]['desc'] = $value['desc'];
-									$i++;
-								}
-							}	
-						}
-						$new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
-						if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
-					}
+
+                    $new_photos = array();
+                    $photos = unserialize(stripslashes($values['photos']));
+                    if(count($session->photos)>0 && count($photos)>0) {
+                            $i = 0;
+                            foreach($session->photos as $photo) {
+                                    foreach($photos['lists'] as $value) {
+                                            if($value['name']==$photo) {
+                                                    if($photos['main']==$photo) {
+                                                            $new_photos['main'] = $photo;
+                                                    }
+                                                    $new_photos['lists'][$i]['name'] = $value['name'];
+                                                    $new_photos['lists'][$i]['desc'] = $value['desc'];
+                                                    $i++;
+                                            }
+                                    }	
+                            }
+                            $new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
+                            if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
+                    }
 					
                     $product = new Product_Model_Product();
                     $product->category_id = $values['subCategories'];
@@ -191,11 +195,7 @@ class Product_IndexController
                             $model->product_id = $productId;
                             $model->save();
                         }
-                    }
-					
-					// print_r($_POST);
-					
-					// die();
+                    }	
                     // public/images/products/categoryId/user->user_id
                     $path = APPLICATION_PATH . '/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$productId;
                     // public/images/products/user_upload_dir
@@ -270,27 +270,26 @@ class Product_IndexController
 					$date_day = date('d');
                     $values = $form->getValues();
 					
-					$new_photos = array();
-					$photos = unserialize(stripslashes($values['photos']));
-					if(count($session->photos)>0 && count($photos)>0) {
-						$i = 0;
-						foreach($session->photos as $photo) {
-							foreach($photos['lists'] as $value) {
-								if($value['name']==$photo) {
-									if($photos['main']==$photo) {
-										$new_photos['main'] = $photo;
-									}
-									$new_photos['lists'][$i]['name'] = $value['name'];
-									$new_photos['lists'][$i]['desc'] = $value['desc'];
-									$i++;
-								}
-							}	
-						}
-						$new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
-						if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
-					}
+                    $new_photos = array();
+                    $photos = unserialize(stripslashes($values['photos']));
+                    if(count($session->photos)>0 && count($photos)>0) {
+                            $i = 0;
+                            foreach($session->photos as $photo) {
+                                    foreach($photos['lists'] as $value) {
+                                            if($value['name']==$photo) {
+                                                    if($photos['main']==$photo) {
+                                                            $new_photos['main'] = $photo;
+                                                    }
+                                                    $new_photos['lists'][$i]['name'] = $value['name'];
+                                                    $new_photos['lists'][$i]['desc'] = $value['desc'];
+                                                    $i++;
+                                            }
+                                    }	
+                            }
+                            $new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
+                            if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
+                    }
 					
-                    $product = new Product_Model_Product();
                     $product->category_id = $values['subCategories'];
 					$product->date_created = $date_year.'-'.$date_month.'-'.$date_day.' '.date('H:s:i');
                     $product->title = $values['title'];
@@ -309,77 +308,116 @@ class Product_IndexController
                     $product->save();
                     $productId = $product->get('product_id');
                     
-					//save colors
-					$colors = array_unique($post['color']);
-					$colors = array_intersect(array_keys($this->view->colors),$colors);
-					array_splice($colors,3);
+                    //save colors
+                    $colorsMultiOptions = Product_Model_Color::getMultiOptions();
+                    $colorsProduct = Product_Model_ColorProductTable::getInstance()->findBy('product_id', $productId);
+                    $colorsProduct->delete();
+                    //save colors
+                    $colors = array_unique($post['color']);
+                    $colors = array_intersect(array_keys($colorsMultiOptions), $colors);
+                    array_splice($colors, 3);
                     foreach($colors as $color){
-						$model = new Product_Model_ColorProduct();
-						$model->product_id = $productId;
-						$model->color_id = $color;
-						$model->save();
-                    }
-					
-                    //save materials
-                    $materials = unserialize($values['materials']);
-                    foreach($materials as $material){
-                        $material_exmp = Product_Model_MaterialTable::getInstance()->findOneBy('title', $material);
-                        if($material_exmp) {
-                            $productMaterial = new Product_Model_MaterialProduct;
-                            $productMaterial->product_id = $productId;
-                            $productMaterial->material_id = $material_exmp->material_id;
-                            $productMaterial->save();
-                        } else {
-                            $materials_m = new Product_Model_Material();
-                            $materials_m->title = $material;
-                            $materials_m->save();
-                            $materialId = $materials_m->get('material_id');
-                            
-                            $productMaterial = new Product_Model_MaterialProduct;
-                            $productMaterial->product_id = $productId;
-                            $productMaterial->material_id = $materialId;
-                            $productMaterial->save();
-                        }
-                    }
-                    
-                    //save tags
-                    $tags = unserialize($values['tags']);                
-                    foreach ($tags as &$value) {
-                        $tag_exmp = Product_Model_TagTable::getInstance()->findOneBy('title', $value);
-                        if($tag_exmp) {
-                            $model = new Product_Model_TagProduct();
-                            $model->tag_id = $tag_exmp->tag_id;
-                            $model->user_id = $user->user_id;
+                        if($color > 0){
+                            $model = new Product_Model_ColorProduct();
                             $model->product_id = $productId;
-                            $model->save();
-                        } else {
-                            $tag = new Product_Model_Tag();
-                            $tag->title = $value;
-                            $tag->save();
-                            $tagId = $tag->get('tag_id');
-                            
-                            $model = new Product_Model_TagProduct();
-                            $model->tag_id = $tagId;
-                            $model->user_id = $user->user_id;
-                            $model->product_id = $productId;
+                            $model->color_id = $color;
                             $model->save();
                         }
                     }
 
-                    // public/images/products/categoryId/user->user_id
-                    $path = APPLICATION_PATH . '/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id;
-                    // public/images/products/user_upload_dir
-                    $userUploadDir = APPLICATION_PATH . '/../public/cache/' . $session->PhotosDir;
-                    if(!is_dir($path)) {
-                        mkdir($path, 0777, true);
+                    //save materials
+                    $materials = unserialize($values['materials']);
+                    $materialsProducts = Product_Model_MaterialProductTable::getInstance()->findBy('product_id', $productId);
+                    $do = false;
+                    if(count($materials) > 0) {
+                        foreach($materials as $material){
+                            $do = false;
+                            if(strlen($material) > 0) {
+                                $material_exmp = Product_Model_MaterialTable::getInstance()->findOneBy('title', $material);
+                                if($material_exmp) {
+                                    if(count($materialsProducts) > 0) {
+                                        foreach($materialsProducts as $key => $materialProduct){
+                                            if ($materialProduct->material_id == $material_exmp->material_id) {
+                                                unset($materialsProducts[$key]);
+                                                $do = true;
+                                                continue;
+                                            }
+                                        }   
+                                        if(!$do) {
+                                            $productMaterial = new Product_Model_MaterialProduct;
+                                            $productMaterial->product_id = $productId;
+                                            $productMaterial->material_id = $material_exmp->material_id;
+                                            $productMaterial->save();
+                                        } 
+                                    } else {
+                                        $productMaterial = new Product_Model_MaterialProduct;
+                                        $productMaterial->product_id = $productId;
+                                        $productMaterial->material_id = $material_exmp->material_id;
+                                        $productMaterial->save();
+                                    }
+                                } else {
+                                    $materials_m = new Product_Model_Material();
+                                    $materials_m->title = $material;
+                                    $materials_m->save();
+                                    $materialId = $materials_m->get('material_id');
+
+                                    $productMaterial = new Product_Model_MaterialProduct;
+                                    $productMaterial->product_id = $productId;
+                                    $productMaterial->material_id = $materialId;
+                                    $productMaterial->save();
+                                }
+                            }
+                        }
                     }
-					echo 'mv '.$userUploadDir.' '.$path.'/';
-					// echo 'rm -rf '.mb_substr($userUploadDir,0,-2);
-                    exec('mv '.$userUploadDir.'/* '.$path.'/');
-                    exec('rm -rf '.$userUploadDir);
-					die();
-					// die('rm -rf '.mb_substr($userUploadDir,0,-2));
-                    // exec('mv '.$path.'/'.$session->PhotosDir.' '.$path.'/'.$user->user_id); 
+                    $materialsProducts->delete();
+
+                    //save tags
+                    $tags = unserialize(stripslashes($values['tags']));  
+                    $tagsProducts = Product_Model_TagProductTable::getInstance()->findBy('product_id', $productId);
+                    $do = false;
+                    if(count($tags > 0)) {
+                        foreach($tags as $tag){
+                            $do = false;
+                            $tag_exmp = Product_Model_TagTable::getInstance()->findOneBy('title', $tag);
+                            if($tag_exmp) {
+                                if(count($tagsProducts) > 0) {
+                                    foreach($tagsProducts as $key => $tagProduct){
+                                        if ($tagProduct->tag_id == $tag_exmp->tag_id) {
+                                            unset($tagsProducts[$key]);
+                                            $do = true;
+                                            continue;
+                                        }
+                                    }
+                                    if(!$do) {
+                                        $model = new Product_Model_TagProduct();
+                                        $model->tag_id = $tag_exmp->tag_id;
+                                        $model->user_id = $user->user_id;
+                                        $model->product_id = $productId;
+                                        $model->save();
+                                    } 
+                                } else {
+                                    $model = new Product_Model_TagProduct();
+                                    $model->tag_id = $tag_exmp->tag_id;
+                                    $model->user_id = $user->user_id;
+                                    $model->product_id = $productId;
+                                    $model->save();
+                                }
+                            } else {
+                                $tag_m = new Product_Model_Tag();
+                                $tag_m->title = $tag;
+                                $tag_m->save();
+                                $tagId = $tag_m->get('tag_id');
+
+                                $model = new Product_Model_TagProduct();
+                                $model->tag_id = $tagId;
+                                $model->user_id = $user->user_id;
+                                $model->product_id = $productId;
+                                $model->save();
+                            }
+                        }
+                    }
+                    $tagsProducts->delete();
+                    die();
                     $session->photos = array();
                     unset($session->PhotosDir);
                     $this->_redirect('/');
@@ -394,20 +432,21 @@ class Product_IndexController
                     }
             }
        } else {
-		
-		$photos = unserialize($product->photos);
-		$new_photos = array();
-		$new_photos['main'] = $photos['main'];
-		foreach($photos['lists'] as $photo) {
-			$new_photos['lists'][] = $photo['name'];
-		}		
-		$this->view->photos = $new_photos;
+        $photos = unserialize($product->photos);
+        $new_photos = array();
+        $new_photos['main'] = $photos['main'];
+        if ( count($photos) > 0 ) {
+            foreach($photos['lists'] as $photo) {
+                    $new_photos['lists'][] = $photo['name'];
+            }		
+        }
+        $this->view->photos = $new_photos;
         $this->view->product = $product;
         $this->view->colors = Product_Model_Color::getMultiOptions();
         $this->view->tags = Product_Model_TagTable::getInstance()->getTagsByProductId($product->product_id);
         $this->view->materials = Product_Model_MaterialTable::getInstance()->getMaterialsByProductId($product->product_id);
         $this->view->user_tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);
-            
+        $this->view->user_colors = Product_Model_ColorProductTable::getInstance()->findBy('product_id', $product->product_id);
         $result = array();
         foreach ($this->view->materials as &$row) $result[] = $row['title'];
         $this->view->materialsJSON = $result;
