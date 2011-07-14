@@ -16,6 +16,7 @@
  * @property User_Model_User $User
  * @property Doctrine_Collection $DeliveryShop
  * @property Doctrine_Collection $PaymentShop
+ * @property Doctrine_Collection $Product__Model__Products
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -86,6 +87,10 @@ abstract class User_Model_Base_Shop extends Doctrine_Record
              'foreign' => 'shop_id'));
 
         $this->hasMany('User_Model_PaymentsShop as PaymentShop', array(
+             'local' => 'shop_id',
+             'foreign' => 'shop_id'));
+
+        $this->hasMany('Product_Model_Product as Product__Model__Products', array(
              'local' => 'shop_id',
              'foreign' => 'shop_id'));
     }

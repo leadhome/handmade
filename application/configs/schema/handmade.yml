@@ -447,6 +447,8 @@ Product_Model_Product:
       type: integer(4)
     user_id:
       type: integer(4)
+    shop_id:
+      type: integer(4)
     title:
       type: string(255)
     description:
@@ -472,6 +474,11 @@ Product_Model_Product:
       class: User_Model_User
       local: user_id
       foreign: user_id
+      foreignAlias: Product__Model__Products
+    Shop:
+      class: User_Model_Shop
+      local: shop_id
+      foreign: shop_id
       foreignAlias: Product__Model__Products
     Availlable:
       class: Product_Model_Availlable

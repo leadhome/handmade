@@ -58,15 +58,19 @@ class Product_IndexController
     }
     
     /**
-     * 
+     * Добавление товара
      */
     public function addAction() {
 		//проверка на авторизацию пользователя
         if(!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
-		//проверка на существование у пользователя магазина
-		//дописать	
 		
+		//данные о пользователе
         $user = Zend_Auth::getInstance()->getIdentity();
+
+		//проверка на существование у пользователя магазина
+		$shop = User_Model_ShopTable::getInstance()->findOneByUser_id($user->user_id);
+		if(!$shop) $this->_redirect("/user/shop/create");
+		
              
         $session = new Zend_Session_Namespace('userProductPhotos');
         if(!$this->getRequest()->isXmlHttpRequest() && !$this->getRequest()->isPost()){
@@ -140,6 +144,7 @@ class Product_IndexController
 					$product->price = $values['price'];
 					$product->photos = serialize($new_photos);
 					$product->published = 1;
+					$product->shop_id = $shop->shop_id;
 					$product->availlable_id = $values['availlable_id'];
 					if($product->availlable_id==1) $product->quantity = $values['quantity'];
 					//Цвет

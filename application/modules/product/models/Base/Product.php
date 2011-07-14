@@ -9,6 +9,7 @@
  * @property timestamp $date_created
  * @property integer $category_id
  * @property integer $user_id
+ * @property integer $shop_id
  * @property string $title
  * @property clob $description
  * @property string $production_time
@@ -20,6 +21,7 @@
  * @property boolean $published
  * @property integer $view
  * @property User_Model_User $User
+ * @property User_Model_Shop $Shop
  * @property Product_Model_Availlable $Availlable
  * @property Product_Model_Category $Category
  * @property Doctrine_Collection $ColorProduct
@@ -56,6 +58,10 @@ abstract class Product_Model_Base_Product extends Doctrine_Record
              'length' => '4',
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => '4',
+             ));
+        $this->hasColumn('shop_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => '4',
              ));
@@ -129,6 +135,10 @@ abstract class Product_Model_Base_Product extends Doctrine_Record
         $this->hasOne('User_Model_User as User', array(
              'local' => 'user_id',
              'foreign' => 'user_id'));
+
+        $this->hasOne('User_Model_Shop as Shop', array(
+             'local' => 'shop_id',
+             'foreign' => 'shop_id'));
 
         $this->hasOne('Product_Model_Availlable as Availlable', array(
              'local' => 'availlable_id',
