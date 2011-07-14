@@ -45,6 +45,7 @@
 
 .fileupload-buttonbar .ui-button {
   vertical-align: middle;
+  overflow: hidden;
 }
 
 .fileupload-content {
@@ -67,6 +68,7 @@
 }
 
 .files {
+    
   margin: 10px 0;
   border-collapse: collapse;
 }

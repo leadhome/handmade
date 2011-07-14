@@ -319,29 +319,50 @@ jQuery(document).ready(function() {
                         <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
-                    <?php echo $this->form->user_tags; ?>
+                    <?php echo $this->form->tags; ?>
                 </td>
             </tr>
             <tr>
                 <td class="label">Цвета</td>
                 <td class="data">
                 <select id="color1" name="color[]">
-                   <option value="0" SELECTED>Выберите цвет</option>
-                    <? foreach($this->colors as $key => $color): ?>
-                        <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
-                    <? endforeach; ?>
+                    <? if(count($this->user_colors) >= 1): ?>
+                       <option value="0" <? ($this->user_colors[0]->color_id == 0) ? 'SELECTED="SELECTED" ' : ''; ?>>Выберите цвет</option>
+                        <? foreach($this->colors as $key => $color): ?>
+                            <option <? echo ($this->user_colors[0]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                        <? endforeach; ?>
+                    <? else: ?>
+                        <option value="0" SELECTED>Выберите цвет</option>
+                        <? foreach($this->colors as $key => $color): ?>
+                            <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                        <? endforeach; ?>
+                    <? endif; ?>
                 </select>
                 <select id="color2" name="color[]">
-                    <option value="0" SELECTED>Выберите цвет</option>
-                    <? foreach($this->colors as $key => $color): ?>
-                        <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
-                    <? endforeach; ?>
+                    <? if(count($this->user_colors) >= 2): ?>
+                       <option value="0" <? ($this->user_colors[1]->color_id == 0) ? 'SELECTED="SELECTED" ' : ''; ?>>Выберите цвет</option>
+                        <? foreach($this->colors as $key => $color): ?>
+                            <option <? echo ($this->user_colors[1]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                        <? endforeach; ?>
+                    <? else: ?>
+                        <option value="0" SELECTED>Выберите цвет</option>
+                        <? foreach($this->colors as $key => $color): ?>
+                            <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                        <? endforeach; ?>
+                    <? endif; ?>
                 </select>
                 <select id="color3" name="color[]">
-                   <option value="0" SELECTED>Выберите цвет</option>
-                    <? foreach($this->colors as $key => $color): ?>
-                        <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
-                    <? endforeach; ?>
+                    <? if(count($this->user_colors) == 3): ?>
+                       <option value="0" <? ($this->user_colors[2]->color_id == 0) ? 'SELECTED="SELECTED" ' : ''; ?>>Выберите цвет</option>
+                        <? foreach($this->colors as $key => $color): ?>
+                            <option <? echo ($this->user_colors[2]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                        <? endforeach; ?>
+                    <? else: ?>
+                        <option value="0" SELECTED>Выберите цвет</option>
+                        <? foreach($this->colors as $key => $color): ?>
+                            <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                        <? endforeach; ?>
+                    <? endif; ?>
                 </select>
                 </td>
             </tr>
