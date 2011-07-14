@@ -54,7 +54,7 @@ class Product_IndexController
         $parent_id = (int) $this->_getParam('parent_id');
         if ($parent_id <= 0)
             throw new Zend_Controller_Action_Exception('parent_id must > 0');
-        $this->view->categories = Product_Model_CategoryTable::getInstance()->getCategories($parent_id);;
+        $this->view->categories = Product_Model_CategoryTable::getInstance()->getCategories($parent_id);
     }
     
     /**
@@ -62,12 +62,10 @@ class Product_IndexController
      */
     public function addAction() {
 		//проверка на авторизацию пользователя
-        if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
+        if(!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
 		//проверка на существование у пользователя магазина
 		//дописать	
 		
-		
-		 // $this->_helper->layout->setLayout('default');
         $user = Zend_Auth::getInstance()->getIdentity();
              
         $session = new Zend_Session_Namespace('userProductPhotos');
@@ -83,144 +81,121 @@ class Product_IndexController
 		
         $form = new Product_Form_AddProduct();
         
-        if (!$this->getRequest()->isXmlHttpRequest()) {
+        if(!$this->getRequest()->isXmlHttpRequest()) {
 			$this->view->colors = Product_Model_Color::getMultiOptions();
 			$this->view->tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);
         }
-        if ( $this->getRequest()->isPost() ) {
+		
+        if( $this->getRequest()->isPost()) {
             $post = $this->getRequest()->getPost();
             $form->populate($this->getRequest()->getPost());
             if($post['categories']) {
-                $categories = Doctrine_Query::create()
-                                    ->from('Product_Model_Category')
-                                    ->where('parent_id = ?', $post['categories'])
-                                    ->fetchArray();
-                foreach($categories as $category){
-                    $category2Array[$category['category_id']] = $category['title'];
-                }
-                $form->getElement('subCategories')->setMultiOptions($category2Array);
+				$form->getElement('subCategories')->setMultiOptions(Product_Model_CategoryTable::getInstance()->getCategories($post['categories']));
             }
+			
             if ($form->isValid($post)) { 
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
-                    $date_year = date('Y');
-                    $date_month = date('m');
-                    $date_day = date('d');
-                    $values = $form->getValues();
-
-                    $new_photos = array();
-                    $photos = unserialize(stripslashes($values['photos']));
-                    if(count($session->photos)>0 && count($photos)>0) {
-                            $i = 0;
-                            foreach($session->photos as $photo) {
-                                    foreach($photos['lists'] as $value) {
-                                            if($value['name']==$photo) {
-                                                    if($photos['main']==$photo) {
-                                                            $new_photos['main'] = $photo;
-                                                    }
-                                                    $new_photos['lists'][$i]['name'] = $value['name'];
-                                                    $new_photos['lists'][$i]['desc'] = $value['desc'];
-                                                    $i++;
-                                            }
-                                    }	
-                            }
-                            $new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
-                            if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
-                    }
+					//подготовка данных
+					$date_year = date('Y');
+					$date_month = date('m');
+					$date_day = date('d');
+					$values = $form->getValues();
 					
-                    $product = new Product_Model_Product();
-                    $product->category_id = $values['subCategories'];
+					//фотографии
+					$new_photos = array();
+					$photos = unserialize(stripslashes($values['photos']));					
+					if(count($session->photos)>0 && count($photos)>0) {
+						$i = 0;
+						foreach($session->photos as $photo) {
+							foreach($photos['lists'] as $value) {
+								if($value['name']==$photo) {
+									if($photos['main']==$photo) {
+										$new_photos['main'] = $photo;
+									}
+									$new_photos['lists'][$i]['name'] = $value['name'];
+									$new_photos['lists'][$i]['desc'] = $value['desc'];
+									$i++;
+								}
+							}	
+						}
+						$new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
+						if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
+					}
+					//материалы
+					$materials = unserialize(stripslashes($values['materials']));
+					//тэги
+					$tags = unserialize(stripslashes($values['tags'])); 
+					//
+					
+					//сохранение
+					$product = Product_Model_ProductTable::getInstance()->getRecord();	
 					$product->date_created = $date_year.'-'.$date_month.'-'.$date_day.' '.date('H:s:i');
-                    $product->title = $values['title'];
-                    $product->user_id = $user->user_id;
-                    $product->description = $values['description'];
-                    $product->production_time = $values['production_time'];
-                    $product->size = $values['size'];
-                    $product->price = $values['price'];
-               
-					$product->photos = serialize($new_photos); 
-                    
-                    $product->availlable_id = $values['availlable_id'];
+					$product->category_id = $values['subCategories'];
+					$product->title = $values['title'];
+					$product->user_id = $user->user_id;
+					$product->description = $values['description'];
+					$product->production_time = $values['production_time'];
+					$product->size = $values['size'];
+					$product->price = $values['price'];
+					$product->photos = serialize($new_photos);
+					$product->published = 1;
+					$product->availlable_id = $values['availlable_id'];
 					if($product->availlable_id==1) $product->quantity = $values['quantity'];
-                    $product->published = 1;
-                    $product->save();
-                    $productId = $product->get('product_id');
-                    
-                    //save colors
-                    $colors = array_unique($post['color']);
-                    $colors = array_intersect(array_keys($this->view->colors),$colors);
-                    array_splice($colors,3);
-                    foreach($colors as $color){
-                        $model = new Product_Model_ColorProduct();
-                        $model->product_id = $productId;
-                        $model->color_id = $color;
-                        $model->save();
+					//Цвет
+					if(count($post['color'])>0) {
+						$colors = array_unique($post['color']);
+						$colors = array_intersect(array_keys($this->view->colors),$colors);
+						array_splice($colors,3);
+						foreach($colors as $key=>$color) {							
+							$product->ColorProduct[$key]->color_id = $color;
+						}					
+					}
+					if(count($materials)>0) {
+						foreach($materials as $key=>$material){
+							$material_search = Product_Model_MaterialTable::getInstance()->findOneByTitle($material);
+							if($material_search) {
+								$product->MaterialProduct[$key]->material_id = $material_search->material_id;
+							} else {
+								$product->MaterialProduct[$key]->Material->title = $material;
+							}
+						}
                     }
+					if(count($tags)>0) {
+						foreach($tags as $key=>$tag){
+							$tag_search = Product_Model_TagTable::getInstance()->findOneByTitle($tag);
+							if($tag_search) {
+								$product->TagProduct[$key]->tag_id = $tag_search->tag_id;
+								$product->TagProduct[$key]->user_id = $user->user_id;
+							} else {
+								$product->TagProduct[$key]->Tag->title = $tag;
+								$product->TagProduct[$key]->user_id = $user->user_id;
+							}
+						}
+                    }
+					$product->save();
+					//
 					
-                    //save materials
-                    $materials = unserialize(stripslashes($values['materials']));
-                    foreach($materials as $material){
-                        $material_exmp = Product_Model_MaterialTable::getInstance()->findOneBy('title', $material);
-                        if($material_exmp) {
-                            $productMaterial = new Product_Model_MaterialProduct;
-                            $productMaterial->product_id = $productId;
-                            $productMaterial->material_id = $material_exmp->material_id;
-                            $productMaterial->save();
-                        } else {
-                            $materials_m = new Product_Model_Material();
-                            $materials_m->title = $material;
-                            $materials_m->save();
-                            $materialId = $materials_m->get('material_id');
-                            
-                            $productMaterial = new Product_Model_MaterialProduct;
-                            $productMaterial->product_id = $productId;
-                            $productMaterial->material_id = $materialId;
-                            $productMaterial->save();
-                        }
-                    }
-                    
-                    //save tags
-                    $tags = unserialize(stripslashes($values['tags']));                
-                    foreach ($tags as &$value) {
-                        $tag_exmp = Product_Model_TagTable::getInstance()->findOneBy('title', $value);
-                        if($tag_exmp) {
-                            $model = new Product_Model_TagProduct();
-                            $model->tag_id = $tag_exmp->tag_id;
-                            $model->user_id = $user->user_id;
-                            $model->product_id = $productId;
-                            $model->save();
-                        } else {
-                            $tag = new Product_Model_Tag();
-                            $tag->title = $value;
-                            $tag->save();
-                            $tagId = $tag->get('tag_id');
-                            
-                            $model = new Product_Model_TagProduct();
-                            $model->tag_id = $tagId;
-                            $model->user_id = $user->user_id;
-                            $model->product_id = $productId;
-                            $model->save();
-                        }
-                    }	
-                    // public/images/products/categoryId/user->user_id
-                    $path = APPLICATION_PATH . '/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$productId;
-                    // public/images/products/user_upload_dir
-                    $userUploadDir = APPLICATION_PATH . '/../public/cache/' . $session->PhotosDir;
-                    if(!is_dir($path)) {
-                        mkdir($path, 0777, true);
-                    }
-                    exec('mv '.$userUploadDir.'/* '.$path.'/');
+					//фотографии
+					//public/images/products/year/month/day/user_id/product_id
+					$path = APPLICATION_PATH . '/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$product->product_id;
+					//public/images/cache/user_upload_dir
+					$userUploadDir = APPLICATION_PATH . '/../public/cache/' . $session->PhotosDir;
+					if(!is_dir($path)) mkdir($path, 0777, true);
+					//перенос изображений
+					exec('mv '.$userUploadDir.'/* '.$path.'/');
+					//удаление кэша
                     exec('rm -rf '.$userUploadDir);
-                    $session->photos = array();
+					//очистка сессии
+					$session->photos = array();
                     unset($session->PhotosDir);
-                    $this->_redirect('/');       
+					//
+					
+                    $this->_redirect('/');  
                 }
             } else {
-                    if ($this->getRequest()->isXmlHttpRequest()) {
-                            $this->view->error = $form->getMessages();
-                    } else {
-                            $this->view->form = $form;
-                    }
+				if ($this->getRequest()->isXmlHttpRequest()) $this->view->error = $form->getMessages();
+				else $this->view->form = $form;
             }
        } else $this->view->form = $form;
     }

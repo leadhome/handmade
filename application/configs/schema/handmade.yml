@@ -483,6 +483,24 @@ Product_Model_Product:
       local: category_id
       foreign: category_id
       foreignAlias: Product__Model__Products
+    ColorProduct:
+      class: Product_Model_ColorProduct
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__Products
+      type: many
+    MaterialProduct:
+      class: Product_Model_MaterialProduct
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__Products
+      type: many
+    TagProduct:
+      class: Product_Model_TagProduct
+      local: product_id
+      foreign: product_id
+      foreignAlias: Product__Model__Products
+      type: many
   indexes:
     P_User:
       fields: [user_id]

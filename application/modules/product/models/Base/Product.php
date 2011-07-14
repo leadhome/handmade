@@ -22,10 +22,10 @@
  * @property User_Model_User $User
  * @property Product_Model_Availlable $Availlable
  * @property Product_Model_Category $Category
+ * @property Doctrine_Collection $ColorProduct
+ * @property Doctrine_Collection $MaterialProduct
+ * @property Doctrine_Collection $TagProduct
  * @property Doctrine_Collection $User__Model__Comments
- * @property Doctrine_Collection $Product__Model__MaterialProducts
- * @property Doctrine_Collection $Product__Model__TagProducts
- * @property Doctrine_Collection $Product__Model__ColorProducts
  * @property Doctrine_Collection $Product__Model__SizeProducts
  * @property Doctrine_Collection $User__Model__FavoriteProducts
  * @property Doctrine_Collection $Product__Model__EventProducts
@@ -138,19 +138,19 @@ abstract class Product_Model_Base_Product extends Doctrine_Record
              'local' => 'category_id',
              'foreign' => 'category_id'));
 
+        $this->hasMany('Product_Model_ColorProduct as ColorProduct', array(
+             'local' => 'product_id',
+             'foreign' => 'product_id'));
+
+        $this->hasMany('Product_Model_MaterialProduct as MaterialProduct', array(
+             'local' => 'product_id',
+             'foreign' => 'product_id'));
+
+        $this->hasMany('Product_Model_TagProduct as TagProduct', array(
+             'local' => 'product_id',
+             'foreign' => 'product_id'));
+
         $this->hasMany('User_Model_Comment as User__Model__Comments', array(
-             'local' => 'product_id',
-             'foreign' => 'product_id'));
-
-        $this->hasMany('Product_Model_MaterialProduct as Product__Model__MaterialProducts', array(
-             'local' => 'product_id',
-             'foreign' => 'product_id'));
-
-        $this->hasMany('Product_Model_TagProduct as Product__Model__TagProducts', array(
-             'local' => 'product_id',
-             'foreign' => 'product_id'));
-
-        $this->hasMany('Product_Model_ColorProduct as Product__Model__ColorProducts', array(
              'local' => 'product_id',
              'foreign' => 'product_id'));
 

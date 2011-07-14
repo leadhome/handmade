@@ -23,13 +23,13 @@ jQuery(document).ready(function() {
     });
 	
 	//выбор цвета
-	jQuery('[name="'+prefix+'color[]"]').change(function(){
+	jQuery('[name="color[]"]').change(function(){
 		if(this.value == 0) return false;
 		var last_val = jQuery(this).data('last_val');
 		var value = jQuery(this).val();    
 		var id = jQuery(this).attr('id');  
 		jQuery(this).data('last_val',value);		
-		jQuery.each(jQuery('[name="'+prefix+'color[]"]'),function(i,child){
+		jQuery.each(jQuery('[name="color[]"]'),function(i,child){
 			if(jQuery(child).attr('id')!=id) {
 				jQuery("#"+jQuery(child).attr('id')+" > option[value='"+value+"']").hide();
 				jQuery("#"+jQuery(child).attr('id')+" > option[value='"+last_val+"']").show();
