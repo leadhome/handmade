@@ -36,7 +36,7 @@ class Index_IndexController extends Zend_Controller_Action
 		$this->view->cart = new Zend_Session_Namespace('cart');
 	}
 	public function uploadAction() {
-		// if (!$this->getRequest()->isXmlHttpRequest()) throw new Zend_Controller_Action_Exception('Доступ к upload только через ajax');
+		if (!$this->getRequest()->isXmlHttpRequest()) throw new Zend_Controller_Action_Exception('Доступ к upload только через ajax');
 		$upload = new Inc_Upload();
 		ini_set('display_errors', 1);
 		

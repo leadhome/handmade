@@ -15,8 +15,8 @@ class Inc_Upload {
             $date_month = date("m", $timestamp);
             $date_day = date("d", $timestamp);
             
-            $userUploadDir =APPLICATION_PATH.'/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id;
-            $url = '/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id;
+            $userUploadDir =APPLICATION_PATH.'/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$this->_session->productId;
+            $url = '/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$this->_session->productId;
         } else {
             if(!$this->_session->PhotosDir)
                 $this->_session->PhotosDir = md5(rand(1, 100000000)+time()); 
@@ -35,12 +35,13 @@ class Inc_Upload {
             'upload_dir' => $userUploadDir . '/original/',
             'upload_url' => $url . '/original/',
             'param_name' => 'files',
+            // 'desc' => '',
             // The php.ini settings upload_max_filesize and post_max_size
             // take precedence over the following max_file_size setting:
             'max_file_size' => null,
             'min_file_size' => 1,
             'accept_file_types' => '/.+$/i',
-            'max_number_of_files' => null,
+            'max_number_of_files' => 9,
             'discard_aborted_uploads' => true,
             'image_versions' => array(
                 '300x300' => array(
@@ -93,7 +94,7 @@ class Inc_Upload {
     }
     
     private function get_file_objects() {
-        $photos = array_values(array_filter(array_map(
+		$photos = array_values(array_filter(array_map(
             array($this, 'get_file_object'),
             scandir($this->options['upload_dir'])
         )));
@@ -251,6 +252,19 @@ class Inc_Upload {
             $info = $this->get_file_objects();
         }
         header('Content-type: application/json');
+		if($this->_session->type == 'edit') {
+			$photosInfo = $this->_session->photosInfo;
+			
+			foreach($photosInfo['lists'] as $image) {
+				foreach($info as $key=>$img){
+					if($image['name'] === $img->name)
+						$info[$key]->desc = $image['desc'];
+					if($photosInfo['main']=== $img->name) $info[$key]->checked = 'checked="checked"';
+					else $info[$key]->checked = '';
+				}
+			}
+
+		}
         return $info;
     }
     
