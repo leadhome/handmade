@@ -4,15 +4,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<?php $this->headTitle()->setSeparator(' / '); ?>
 		<?=$this->headTitle('HandMade'); ?>
+		<?=$this->JQuery();?>
 		<?	// stylesheets
 			$this->headLink()
 				 ->appendStylesheet('/css/main.css')
 				 ->appendStylesheet('/css/my_style.css');
 			// javascript files
 			$this->headScript()
-				 ->prependFile('/js/jquery.js')
-				 ->appendFile('/js/menu.js');
-		?>
+				 ->appendFile('/js/menu.js')
+				 ->appendFile('/js/jquery.serialize.js')
+				 ->appendFile('/js/addproducttocart.js');?>
 		<?=$this->headLink(); ?>
 		<?=$this->headScript(); ?>
 		<title><?=$this->headTitle();?></title>

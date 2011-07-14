@@ -1,72 +1,61 @@
 <?
 class Inc_Upload {
 	private $options;
-    protected $_session;
-	
+	protected $_session;
+	function __construct($options=null) {
+		$this->_session = new Zend_Session_Namespace('userProductPhotos');
+		if(!$user = Zend_Auth::getInstance()->getIdentity()) throw new Zend_Exception('Вы не авторитизованы');
 
-    function __construct($options=null) {
-       $this->_session = new Zend_Session_Namespace('userProductPhotos');
-        if(!$user = Zend_Auth::getInstance()->getIdentity())
-            throw new Zend_Exception('Вы не авторитизованы');
-        
-        if($this->_session->type == 'edit') {
-            $timestamp = strtotime($this->_session->date_created);
-            $date_year = date("Y", $timestamp);
-            $date_month = date("m", $timestamp);
-            $date_day = date("d", $timestamp);
-            
-            $userUploadDir =APPLICATION_PATH.'/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$this->_session->productId;
-            $url = '/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$this->_session->productId;
-        } else {
-            if(!$this->_session->PhotosDir)
-                $this->_session->PhotosDir = md5(rand(1, 100000000)+time()); 
-            
+		if($this->_session->type == 'edit') {
+			$timestamp = strtotime($this->_session->date_created);
+			$date_year = date("Y", $timestamp);
+			$date_month = date("m", $timestamp);
+			$date_day = date("d", $timestamp);
+
+			$userUploadDir =APPLICATION_PATH.'/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$this->_session->productId;
+			$url = '/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$this->_session->productId;
+		} else {
+			if(!$this->_session->PhotosDir) $this->_session->PhotosDir = md5(rand(1, 100000000)+time());
+			
 			$userUploadDir = APPLICATION_PATH.'/../public/cache/' . $this->_session->PhotosDir;
-            $url = '/cache/' . $this->_session->PhotosDir;
-        }
-        
-        if(!is_dir($userUploadDir . '/original/')) {
-            mkdir($userUploadDir . '/original/', 0777, true);
-        }
-        
+			$url = '/cache/' . $this->_session->PhotosDir;
+		}
+		
+		if(!is_dir($userUploadDir . '/original/')) mkdir($userUploadDir . '/original/', 0777, true);
+		
         //options
-        $this->options = array(
-            'script_url' => '/index/index/upload/',
-            'upload_dir' => $userUploadDir . '/original/',
-            'upload_url' => $url . '/original/',
-            'param_name' => 'files',
-            // 'desc' => '',
-            // The php.ini settings upload_max_filesize and post_max_size
-            // take precedence over the following max_file_size setting:
-            'max_file_size' => null,
-            'min_file_size' => 1,
-            'accept_file_types' => '/.+$/i',
-            'max_number_of_files' => 9,
-            'discard_aborted_uploads' => true,
-            'image_versions' => array(
-                '300x300' => array(
-                    'upload_dir' => $userUploadDir . '/300x300/',
-                    'upload_url' => $url . '/300x300/',
-                    'max_width' => 300,
-                    'max_height' => 300
-                ),
-                'thumbnail' => array(
-                    'upload_dir' => $userUploadDir . '/thumbnail/',
-                    'upload_url' => $url . '/thumbnail/',
-                    'max_width' => 80,
-                    'max_height' => 80
-                )
-            )
+		$this->options = array(
+			'script_url' => '/index/index/upload/',
+			'upload_dir' => $userUploadDir . '/original/',
+			'upload_url' => $url . '/original/',
+			'param_name' => 'files',
+			// The php.ini settings upload_max_filesize and post_max_size
+			// take precedence over the following max_file_size setting:
+			'max_file_size' => null,
+			'min_file_size' => 1,
+			'accept_file_types' => '/.+$/i',
+			'max_number_of_files' => 9,
+			'discard_aborted_uploads' => true,
+			'image_versions' => array(
+				'300x300' => array(
+					'upload_dir' => $userUploadDir . '/300x300/',
+					'upload_url' => $url . '/300x300/',
+					'max_width' => 300,
+					'max_height' => 300
+				),
+				'thumbnail' => array(
+					'upload_dir' => $userUploadDir . '/thumbnail/',
+					'upload_url' => $url . '/thumbnail/',
+					'max_width' => 80,
+					'max_height' => 80
+				)
+			)
         );
         foreach($this->options['image_versions'] as $version){
             $uploadDir = $version['upload_dir'];
-            if(!is_dir($uploadDir)) {
-                mkdir($uploadDir);
-            }
+            if(!is_dir($uploadDir)) mkdir($uploadDir);
         }
-        if ($options) {
-            $this->options = array_merge_recursive($this->options, $options);
-        }
+        if ($options) $this->options = array_merge_recursive($this->options, $options);
     }
     
     private function get_file_object($file_name) {

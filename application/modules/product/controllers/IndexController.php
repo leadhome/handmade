@@ -11,7 +11,7 @@ class Product_IndexController
      */
     public function init()
     {
-        $this->_helper->layout->setLayout('my');
+        $this->_helper->layout->setLayout('default');
         $this->_helper->AjaxContext()->addActionContext('add', 'json')->initContext('json');
         $this->_helper->AjaxContext()->addActionContext('ajaxeditproductautocomplete', 'json')->initContext('json');
         $this->_helper->AjaxContext()->addActionContext('getcategories', 'json')->initContext('json');
@@ -59,22 +59,28 @@ class Product_IndexController
     /**
      * 
      */
-    public function addAction()
-    {
+    public function addAction() {
+		//проверка на авторизацию пользователя
         if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
+		//проверка на существование у пользователя магазина
+		//дописать	
+		
+		
+		 // $this->_helper->layout->setLayout('default');
         $user = Zend_Auth::getInstance()->getIdentity();
              
         $session = new Zend_Session_Namespace('userProductPhotos');
         if(!$this->getRequest()->isXmlHttpRequest() && !$this->getRequest()->isPost()){
             $session->type = 'add';
             $session->photos = array();
-            unset($session->PhotosDir);
+			unset($session->PhotosDir);
         }
-        $form = new Product_Form_Add();
+		
+        $form = new Product_Form_AddProduct();
         
         if (!$this->getRequest()->isXmlHttpRequest()) {
-        $this->view->colors = Product_Model_Color::getMultiOptions();
-        $this->view->tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);
+			$this->view->colors = Product_Model_Color::getMultiOptions();
+			$this->view->tags = Product_Model_TagTable::getInstance()->getMyTagsArray($user->user_id);
         }
         if ( $this->getRequest()->isPost() ) {
             $post = $this->getRequest()->getPost();
