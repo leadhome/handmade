@@ -11,7 +11,6 @@
 
 /*jslint nomen: true, unparam: true, regexp: true */
 /*global window, document, URL, webkitURL, FileReader, jQuery */
-
 (function ($) {
     'use strict';
     
@@ -27,7 +26,7 @@
             autoUpload: true,
             // The following option limits the number of files that are
             // allowed to be uploaded using this widget:
-            maxNumberOfFiles: undefined,
+            maxNumberOfFiles: 9,
             // The maximum allowed file size:
             maxFileSize: undefined,
             // The minimum allowed file size:
@@ -111,8 +110,14 @@
                                 .css('display', 'none')
                                 .replaceAll(this)
                                 .fadeIn(function () {
-                                    // Fix for IE7 and lower:
+									//дописал
+									if(((jQuery('.template-download')[0])===this) && photos['main']=='') {
+										jQuery(this).children('td.setAvatar').children('label').children('input').attr('checked','checked');
+										photos['main'] = file.name;
+									}
+									photos['lists'].push(file.name);
                                     $(this).show();
+									//конец
                                 });
                         });
                     });
@@ -178,12 +183,14 @@
             },
             // Callback for uploads start, equivalent to the global ajaxStart event:
             start: function () {
+				jQuery('#submit_validator').attr('disabled',true);
                 $(this).find('.fileupload-progressbar')
                     .progressbar('value', 0).fadeIn();
             },
             // Callback for uploads stop, equivalent to the global ajaxStop event:
             stop: function () {
-                $(this).find('.fileupload-progressbar').fadeOut();
+				jQuery('#submit_validator').attr('disabled',false);
+				$(this).find('.fileupload-progressbar').fadeOut();
             },
             // Callback for file deletion:
             destroy: function (e, data) {
@@ -463,8 +470,8 @@
         },
         
         _cancelHandler: function (e) {
-            e.preventDefault();
-            var tmpl = $(this).closest('.template-upload'),
+			e.preventDefault();
+			var tmpl = $(this).closest('.template-upload'),
                 data = tmpl.data('data') || {};
             if (!data.jqXHR) {
                 data.errorThrown = 'abort';
@@ -477,6 +484,24 @@
         _deleteHandler: function (e) {
             e.preventDefault();
             var button = $(this);
+			//дописал
+			var photo =  button.attr('data-url');
+			photo = photo.match('file\=(.*?)$');
+			photo = photo[1];
+			if(photos['lists'].length>1) {
+				if(photo==photos['main']) {
+					var elem = jQuery(jQuery('.template-download')[1]).children('td.setAvatar').children('label').children('input');
+					jQuery(elem).attr('checked','checked');
+					photos['main'] = jQuery(elem).attr('id');
+				}
+			} else {
+				photos['main'] = '';
+			}
+			for (var i=0; i<=photos['lists'].length-1; i++){
+				if(photos['lists'][i]==photo) break;
+			}
+			photos['lists'].splice(i,1);
+			//конец
             e.data.fileupload._trigger('destroy', e, {
                 context: button.closest('.template-download'),
                 url: button.attr('data-url'),

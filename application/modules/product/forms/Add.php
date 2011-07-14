@@ -79,6 +79,10 @@ class Product_Form_Add
 		$tags = new Zend_Form_Element_Hidden('tags');
         $tags->setAttrib('id','tags')
 			 ->setDecorators(array('ViewHelper'));
+		
+		$photos = new Zend_Form_Element_Hidden('photos');
+        $photos->setAttrib('id','photos')
+			 ->setDecorators(array('ViewHelper'));
 			 
         $this->addElements(
             array(
@@ -93,7 +97,8 @@ class Product_Form_Add
                 $quantity,
                 $submit,
                 $materials,
-                $tags
+                $tags,
+				$photos
             )
         );
     }

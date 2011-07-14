@@ -55,17 +55,21 @@
             <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
         </td>
         <td class="setAvatar">
-            <a href="javascript:void(0)" name="isMainPhoto" id="${name}">Сделать основной</a>
+			<label for="${name}"><input type="radio" name="isMainPhoto" value="1" ${checked} id="${name}">Сделать основной</label>
         </td>
         <td>
-            <input type="text" name="desc" value="">
+			{{if desc}}
+				<input type="text" name="desc[]" value="${desc}">
+			{{else}}
+				<input type="text" name="desc[]" value="">
+			{{/if}}
         </td>
     </tr>
 </script>
 <?$this->headScript()->captureStart() ?>
 	var materials = <?php echo json_encode($this->materialsJSON); ?>;
 	var tags = <?php echo json_encode($this->tagsJSON); ?>;
-	var photos = new Array();
+	var photos = <?=json_encode(($this->photos))?>;
 <? $this->headScript()->captureEnd(); ?>
 <script>
 jQuery(document).ready(function() {
@@ -102,11 +106,10 @@ jQuery(document).ready(function() {
             });
         });
         
-        //выбор главной картинки
-	jQuery('[name="isMainPhoto"]').live('click',function(event) {
-		photos['main'] = 'sdsdsd';	
-		console.log(photos);
-	});
+    //Выбор главной картинки
+	jQuery('[name="isMainPhoto"]').live('click',function(){
+		photos['main'] = this.id;
+	})
         
 	//валидация формы
 	jQuery('[name="submit_validator"]').bind('click',function(event) {
@@ -120,6 +123,18 @@ jQuery(document).ready(function() {
 			if(data.error==0) {
 				jQuery('#materials').val(serialize(materials));
 				jQuery('#tags').val(serialize(tags));
+				var new_photos = new Array();
+				new_photos['main'] = photos['main'];
+				new_photos['lists'] = new Array();
+				
+				jQuery.each(photos['lists'],function(key,photo){
+					var new_photo = new Array();
+					new_photo['name'] = photo;
+					new_photo['desc'] = jQuery('#'+photo.replace(/\./,'\\.')).parent().parent().next().children('input').val();;
+					new_photos['lists'].push(new_photo);
+					jQuery('#'+photo.replace(/\./,'\\.')).parent().parent().next().children('input').val();
+				});
+				jQuery('#photos').val(serialize(new_photos));
 				jQuery(form).submit();
 			}
 			jQuery('#'+form_id+ ' .not_valid').removeClass('not_valid');
@@ -168,7 +183,7 @@ jQuery(document).ready(function() {
 		jQuery(this).parent().remove();
 	});
         
-        //добавление тега
+    //добавление тега
 	jQuery('[name="add_tag"]').click(function(event){
 		event.preventDefault();
 		addMark('add_tag','selected_tags',jQuery(this).text(),true);
@@ -330,12 +345,13 @@ jQuery(document).ready(function() {
                 </select>
                 </td>
             </tr>
+			<?=$this->form->photos;?>
             </form>
             <tr>
                 <td>Загрузить фотографии товара</td>
                 <td>
                     <div id="fileupload">
-                        <form action="/upload.php" method="POST" enctype="multipart/form-data" style="margin: 0;">
+                        <form action="/index/index/upload/" method="POST" enctype="multipart/form-data" style="margin: 0;">
                             <div class="fileupload-buttonbar">
                                 <label class="fileinput-button">
                                     <span>Add files...</span>

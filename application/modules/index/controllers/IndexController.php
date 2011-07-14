@@ -19,7 +19,7 @@ class Index_IndexController extends Zend_Controller_Action
 		$auth = Zend_Auth::getInstance();
 		$locationUser = new Zend_Session_Namespace('locationUser');
 		
-		//определение местоположения пользователя
+		//РѕРїСЂРµРґРµР»РµРЅРёРµ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 		if(!$auth->hasIdentity()) {
 			if(!$locationUser->city_id) {
 				$geoIp = Inc_Geo_Ip::getInstance();
@@ -36,7 +36,7 @@ class Index_IndexController extends Zend_Controller_Action
 		$this->view->cart = new Zend_Session_Namespace('cart');
 	}
 	public function uploadAction() {
-		// if (!$this->getRequest()->isXmlHttpRequest()) throw new Zend_Controller_Action_Exception('Доступ к upload только через ajax');
+		if (!$this->getRequest()->isXmlHttpRequest()) throw new Zend_Controller_Action_Exception('Р”РѕСЃС‚СѓРї Рє upload С‚РѕР»СЊРєРѕ С‡РµСЂРµР· ajax');
 		$upload = new Inc_Upload();
 		ini_set('display_errors', 1);
 		

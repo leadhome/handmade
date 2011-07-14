@@ -11,7 +11,6 @@
 
 /*jslint nomen: true, unparam: true, regexp: true */
 /*global window, document, URL, webkitURL, FileReader, jQuery */
-
 (function ($) {
     'use strict';
     
@@ -111,7 +110,9 @@
                                 .css('display', 'none')
                                 .replaceAll(this)
                                 .fadeIn(function () {
-                                    // Fix for IE7 and lower:
+									if(((jQuery('.template-download')[0])===this) && photos['main']=='') {
+										photos['main'] = file.name;
+									}
                                     $(this).show();
                                 });
                         });

@@ -92,10 +92,32 @@ class Product_IndexController
             if ($form->isValid($post)) { 
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {
+				
                     $date_year = date('Y');
                     $date_month = date('m');
                     $date_day = date('d');
                     $values = $form->getValues();
+					
+					$new_photos = array();
+					$photos = unserialize(stripslashes($values['photos']));
+					if(count($session->photos)>0 && count($photos)>0) {
+						$i = 0;
+						foreach($session->photos as $photo) {
+							foreach($photos['lists'] as $value) {
+								if($value['name']==$photo) {
+									if($photos['main']==$photo) {
+										$new_photos['main'] = $photo;
+									}
+									$new_photos['lists'][$i]['name'] = $value['name'];
+									$new_photos['lists'][$i]['desc'] = $value['desc'];
+									$i++;
+								}
+							}	
+						}
+						$new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
+						if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
+					}
+					
                     $product = new Product_Model_Product();
                     $product->category_id = $values['subCategories'];
 					$product->date_created = $date_year.'-'.$date_month.'-'.$date_day.' '.date('H:s:i');
@@ -106,9 +128,7 @@ class Product_IndexController
                     $product->size = $values['size'];
                     $product->price = $values['price'];
                
-                    $photos = array();
-                    $photos = $session->photos;
-                    $product->photos = serialize($photos); 
+					$product->photos = serialize($new_photos); 
                     
                     $product->availlable_id = $values['availlable_id'];
 					if($product->availlable_id==1) $product->quantity = $values['quantity'];
@@ -128,7 +148,7 @@ class Product_IndexController
                     }
 					
                     //save materials
-                    $materials = unserialize($values['materials']);
+                    $materials = unserialize(stripslashes($values['materials']));
                     foreach($materials as $material){
                         $material_exmp = Product_Model_MaterialTable::getInstance()->findOneBy('title', $material);
                         if($material_exmp) {
@@ -150,7 +170,7 @@ class Product_IndexController
                     }
                     
                     //save tags
-                    $tags = unserialize($values['tags']);                
+                    $tags = unserialize(stripslashes($values['tags']));                
                     foreach ($tags as &$value) {
                         $tag_exmp = Product_Model_TagTable::getInstance()->findOneBy('title', $value);
                         if($tag_exmp) {
@@ -172,9 +192,12 @@ class Product_IndexController
                             $model->save();
                         }
                     }
-
+					
+					// print_r($_POST);
+					
+					// die();
                     // public/images/products/categoryId/user->user_id
-                    $path = APPLICATION_PATH . '/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id;
+                    $path = APPLICATION_PATH . '/../public/images/products/' . $date_year . '/' . $date_month.'/'.$date_day.'/'.$user->user_id.'/'.$productId;
                     // public/images/products/user_upload_dir
                     $userUploadDir = APPLICATION_PATH . '/../public/cache/' . $session->PhotosDir;
                     if(!is_dir($path)) {
@@ -218,8 +241,11 @@ class Product_IndexController
             unset($session->PhotosDir);
             $session->type = 'edit';
             $session->productId = $productId;
+            $session->photosInfo = unserialize($product->photos);
             $session->date_created = $product->date_created;
         }
+		// Zend_Debug::dump($session->photosInfo );
+		// die();
         $form = new Product_Form_Edit();
         
         if ( $this->getRequest()->isPost() ) {
@@ -243,6 +269,27 @@ class Product_IndexController
 					$date_month = date('m');
 					$date_day = date('d');
                     $values = $form->getValues();
+					
+					$new_photos = array();
+					$photos = unserialize(stripslashes($values['photos']));
+					if(count($session->photos)>0 && count($photos)>0) {
+						$i = 0;
+						foreach($session->photos as $photo) {
+							foreach($photos['lists'] as $value) {
+								if($value['name']==$photo) {
+									if($photos['main']==$photo) {
+										$new_photos['main'] = $photo;
+									}
+									$new_photos['lists'][$i]['name'] = $value['name'];
+									$new_photos['lists'][$i]['desc'] = $value['desc'];
+									$i++;
+								}
+							}	
+						}
+						$new_photos['dir_date'] = array( $date_year,$date_month,$date_day);
+						if($new_photos['main']=='') $new_photos['main'] = $new_photos['lists'][0]['name'];
+					}
+					
                     $product = new Product_Model_Product();
                     $product->category_id = $values['subCategories'];
 					$product->date_created = $date_year.'-'.$date_month.'-'.$date_day.' '.date('H:s:i');
@@ -253,9 +300,7 @@ class Product_IndexController
                     $product->size = $values['size'];
                     $product->price = $values['price'];
                
-                    $photos = array();
-                    $photos = $session->photos;
-                    $product->photos = serialize($photos); 
+                    $product->photos = serialize($new_photos); 
                     
                     $product->availlable_id = $values['availlable_id'];
                     if($product->availlable_id==1) $product->quantity = $values['quantity'];
@@ -349,6 +394,14 @@ class Product_IndexController
                     }
             }
        } else {
+		
+		$photos = unserialize($product->photos);
+		$new_photos = array();
+		$new_photos['main'] = $photos['main'];
+		foreach($photos['lists'] as $photo) {
+			$new_photos['lists'][] = $photo['name'];
+		}		
+		$this->view->photos = $new_photos;
         $this->view->product = $product;
         $this->view->colors = Product_Model_Color::getMultiOptions();
         $this->view->tags = Product_Model_TagTable::getInstance()->getTagsByProductId($product->product_id);

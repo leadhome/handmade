@@ -1,9 +1,15 @@
+<?$this->headScript()->captureStart() ?>
+	var photos = new Array();
+	photos['main'] = '';
+	photos['lists'] = new Array();
+<? $this->headScript()->captureEnd(); ?>
 <?php $this->headLink()->appendStylesheet('/stylesheets/jquery/jquery.fileupload-ui.css'); ?>
 <?php $this->headScript()->appendFile('/javascripts/jquery/jquery.tmpl.min.js'); ?>
 <?php $this->headScript()->appendFile('/javascripts/jquery/jquery.iframe-transport.js'); ?>
 <?php $this->headScript()->appendFile('/javascripts/jquery/jquery.fileupload.js'); ?>
 <?php $this->headScript()->appendFile('/javascripts/jquery/jquery.fileupload-ui.js'); ?>
 <?php $this->headScript()->appendFile('/javascripts/upload.js'); ?>
+
 <script id="template-upload" type="text/x-jquery-tmpl">
     <tr class="template-upload{{if error}} ui-state-error{{/if}}">
         <td class="preview"></td>
@@ -55,10 +61,10 @@
             <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
         </td>
         <td class="setAvatar">
-            <a href="javascript:void(0)" name="isMainPhoto" id="${name}">Сделать основной</a>
+			<label for="${name}"><input type="radio" name="isMainPhoto" value="1" id="${name}">Сделать основной</label>
         </td>
         <td>
-            <input type="text" name="desc" value="">
+            <input type="text" name="desc[]" value="">
         </td>
     </tr>
 </script>
@@ -66,7 +72,6 @@
 jQuery(document).ready(function() {
 	var materials = new Array();
 	var tags = new Array();
-	var photos = new Array();
 	jQuery('#categories').prepend('<option value="0" selected="selected">Выберите категорию</option>')
 	
 	//выбор цвета
@@ -84,7 +89,10 @@ jQuery(document).ready(function() {
 			}
 		});
 	});
-	
+	//Выбор главной картинки
+	jQuery('[name="isMainPhoto"]').live('click',function(){
+		photos['main'] = this.id;
+	})
 	//выбор категории
 	jQuery('#categories').change( function(){
         var subCategories = $('select[name="subCategories"]');
@@ -99,10 +107,6 @@ jQuery(document).ready(function() {
             });
         });
     });
-	jQuery('[name="isMainPhoto"]').live('click',function(event) {
-		photos['main'] = 'sdsdsd';	
-		console.log(photos);
-	});
 	//валидация формы
 	jQuery('[name="submit_validator"]').bind('click',function(event) {
 		event.preventDefault();
@@ -115,6 +119,18 @@ jQuery(document).ready(function() {
 			if(data.error==0) {
 				jQuery('#materials').val(serialize(materials));
 				jQuery('#tags').val(serialize(tags));
+				var new_photos = new Array();
+				new_photos['main'] = photos['main'];
+				new_photos['lists'] = new Array();
+				
+				jQuery.each(photos['lists'],function(key,photo){
+					var new_photo = new Array();
+					new_photo['name'] = photo;
+					new_photo['desc'] = jQuery('#'+photo.replace(/\./,'\\.')).parent().parent().next().children('input').val();;
+					new_photos['lists'].push(new_photo);
+					jQuery('#'+photo.replace(/\./,'\\.')).parent().parent().next().children('input').val();
+				});
+				jQuery('#photos').val(serialize(new_photos));
 				jQuery(form).submit();
 			}
 			jQuery('#'+form_id+ ' .not_valid').removeClass('not_valid');
@@ -263,7 +279,8 @@ jQuery(document).ready(function() {
 						}
 						echo '<div style="display: none;">'.$str.'</div>';
 					} ?>
-					<?=$this->form->tags;?>
+					<?=$this->form->tags;?>					
+					<?=$this->form->photos;?>
                 </td>
             </tr>
             <tr>
