@@ -9,18 +9,18 @@ jQuery(document).ready(function() {
 	jQuery('#'+prefix+'categories').prepend(default_option)
 	//выбор категории
 	jQuery('#'+prefix+'categories').change( function(){
-        var subCategories = jQuery('#'+prefix+'subCategories');
-		if(this.value==0){
-			subCategories.html(default_option);
-			return false;
-		}
-        jQuery.getJSON('/product/index/getcategories/?parent_id='+this.value, function(data) {
-            subCategories.html('');
-            jQuery.each(data.categories, function(i){
-                subCategories.append('<option value="' + i + '">' + this + '</option>');
+            var subCategories = jQuery('#'+prefix+'subCategories');
+                    if(this.value==0){
+                            subCategories.html(default_option);
+                            return false;
+                    }
+            jQuery.getJSON('/product/index/getcategories/?parent_id='+this.value, function(data) {
+                subCategories.html('');
+                jQuery.each(data.categories, function(i){
+                    subCategories.append('<option value="' + i + '">' + this + '</option>');
+                });
             });
         });
-    });
 	
 	//выбор цвета
 	jQuery('[name="color[]"]').change(function(){
@@ -39,9 +39,9 @@ jQuery(document).ready(function() {
 	
 	//состояние товара
 	jQuery('#'+prefix+'availlable_id').change( function(){
-        if(this.value == 1) jQuery('#'+prefix+'quantity').attr('style', 'display:inline');
-        else jQuery('#'+prefix+'quantity').attr('style', 'display:none');
-    });
+            if(this.value == 1) jQuery('#'+prefix+'quantity').attr('style', 'display:inline');
+            else jQuery('#'+prefix+'quantity').attr('style', 'display:none');
+        });
 	
 	//показ своих тэгов
 	jQuery('[name="showTags"]').click(function() {
@@ -111,7 +111,16 @@ jQuery(document).ready(function() {
 			jQuery('.preloader').remove();
 		});		
 	});
-		
+	
+        //это не гавнокод
+        jQuery('#select_tag').keypress(function(event){
+            if(event.which == 13){
+                event.preventDefault();
+                addMark('add_tag', 'selected_tags', jQuery(this).val());
+                jQuery("#"+jQuery(this).id).autocomplete({"source":"\/product\/index\/ajaxeditproductautocomplete\/?type=tag"});
+            }
+        });
+	
 	//фукнция добавления меток
 	function addMark(id,id_marks,value,simple_tag) {
 		var value = jQuery.trim(value);

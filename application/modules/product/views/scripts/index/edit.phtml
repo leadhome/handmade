@@ -46,6 +46,7 @@
                             <td class="label"><?=$this->form->availlable_id->getLabel();?></td>
                             <td class="data">
                                     <?=$this->form->availlable_id; ?>
+                                    <?php if ($this->form->availlable_id->getValue() != 1) $this->form->getElement('quantity')->setAttrib('style', 'display:none;'); ?>
                                     <?=$this->form->quantity; ?>
                             </td>
 			</tr>
@@ -55,6 +56,7 @@
                                 <style>
                                         #select_tag{width:311px;}
                                         #select_material{width:311px;}
+                                        #product_form_index_edit_quantity {width: 100px;}
                                         #product_form_index_add_color-1,#product_form_index_add_color-2,#product_form_index_add_color-3 {width:130px;}
                                 </style>
                                 <?=$this->autoComplete("select_material", "", array("url"=>"/product/index/ajaxeditproductautocomplete/?type=material")); ?>

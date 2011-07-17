@@ -249,6 +249,10 @@ class Product_IndexController
             if ($form->isValid($post)) { 
                 $this->view->error = 0;
                 if (!$this->getRequest()->isXmlHttpRequest()) {      
+                    $timestamp = strtotime($product->date_created);
+                    $date_year = date("Y", $timestamp);
+                    $date_month = date("m", $timestamp);
+                    $date_day = date("d", $timestamp);
                     //получение значений
                     $values = $form->getValues();
                     //материалы
@@ -290,25 +294,17 @@ class Product_IndexController
                     if($product->availlable_id==1) $product->quantity = $values['quantity'];
                     
                     $product->published = 1;
-                    $product->save();
-                    $productId = $product->get('product_id');
-                    
-                    //save colors
-                    $colorsMultiOptions = Product_Model_Color::getMultiOptions();
-                    $colorsProduct = Product_Model_ColorProductTable::getInstance()->findBy('product_id', $productId);
-                    $colorsProduct->delete();
-                    //save colors
-                    $colors = array_unique($post['color']);
-                    $colors = array_intersect(array_keys($colorsMultiOptions), $colors);
-                    array_splice($colors, 3);
-                    foreach($colors as $color){
-                        if($color > 0){
-                            $model = new Product_Model_ColorProduct();
-                            $model->product_id = $productId;
-                            $model->color_id = $color;
-                            $model->save();
-                        }
+                    //Цвет
+                    if(count($post['color'])>0) {
+                            $colorsMultiOptions = Product_Model_Color::getMultiOptions();
+                            $colors = array_unique($post['color']);
+                            $colors = array_intersect(array_keys($colorsMultiOptions),$colors);
+                            array_splice($colors,3);
+                            foreach($colors as $key=>$color) {							
+                                    $product->ColorProduct[$key]->color_id = $color;
+                            }					
                     }
+
                     //save materials
                     $materialsProducts = Product_Model_MaterialProductTable::getInstance()->findBy('product_id', $productId);
                     $do = false;
@@ -325,13 +321,13 @@ class Product_IndexController
                                                 $do = true;
                                                 continue;
                                             }
-                                        }   
+                                        }
                                         if(!$do) {
                                             $productMaterial = new Product_Model_MaterialProduct;
                                             $productMaterial->product_id = $productId;
                                             $productMaterial->material_id = $material_exmp->material_id;
                                             $productMaterial->save();
-                                        } 
+                                        }
                                     } else {
                                         $productMaterial = new Product_Model_MaterialProduct;
                                         $productMaterial->product_id = $productId;
@@ -353,8 +349,8 @@ class Product_IndexController
                         }
                     }
                     $materialsProducts->delete();
-
-                    //save tags  
+                    
+                    //save tags
                     $tagsProducts = Product_Model_TagProductTable::getInstance()->findBy('product_id', $productId);
                     $do = false;
                     if(count($tags > 0)) {
@@ -376,7 +372,7 @@ class Product_IndexController
                                         $model->user_id = $user->user_id;
                                         $model->product_id = $productId;
                                         $model->save();
-                                    } 
+                                    }
                                 } else {
                                     $model = new Product_Model_TagProduct();
                                     $model->tag_id = $tag_exmp->tag_id;
@@ -399,6 +395,7 @@ class Product_IndexController
                         }
                     }
                     $tagsProducts->delete();
+                    $product->save();
                     $session->photos = array();
                     unset($session->PhotosDir);
                     $this->_redirect('/');

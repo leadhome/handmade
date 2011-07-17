@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
 		event.preventDefault();
 		addMark(this.id,jQuery(this).next().attr('id'),jQuery(this).prev().val());
 	}); 
-	
+       
 	//удаление материалов и тэгов
 	jQuery('[name="delete_mark"]').live('click',function() {
 		var value = jQuery(this).prev().text();
@@ -88,16 +88,15 @@ jQuery(document).ready(function() {
 		var form_id = jQuery(form).attr('id');
 		var action = jQuery(form).attr('action');
 		jQuery(this).after('<div class="preloader"><span>Идет проверка</span></div>');
-		alert(action);
 		jQuery.post(action, jQuery(form).serialize(),function(data){
 			if(data.error==0) {
 				jQuery('#'+prefix+'materials').val(serialize(materials));
 				jQuery('#'+prefix+'tags').val(serialize(tags));
 
-//				jQuery.each(photos['lists'],function(key,photo){
-//					photos['lists'][key]['desc'] = jQuery('#'+photo['name'].replace(/\./,'\\.')).parent().parent().next().children('input').val();
-//				});
-//				jQuery('#'+prefix+'photos').val(serialize(photos));
+				jQuery.each(photos['lists'],function(key,photo){
+					photos['lists'][key]['desc'] = jQuery('#'+photo['name'].replace(/\./,'\\.')).parent().parent().next().children('input').val();
+				});
+				jQuery('#'+prefix+'photos').val(serialize(photos));
 				jQuery(form).submit();
 			}
 			jQuery('#'+form_id+ ' .not_valid').removeClass('not_valid');
@@ -109,7 +108,16 @@ jQuery(document).ready(function() {
 			jQuery('.preloader').remove();
 		});		
 	});
-		
+        
+	//это не гавнокод	
+        jQuery('#select_tag').keypress(function(event){
+            if(event.which == 13){
+                event.preventDefault();
+                addMark('add_tag', 'selected_tags', jQuery(this).val());
+                jQuery("#"+jQuery(this).id).autocomplete({"source":"\/product\/index\/ajaxeditproductautocomplete\/?type=tag"});
+            }
+        });
+
 	//фукнция добавления меток
 	function addMark(id,id_marks,value,simple_tag) {
 		var value = jQuery.trim(value);
