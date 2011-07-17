@@ -1,19 +1,23 @@
 <?php
-class User_IndexController extends Zend_Controller_Action {
-    public function init() {
+class User_IndexController
+    extends Zend_Controller_Action
+{
+    public function init()
+    {
         /* Initialize action controller here */
 		$this->_helper->layout->setLayout('default');
 		$this->_helper->AjaxContext()->addActionContext('registration', 'json')->initContext('json');
 		$this->_helper->AjaxContext()->addActionContext('login', 'json')->initContext('json');
     }
 
-    public function indexAction() {		
-		// action body
+    public function indexAction()
+    {		
+        // action body
     }
-	
-	
-	//Регистрация
-    public function registrationAction(){
+
+    //Регистрация
+    public function registrationAction()
+    {
 		$this->view->headTitle('Регистрация');
 		$auth = Zend_Auth::getInstance();
 		
@@ -76,8 +80,9 @@ class User_IndexController extends Zend_Controller_Action {
     }
 
 	
-	//Авторизация
-    public function loginAction() {
+    //Авторизация
+    public function loginAction()
+    {
 		$this->view->headTitle('Авторизация');
 		$auth = Zend_Auth::getInstance();
 		if($auth->hasIdentity()) {
@@ -95,8 +100,9 @@ class User_IndexController extends Zend_Controller_Action {
 					$adapter = new Inc_Auth_UserAdapter($form_data["email"], $form_data["password"]); 
 					$result = $auth->authenticate($adapter);
 					if($result->isValid()) {
-						// редирект на страницу с который пользователь пришел
-						$this->_redirect('/');
+                                            Zend_Session::rememberMe();
+                                            // редирект на страницу с который пользователь пришел
+                                            $this->_redirect('/');
 					}
 				}				
 			} else {
@@ -112,9 +118,10 @@ class User_IndexController extends Zend_Controller_Action {
     }
 	
 	
-	//Выход
+    //Выход
     public function logoutAction() {
 		Zend_Auth::getInstance()->clearIdentity();
+                Zend_Session::forgetme();
 		// редирект на страницу с который пользователь пришел
 		$this->_redirect('/');
     }
