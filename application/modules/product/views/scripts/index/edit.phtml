@@ -118,7 +118,7 @@
                                         <? if(count($this->user_colors) >= 1): ?>
                                            <option value="0" <? ($this->user_colors[0]->color_id == 0) ? 'SELECTED="SELECTED" ' : ''; ?>>Выберите цвет</option>
                                             <? foreach($this->colors as $key => $color): ?>
-                                                <option <? echo ($this->user_colors[0]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                                                <option <? echo ($this->user_colors[1]->color_id == $key || $this->user_colors[2]->color_id == $key) ? 'style="display: none;" ' : '' ; ?><? echo ($this->user_colors[0]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
                                             <? endforeach; ?>
                                         <? else: ?>
                                             <option value="0" SELECTED>Выберите цвет</option>
@@ -131,12 +131,12 @@
                                         <? if(count($this->user_colors) >= 2): ?>
                                            <option value="0" <? ($this->user_colors[1]->color_id == 0) ? 'SELECTED="SELECTED" ' : ''; ?>>Выберите цвет</option>
                                             <? foreach($this->colors as $key => $color): ?>
-                                                <option <? echo ($this->user_colors[1]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                                                <option <? echo ($this->user_colors[0]->color_id == $key || $this->user_colors[2]->color_id == $key) ? 'style="display: none;" ' : '' ; ?><? echo ($this->user_colors[1]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
                                             <? endforeach; ?>
                                         <? else: ?>
                                             <option value="0" SELECTED>Выберите цвет</option>
                                             <? foreach($this->colors as $key => $color): ?>
-                                                <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                                                <option <? echo ($this->user_colors[0]->color_id == $key) ? 'style="display: none;" ' : '' ; ?>value="<?php echo $key; ?>"><?php echo $color; ?></option>
                                             <? endforeach; ?>
                                         <? endif; ?>
                                     </select>
@@ -144,12 +144,12 @@
                                         <? if(count($this->user_colors) == 3): ?>
                                            <option value="0" <? ($this->user_colors[2]->color_id == 0) ? 'SELECTED="SELECTED" ' : ''; ?>>Выберите цвет</option>
                                             <? foreach($this->colors as $key => $color): ?>
-                                                <option <? echo ($this->user_colors[2]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                                                <option <? echo ($this->user_colors[0]->color_id == $key || $this->user_colors[1]->color_id == $key) ? 'style="display: none;" ' : '' ; ?><? echo ($this->user_colors[2]->color_id ==  $key) ? 'selected="selected"' : ''; ?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
                                             <? endforeach; ?>
                                         <? else: ?>
                                             <option value="0" SELECTED>Выберите цвет</option>
                                             <? foreach($this->colors as $key => $color): ?>
-                                                <option value="<?php echo $key; ?>"><?php echo $color; ?></option>
+                                                <option <? echo ($this->user_colors[1]->color_id == $key || $this->user_colors[1]->color_id == $key) ? 'style="display: none;" ' : '' ; ?>value="<?php echo $key; ?>"><?php echo $color; ?></option>
                                             <? endforeach; ?>
                                         <? endif; ?>
                                     </select>
@@ -188,7 +188,7 @@
     <tr class="template-upload{{if error}} ui-state-error{{/if}}">
         <td class="preview"></td>
         {{if error}}
-            <td class="error" colspan="2">Error:
+            <td class="error" colspan="2">Ошибка:
                 {{if error === 'maxFileSize'}}File is too big
                 {{else error === 'minFileSize'}}File is too small
                 {{else error === 'acceptFileTypes'}}Filetype not allowed
@@ -235,14 +235,14 @@
             <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
         </td>
         <td class="setAvatar">
-<label for="${name}"><input type="radio" name="isMainPhoto" value="1" ${checked} id="${name}">Сделать основной</label>
+            <label for="${name}"><input type="radio" name="isMainPhoto" value="1" ${checked} id="${name}" >Сделать основной</label>
         </td>
         <td>
-{{if desc}}
-<input type="text" name="desc[]" value="${desc}">
-{{else}}
-<input type="text" name="desc[]" value="">
-{{/if}}
+        {{if desc}}
+            <input type="text" name="desc[]" value="${desc}">
+        {{else}}
+            <input type="text" name="desc[]" value="">
+        {{/if}}
         </td>
     </tr>
 </script>

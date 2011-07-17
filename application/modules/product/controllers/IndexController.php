@@ -61,10 +61,10 @@ class Product_IndexController
      * Добавление товара
      */
     public function addAction() {
-		//проверка на авторизацию пользователя
+        //проверка на авторизацию пользователя
         if(!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
 		
-		//данные о пользователе
+        //данные о пользователе
         $user = Zend_Auth::getInstance()->getIdentity();
 
         //проверка на существование у пользователя магазина
@@ -130,7 +130,6 @@ class Product_IndexController
                     $materials = unserialize(stripslashes($values['materials']));
                     //тэги
                     $tags = unserialize(stripslashes($values['tags'])); 
-                    //
 
                     //сохранение
                     $product = Product_Model_ProductTable::getInstance()->getRecord();	
@@ -191,26 +190,25 @@ class Product_IndexController
                     exec('mv '.$userUploadDir.'/* '.$path.'/');
                     //удаление кэша
                     exec('rm -rf '.$userUploadDir);
-					//очистка сессии
-					$session->photos = array();
-                    unset($session->PhotosDir);
-					//
-					
+                    //очистка сессии
+                    $session->photos = array();
+                    unset($session->PhotosDir);					
                     $this->_redirect('/');  
                 }
             } else {
-				if ($this->getRequest()->isXmlHttpRequest()) $this->view->error = $form->getMessages();
-				else $this->view->form = $form;
+                if ($this->getRequest()->isXmlHttpRequest()) $this->view->error = $form->getMessages();
+                else $this->view->form = $form;
             }
        } else $this->view->form = $form;
     }
     
     public function editAction()
     {    
-        if (!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
+        //проверка на авторизацию пользователя
+        if(!Zend_Auth::getInstance()->hasIdentity()) $this->_redirect("/user/index/login");
+		
+        //данные о пользователе
         $user = Zend_Auth::getInstance()->getIdentity();
-        $shop = User_Model_ShopTable::getInstance()->findOneByUser_id($user->user_id);
-        if(!$shop) $this->_redirect("/user/shop/create");
         
         if( ($productId = $this->_getParam('productId', 0)) == 0)
                 throw new Exception('Не указан индификатор продукта');
@@ -232,10 +230,8 @@ class Product_IndexController
             $session->photosInfo = unserialize($product->photos);
             $session->date_created = $product->date_created;
         }
-		// Zend_Debug::dump($session->photosInfo );
-		// die();
+
         $form = new Product_Form_EditProduct();
-        
         if ( $this->getRequest()->isPost() ) {
             $post = $this->getRequest()->getPost();
             $form->populate($post);
@@ -252,12 +248,14 @@ class Product_IndexController
             }
             if ($form->isValid($post)) { 
                 $this->view->error = 0;
-                if (!$this->getRequest()->isXmlHttpRequest()) {
-                    $date_year = date('Y');
-                    $date_month = date('m');
-                    $date_day = date('d');
+                if (!$this->getRequest()->isXmlHttpRequest()) {      
+                    //получение значений
                     $values = $form->getValues();
-					
+                    //материалы
+                    $materials = unserialize(stripslashes($values['materials']));
+                    //тэги
+                    $tags = unserialize(stripslashes($values['tags'])); 		
+                    
                     $new_photos = array();
                     $photos = unserialize(stripslashes($values['photos']));
                     if(count($session->photos)>0 && count($photos)>0) {
@@ -279,7 +277,6 @@ class Product_IndexController
                     }
 					
                     $product->category_id = $values['subCategories'];
-                    $product->date_created = $date_year.'-'.$date_month.'-'.$date_day.' '.date('H:s:i');
                     $product->title = $values['title'];
                     $product->user_id = $user->user_id;
                     $product->description = $values['description'];
@@ -312,9 +309,7 @@ class Product_IndexController
                             $model->save();
                         }
                     }
-
                     //save materials
-                    $materials = unserialize($values['materials']);
                     $materialsProducts = Product_Model_MaterialProductTable::getInstance()->findBy('product_id', $productId);
                     $do = false;
                     if(count($materials) > 0) {
@@ -359,8 +354,7 @@ class Product_IndexController
                     }
                     $materialsProducts->delete();
 
-                    //save tags
-                    $tags = unserialize(stripslashes($values['tags']));  
+                    //save tags  
                     $tagsProducts = Product_Model_TagProductTable::getInstance()->findBy('product_id', $productId);
                     $do = false;
                     if(count($tags > 0)) {
@@ -405,7 +399,6 @@ class Product_IndexController
                         }
                     }
                     $tagsProducts->delete();
-                    die();
                     $session->photos = array();
                     unset($session->PhotosDir);
                     $this->_redirect('/');

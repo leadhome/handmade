@@ -1,26 +1,24 @@
 jQuery(document).ready(function() {
-	var materials = new Array();
-	var tags = new Array();
-	var form_name = 'product_form_index_add';
+	var form_name = 'product_form_index_edit';
 	var prefix = form_name+'_';	
 	
 	//добавление default категориям
-	var default_option = '<option value="0" selected="selected">Выберите категорию</option>';
+	var default_option = '<option value="0">Выберите категорию</option>';
 	jQuery('#'+prefix+'categories').prepend(default_option)
 	//выбор категории
 	jQuery('#'+prefix+'categories').change( function(){
-        var subCategories = jQuery('#'+prefix+'subCategories');
-		if(this.value==0){
-			subCategories.html(default_option);
-			return false;
-		}
-        jQuery.getJSON('/product/index/getcategories/?parent_id='+this.value, function(data) {
-            subCategories.html('');
-            jQuery.each(data.categories, function(i){
-                subCategories.append('<option value="' + i + '">' + this + '</option>');
+            var subCategories = jQuery('#'+prefix+'subCategories');
+                    if(this.value==0){
+                            subCategories.html(default_option);
+                            return false;
+                    }
+            jQuery.getJSON('/product/index/getcategories/?parent_id='+this.value, function(data) {
+                subCategories.html('');
+                    jQuery.each(data.categories, function(i){
+                        subCategories.append('<option value="' + i + '">' + this + '</option>');
+                    });
             });
         });
-    });
 	
 	//выбор цвета
 	jQuery('[name="color[]"]').change(function(){
@@ -39,9 +37,9 @@ jQuery(document).ready(function() {
 	
 	//состояние товара
 	jQuery('#'+prefix+'availlable_id').change( function(){
-        if(this.value == 1) jQuery('#'+prefix+'quantity').attr('style', 'display:inline');
-        else jQuery('#'+prefix+'quantity').attr('style', 'display:none');
-    });
+            if(this.value == 1) jQuery('#'+prefix+'quantity').attr('style', 'display:inline');
+            else jQuery('#'+prefix+'quantity').attr('style', 'display:none');
+        });
 	
 	//показ своих тэгов
 	jQuery('[name="showTags"]').click(function() {
@@ -90,16 +88,16 @@ jQuery(document).ready(function() {
 		var form_id = jQuery(form).attr('id');
 		var action = jQuery(form).attr('action');
 		jQuery(this).after('<div class="preloader"><span>Идет проверка</span></div>');
-		
+		alert(action);
 		jQuery.post(action, jQuery(form).serialize(),function(data){
 			if(data.error==0) {
 				jQuery('#'+prefix+'materials').val(serialize(materials));
 				jQuery('#'+prefix+'tags').val(serialize(tags));
 
-				jQuery.each(photos['lists'],function(key,photo){
-					photos['lists'][key]['desc'] = jQuery('#'+photo['name'].replace(/\./,'\\.')).parent().parent().next().children('input').val();
-				});
-				jQuery('#'+prefix+'photos').val(serialize(photos));
+//				jQuery.each(photos['lists'],function(key,photo){
+//					photos['lists'][key]['desc'] = jQuery('#'+photo['name'].replace(/\./,'\\.')).parent().parent().next().children('input').val();
+//				});
+//				jQuery('#'+prefix+'photos').val(serialize(photos));
 				jQuery(form).submit();
 			}
 			jQuery('#'+form_id+ ' .not_valid').removeClass('not_valid');

@@ -7,9 +7,9 @@ class Product_Form_EditProduct
     extends ZendX_JQuery_Form
 {
         public function init() {
-            $this->setAction('/product/index/add')
-             ->setMethod('post')
-            ->setAttrib('id', 'product_form_index_add');
+            $this->setAction('')
+                ->setMethod('post')
+                ->setAttrib('id', 'product_form_index_edit');
 
             $prefix = $this->getAttrib('id').'_';
 

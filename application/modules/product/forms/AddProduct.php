@@ -135,21 +135,21 @@ class Product_Form_AddProduct extends ZendX_JQuery_Form {
 		
 		//Добавление элементов в форму
 		$this->addElements(
-							array(
-									$title,
-									$categories,
-									$subCategories,
-									$price,
-									$description,
-									$production_time,
-									$size,
-									$availlable_id,
-									$quantity,
-									$materials,
-									$tags,
-									$photos,
-									$submit
-							)
+                    array(
+                        $title,
+                        $categories,
+                        $subCategories,
+                        $price,
+                        $description,
+                        $production_time,
+                        $size,
+                        $availlable_id,
+                        $quantity,
+                        $materials,
+                        $tags,
+                        $photos,
+                        $submit
+                    )
 		);
     }
 }
