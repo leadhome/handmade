@@ -133,7 +133,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 //		$frontController = $this->getResource('frontController');
 //		$frontController->registerPlugin($debug);
 //	}
-	protected function _initFormValidationTranslator() {
+    protected function _initFormValidationTranslator() {
         $lang = 'ru';
         $translator = new Zend_Translate(array(
                     'adapter' => 'array',
@@ -142,5 +142,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     'scan' => Zend_Translate::LOCALE_DIRECTORY
                 ));
         Zend_Validate_Abstract::setDefaultTranslator($translator);
+    }
+    
+    protected function _initRoutes()
+    {
+        $this->bootstrap('Frontcontroller');
+        $frontController = $this->getResource('Frontcontroller');
+
+        $routers = new Zend_Config_Ini(APPLICATION_PATH . '/configs/routes.ini', 'production');
+        $router = $frontController->getRouter();
+        $router->addConfig($routers, 'routes');
     }
 }
